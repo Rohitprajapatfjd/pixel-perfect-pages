@@ -9,8 +9,11 @@ const HeroSection = () => {
     <section className="bg-[hsl(var(--page-bg))] pt-6 px-6">
       <div className="max-w-[1200px] mx-auto">
         {/* Hero Container with unique curved shapes */}
-        <div className="hero-container px-8 md:px-12 pt-7 pb-20 min-h-[580px]">
+        <div className="hero-container px-8 md:px-12 pt-7 pb-28 min-h-[580px]">
           <HeroBackground />
+          
+          {/* Bottom cutouts - multiple rectangular notches */}
+          <BottomNotches />
 
           {/* Navbar inside hero */}
           <HeroNavbar />
@@ -43,31 +46,53 @@ const HeroSection = () => {
           </div>
 
           {/* Bottom-right percentage */}
-          <div className="absolute bottom-8 right-12 text-right z-10 hidden lg:block">
-            <p className="text-5xl font-bold text-white/30">
-              93.84<span className="text-3xl">%</span>
-            </p>
-            <p className="text-sm text-white/60 mt-1">Instant transfer Stockbazaari</p>
-          </div>
         </div>
 
-        {/* Button below hero - in white area */}
-        <SpotlightButton />
+        {/* Bottom section outside hero */}
+        <div className="flex items-center justify-between py-6">
+          <SpotlightButton />
+          
+          {/* Percentage stat */}
+          <div className="text-right hidden sm:block">
+            <p className="text-5xl md:text-6xl font-bold text-primary/30">
+              93.84<span className="text-3xl">%</span>
+            </p>
+            <p className="text-sm text-muted-foreground">Instant transfer Stockbazaari</p>
+          </div>
+        </div>
       </div>
     </section>
   );
 };
 
+const BottomNotches = () => {
+  return (
+    <div className="absolute bottom-0 left-0 right-0 z-[2] flex justify-center">
+      {/* Left notch */}
+      <div className="absolute left-0 bottom-0 w-[100px] h-[50px] bg-[hsl(var(--page-bg))] rounded-tr-[20px]"></div>
+      
+      {/* Center notches - 4 rectangular cutouts */}
+      <div className="flex gap-4 mb-0">
+        <div className="w-[140px] h-[50px] bg-[hsl(var(--page-bg))] rounded-t-[16px]"></div>
+        <div className="w-[140px] h-[50px] bg-[hsl(var(--page-bg))] rounded-t-[16px]"></div>
+        <div className="w-[140px] h-[50px] bg-[hsl(var(--page-bg))] rounded-t-[16px]"></div>
+        <div className="w-[140px] h-[50px] bg-[hsl(var(--page-bg))] rounded-t-[16px]"></div>
+      </div>
+      
+      {/* Right notch */}
+      <div className="absolute right-0 bottom-0 w-[100px] h-[50px] bg-[hsl(var(--page-bg))] rounded-tl-[20px]"></div>
+    </div>
+  );
+};
+
 const SpotlightButton = () => {
   return (
-    <div className="py-6">
-      <button className="flex items-center gap-2 bg-primary text-white px-5 py-3 rounded-full font-medium text-sm hover:bg-primary-dark transition-colors shadow-button">
-        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z" />
-        </svg>
-        Today's Spotlight
-      </button>
-    </div>
+    <button className="flex items-center gap-2 bg-primary text-white px-5 py-3 rounded-full font-medium text-sm hover:bg-primary-dark transition-colors shadow-button">
+      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z" />
+      </svg>
+      Today's Spotlight
+    </button>
   );
 };
 
