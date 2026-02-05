@@ -2,22 +2,22 @@ import { Smartphone } from "lucide-react";
 
 const DownloadCard = () => {
   return (
-    <div className="feature-card w-full max-w-[220px] animate-float" style={{ animationDelay: "0.5s" }}>
+    <div className="bg-white rounded-2xl p-4 shadow-card w-[260px] flex-shrink-0">
       {/* Header */}
       <div className="flex items-center gap-2 mb-4">
         <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
           <Smartphone className="w-4 h-4 text-primary" />
         </div>
-        <span className="text-sm font-semibold text-card-foreground">Download App</span>
+        <span className="text-sm font-semibold text-foreground">Download App</span>
       </div>
 
       {/* Balance Card */}
-      <div className="bg-accent rounded-xl p-4 text-accent-foreground mb-4">
+      <div className="bg-emerald-500 rounded-xl p-4 text-white mb-4">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-xs opacity-90">Your Balance NeoPay</span>
-          <div className="w-6 h-4 bg-accent-foreground/20 rounded"></div>
+          <span className="text-xs text-white/90">Your Balance NeoPay</span>
+          <div className="w-6 h-4 bg-white/20 rounded"></div>
         </div>
-        <p className="text-[10px] opacity-75 mb-2">Total Your Balance</p>
+        <p className="text-[10px] text-white/75 mb-2">Total Your Balance</p>
         <p className="text-2xl font-bold">$8,420.00</p>
       </div>
 
@@ -39,7 +39,7 @@ const DownloadCard = () => {
           <span className="text-muted-foreground">Total Balance</span>
         </div>
         <div className="flex items-center gap-1">
-          <span className="w-2 h-2 rounded-full bg-accent"></span>
+          <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
           <span className="text-muted-foreground">Total Expense</span>
         </div>
       </div>

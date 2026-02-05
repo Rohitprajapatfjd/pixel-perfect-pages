@@ -52,6 +52,9 @@
     --shadow-card: 0 20px 60px -15px rgba(30, 64, 175, 0.15);
     --shadow-button: 0 4px 14px 0 rgba(30, 64, 175, 0.39);
 
+    /* Page background */
+    --page-bg: 220 20% 97%;
+
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -127,6 +130,40 @@
 
   .feature-card {
     @apply bg-card rounded-2xl p-5 card-shadow;
+  }
+
+  .hero-container {
+    background: linear-gradient(135deg, #2f5bff 0%, #1d3fd8 100%);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Top-left curved notch */
+  .hero-container::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: -60px;
+    width: 180px;
+    height: 180px;
+    background: hsl(var(--page-bg));
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  /* Bottom center curved dip */
+  .hero-container::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 260px;
+    height: 60px;
+    background: hsl(var(--page-bg));
+    border-radius: 40px 40px 0 0;
+    z-index: 1;
   }
 
   .stat-badge {
