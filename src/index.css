@@ -134,36 +134,26 @@
 
   .hero-container {
     background: linear-gradient(135deg, #2f5bff 0%, #1d3fd8 100%);
-    border-radius: 20px;
     position: relative;
     overflow: hidden;
+    border-radius: 0 20px 20px 20px;
   }
 
   /* Top-left curved notch */
   .hero-container::before {
     content: '';
     position: absolute;
-    top: -60px;
-    left: -60px;
-    width: 180px;
-    height: 180px;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 80px;
     background: hsl(var(--page-bg));
-    border-radius: 50%;
-    z-index: 1;
+    border-radius: 0 0 40px 0;
+    z-index: 2;
   }
 
-  /* Bottom center curved dip */
   .hero-container::after {
-    content: '';
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 260px;
-    height: 60px;
-    background: hsl(var(--page-bg));
-    border-radius: 40px 40px 0 0;
-    z-index: 1;
+    display: none;
   }
 
   .stat-badge {
