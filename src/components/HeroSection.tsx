@@ -6,32 +6,44 @@ import AnalysisCard from "./AnalysisCard";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen hero-gradient overflow-hidden">
-      <HeroBackground />
+    <section className="relative bg-background">
+      {/* Header on white background */}
+      <Header variant="light" />
       
-      <div className="relative z-10">
-        <Header />
-        
-        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 pt-12 pb-24">
-          {/* Hero Content */}
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            {/* Left - Text */}
-            <div className="pt-8">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight mb-6">
-                Smart Digital<br />
-                Stock Market
-              </h1>
-              <p className="text-primary-foreground/80 text-base md:text-lg max-w-md leading-relaxed">
-                Manage your finance easily, quickly, and securely. Stockbazaari helps you manage transaction, digital cards, and financial analytics in one intuitive platform
-              </p>
+      {/* Blue curved hero container */}
+      <div className="relative px-4 md:px-8 lg:px-12 pb-16">
+        <div className="relative hero-gradient rounded-[2rem] md:rounded-[3rem] overflow-hidden min-h-[600px] md:min-h-[700px]">
+          <HeroBackground />
+          
+          <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 pt-12 pb-24">
+            {/* Hero Content */}
+            <div className="grid lg:grid-cols-2 gap-8 items-start">
+              {/* Left - Text */}
+              <div className="pt-4 md:pt-8">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-primary-foreground leading-tight mb-6">
+                  Smart Digital<br />
+                  Stock Market
+                </h1>
+              </div>
+
+              {/* Right - Description */}
+              <div className="pt-4 md:pt-8 lg:pt-16">
+                <p className="text-primary-foreground/80 text-sm md:text-base max-w-sm leading-relaxed">
+                  Manage your finance easily, quickly, and securely.Stockbazaari helps you manage transaction,digital cards,and financial analytics in one intituitive platform
+                </p>
+              </div>
             </div>
 
-            {/* Right - Cards */}
-            <div className="relative mt-8 lg:mt-0">
-              <div className="flex flex-wrap gap-4 justify-center lg:justify-end items-start">
-                <SpendingCard />
-                <div className="flex flex-col gap-4">
+            {/* Cards Row */}
+            <div className="mt-8 md:mt-12">
+              <div className="flex flex-wrap gap-4 justify-center items-start">
+                <div className="w-full sm:w-auto">
+                  <SpendingCard />
+                </div>
+                <div className="w-full sm:w-auto">
                   <DownloadCard />
+                </div>
+                <div className="w-full sm:w-auto">
                   <AnalysisCard />
                 </div>
               </div>
