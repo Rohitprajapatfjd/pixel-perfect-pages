@@ -1,6 +1,10 @@
 import { ArrowUpRight } from "lucide-react";
 
-const Header = () => {
+interface HeaderProps {
+  variant?: "light" | "dark";
+}
+
+const Header = ({ variant = "dark" }: HeaderProps) => {
   const navLinks = [
     { name: "Home", href: "#", active: true },
     { name: "Education", href: "#" },
@@ -9,8 +13,10 @@ const Header = () => {
     { name: "Contact", href: "#" },
   ];
 
+  const isLight = variant === "light";
+
   return (
-    <header className="w-full py-5 px-6 md:px-12 lg:px-20">
+    <header className={`w-full py-5 px-6 md:px-12 lg:px-20 ${isLight ? "bg-background" : ""}`}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
@@ -24,7 +30,7 @@ const Header = () => {
               <path d="M24 16V24L16 28V20L24 16Z" fill="#15803D" />
             </svg>
           </div>
-          <span className="text-xl font-bold text-primary-foreground">Stockbazaari</span>
+          <span className={`text-xl font-bold ${isLight ? "text-primary" : "text-primary-foreground"}`}>Stockbazaari</span>
         </div>
 
         {/* Navigation */}
@@ -33,7 +39,15 @@ const Header = () => {
             <a
               key={link.name}
               href={link.href}
-              className={link.active ? "nav-link-active" : "nav-link"}
+              className={
+                isLight
+                  ? link.active
+                    ? "text-foreground font-semibold text-sm"
+                    : "text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm font-medium"
+                  : link.active
+                  ? "nav-link-active"
+                  : "nav-link"
+              }
             >
               {link.name}
             </a>
@@ -43,7 +57,9 @@ const Header = () => {
         {/* CTA Button */}
         <a
           href="#"
-          className="flex items-center gap-2 text-primary-foreground font-medium text-sm hover:opacity-90 transition-opacity"
+          className={`flex items-center gap-2 font-medium text-sm hover:opacity-90 transition-opacity ${
+            isLight ? "text-foreground" : "text-primary-foreground"
+          }`}
         >
           Download Now
           <ArrowUpRight className="w-4 h-4" />
