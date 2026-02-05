@@ -2,7 +2,7 @@ import { ArrowUpRight } from "lucide-react";
 
 const AnalysisCard = () => {
   return (
-    <div className="feature-card w-full max-w-[320px] animate-float" style={{ animationDelay: "1s" }}>
+    <div className="bg-white rounded-2xl p-4 shadow-card w-[260px] flex-shrink-0">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -17,8 +17,8 @@ const AnalysisCard = () => {
 
       {/* Title */}
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-card-foreground">Analysis</h3>
-        <span className="stat-badge bg-accent text-accent-foreground text-xs">Active Customer</span>
+        <h3 className="text-lg font-semibold text-foreground">Analysis</h3>
+        <span className="stat-badge bg-emerald-500 text-white text-xs">Active Customer</span>
       </div>
 
       {/* Chart */}
@@ -64,7 +64,7 @@ const AnalysisCard = () => {
 
           {/* Tooltip */}
           <div className="absolute top-2 right-12 bg-card border border-border rounded-lg px-2 py-1 shadow-sm">
-            <span className="text-xs font-medium text-accent">+15.3%</span>
+            <span className="text-xs font-medium text-emerald-500">+15.3%</span>
           </div>
 
           {/* Data indicator */}
