@@ -8,30 +8,32 @@ const HeroSection = () => {
   return (
     <section className="bg-[hsl(var(--page-bg))] pt-6 px-6">
       <div className="max-w-[1200px] mx-auto">
+        {/* Navbar on white background */}
+        <div className="bg-white rounded-t-[20px] px-8 md:px-12">
+          <HeroNavbar variant="light" />
+        </div>
+
         {/* Hero Container with unique curved shapes */}
-        <div className="hero-container px-8 md:px-12 pt-7 pb-28 min-h-[580px]">
+        <div className="hero-container px-8 md:px-12 pt-8 pb-32 min-h-[520px]">
           <HeroBackground />
-          
-          {/* Bottom cutouts - multiple rectangular notches */}
+
+          {/* Bottom cutouts - 5 rectangular notches with center dip */}
           <BottomNotches />
 
-          {/* Navbar inside hero */}
-          <HeroNavbar />
-
           {/* Hero Content */}
-          <div className="relative z-10 mt-12 md:mt-16">
+          <div className="relative z-10 mt-8 md:mt-12">
             <div className="grid lg:grid-cols-2 gap-8 items-start">
               {/* Left - Heading */}
               <div>
-                <h1 className="text-4xl md:text-5xl lg:text-[64px] font-bold text-white leading-[1.1]">
+                <h1 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white leading-[1.15]">
                   Smart Digital<br />
                   Stock Market
                 </h1>
               </div>
 
               {/* Right - Paragraph */}
-              <div className="lg:pt-4">
-                <p className="text-white/90 text-base max-w-[360px] leading-relaxed">
+              <div className="lg:pt-2">
+                <p className="text-white/90 text-[15px] max-w-[340px] leading-relaxed">
                   Manage your finance easily, quickly, and securely. Stockbazaari helps you manage transaction, digital cards, and financial analytics in one intuitive platform
                 </p>
               </div>
@@ -44,17 +46,15 @@ const HeroSection = () => {
               <AnalysisCard />
             </div>
           </div>
-
-          {/* Bottom-right percentage */}
         </div>
 
-        {/* Bottom section outside hero */}
-        <div className="flex items-center justify-between py-6">
+        {/* Bottom section outside hero - white background */}
+        <div className="bg-white rounded-b-[20px] flex items-center justify-between px-8 md:px-12 py-6">
           <SpotlightButton />
           
           {/* Percentage stat */}
           <div className="text-right hidden sm:block">
-            <p className="text-5xl md:text-6xl font-bold text-primary/30">
+            <p className="text-5xl md:text-6xl font-bold text-primary">
               93.84<span className="text-3xl">%</span>
             </p>
             <p className="text-sm text-muted-foreground">Instant transfer Stockbazaari</p>
@@ -67,20 +67,25 @@ const HeroSection = () => {
 
 const BottomNotches = () => {
   return (
-    <div className="absolute bottom-0 left-0 right-0 z-[2] flex justify-center">
-      {/* Left notch */}
-      <div className="absolute left-0 bottom-0 w-[100px] h-[50px] bg-[hsl(var(--page-bg))] rounded-tr-[20px]"></div>
-      
-      {/* Center notches - 4 rectangular cutouts */}
-      <div className="flex gap-4 mb-0">
-        <div className="w-[140px] h-[50px] bg-[hsl(var(--page-bg))] rounded-t-[16px]"></div>
-        <div className="w-[140px] h-[50px] bg-[hsl(var(--page-bg))] rounded-t-[16px]"></div>
-        <div className="w-[140px] h-[50px] bg-[hsl(var(--page-bg))] rounded-t-[16px]"></div>
-        <div className="w-[140px] h-[50px] bg-[hsl(var(--page-bg))] rounded-t-[16px]"></div>
+    <div className="absolute bottom-0 left-0 right-0 z-[2]">
+      {/* Main container for notches */}
+      <div className="flex justify-between items-end h-[60px]">
+        {/* Left side notch */}
+        <div className="w-[80px] h-[50px] bg-white rounded-tr-[16px]"></div>
+        
+        {/* Center notches group */}
+        <div className="flex-1 flex justify-center gap-3 items-end">
+          <div className="w-[120px] h-[45px] bg-white rounded-t-[14px]"></div>
+          <div className="w-[120px] h-[45px] bg-white rounded-t-[14px]"></div>
+          {/* Center curved dip - taller */}
+          <div className="w-[140px] h-[55px] bg-white rounded-t-[20px]"></div>
+          <div className="w-[120px] h-[45px] bg-white rounded-t-[14px]"></div>
+          <div className="w-[120px] h-[45px] bg-white rounded-t-[14px]"></div>
+        </div>
+        
+        {/* Right side notch */}
+        <div className="w-[80px] h-[50px] bg-white rounded-tl-[16px]"></div>
       </div>
-      
-      {/* Right notch */}
-      <div className="absolute right-0 bottom-0 w-[100px] h-[50px] bg-[hsl(var(--page-bg))] rounded-tl-[20px]"></div>
     </div>
   );
 };
