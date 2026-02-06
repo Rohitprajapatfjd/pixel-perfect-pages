@@ -1,137 +1,247 @@
-import { TrendingUp, Calendar, ArrowUp } from "lucide-react";
+import { TrendingUp } from "lucide-react";
 
 const StockPredictor = () => {
-  const events = [
-    { title: "Q3 Results Declaration", date: "2024-02-10", type: "high" },
-    { title: "Q4 Results Declaration", date: "2024-02-18", type: "low" },
-  ];
-
   return (
     <section className="bg-background py-16 px-6 md:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
         {/* Header Badge */}
-        <div className="flex items-center gap-2 mb-6">
-          <span className="text-primary text-lg">▶</span>
-          <span className="text-primary font-semibold text-sm">Stock Predictor</span>
+        <div className="mb-8">
+          <span className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full font-semibold">
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+            </svg>
+            Stock Predictor
+          </span>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Left - Content */}
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-card-foreground mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               StockBazaari Shows Your<br />
               Effortless Prediction
             </h2>
             <h3 className="text-xl text-muted-foreground mb-8">
               Users Trust StockBazaari
             </h3>
-            <p className="text-muted-foreground text-sm max-w-md">
-              Built with enterprise-level security and designed for ease of use to empower individuals and businesses to transact.
-            </p>
           </div>
 
-          {/* Right - Stock Card */}
-          <div className="space-y-6">
-            {/* Main Stock Card */}
-            <div className="bg-card rounded-2xl p-6 card-shadow">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h4 className="text-lg font-bold text-card-foreground">Reliance Industries Ltd</h4>
-                  <span className="text-xs text-muted-foreground">Oil & Gas</span>
-                </div>
-              </div>
+          {/* Right - 3D Chart Illustration */}
+          <div className="flex justify-end">
+            <div className="relative">
+              {/* 3D Bar Chart */}
+              <svg className="w-64 h-48" viewBox="0 0 200 150" fill="none">
+                {/* Bars */}
+                <g transform="translate(20, 20)">
+                  {/* Bar 1 */}
+                  <path d="M10 100 L10 80 L25 75 L25 95 Z" fill="hsl(var(--primary))" opacity="0.8" />
+                  <path d="M10 80 L17 77 L32 72 L25 75 Z" fill="hsl(var(--primary))" />
+                  <path d="M25 75 L32 72 L32 92 L25 95 Z" fill="hsl(var(--primary))" opacity="0.6" />
+                  
+                  {/* Bar 2 */}
+                  <path d="M35 100 L35 70 L50 65 L50 95 Z" fill="hsl(var(--primary))" opacity="0.8" />
+                  <path d="M35 70 L42 67 L57 62 L50 65 Z" fill="hsl(var(--primary))" />
+                  <path d="M50 65 L57 62 L57 92 L50 95 Z" fill="hsl(var(--primary))" opacity="0.6" />
+                  
+                  {/* Bar 3 */}
+                  <path d="M60 100 L60 55 L75 50 L75 95 Z" fill="hsl(var(--primary))" opacity="0.8" />
+                  <path d="M60 55 L67 52 L82 47 L75 50 Z" fill="hsl(var(--primary))" />
+                  <path d="M75 50 L82 47 L82 92 L75 95 Z" fill="hsl(var(--primary))" opacity="0.6" />
+                  
+                  {/* Bar 4 */}
+                  <path d="M85 100 L85 40 L100 35 L100 95 Z" fill="hsl(var(--primary))" opacity="0.8" />
+                  <path d="M85 40 L92 37 L107 32 L100 35 Z" fill="hsl(var(--primary))" />
+                  <path d="M100 35 L107 32 L107 92 L100 95 Z" fill="hsl(var(--primary))" opacity="0.6" />
+                  
+                  {/* Bar 5 */}
+                  <path d="M110 100 L110 25 L125 20 L125 95 Z" fill="hsl(var(--primary))" opacity="0.8" />
+                  <path d="M110 25 L117 22 L132 17 L125 20 Z" fill="hsl(var(--primary))" />
+                  <path d="M125 20 L132 17 L132 92 L125 95 Z" fill="hsl(var(--primary))" opacity="0.6" />
+                </g>
+                
+                {/* Arrow */}
+                <path d="M50 90 Q 100 50, 150 20" stroke="hsl(var(--primary))" strokeWidth="3" fill="none" />
+                <polygon points="155,15 145,25 150,15" fill="hsl(var(--primary))" transform="rotate(-30, 150, 20)" />
+              </svg>
+              
+              {/* Description text */}
+              <p className="text-sm text-muted-foreground max-w-xs mt-4">
+                Built with enterprise-level security and designed for ease of use we empower individuals and business to transaction
+              </p>
+            </div>
+          </div>
+        </div>
 
-              <div className="flex items-end justify-between mb-6">
-                <div>
-                  <p className="text-4xl font-bold text-card-foreground">2745.87</p>
-                  <div className="flex items-center gap-2 mt-2">
-                    <span className="bg-accent text-accent-foreground text-xs px-2 py-1 rounded font-medium">Buy</span>
-                    <div className="flex items-center gap-1 text-accent text-sm">
-                      <ArrowUp className="w-4 h-4" />
-                      <span>+23.50 (1.2%)</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-24 h-24 rounded-full border-4 border-primary flex items-center justify-center">
+        {/* Stock Cards Row */}
+        <div className="mt-12 grid lg:grid-cols-2 gap-6">
+          {/* Left - Stock Card */}
+          <div className="border-2 border-primary/20 rounded-3xl p-6 relative">
+            {/* Corner decoration */}
+            <div className="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-primary rounded-tl-xl"></div>
+            <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-primary rounded-br-xl"></div>
+            
+            <div className="text-center mb-6">
+              <h4 className="text-xl font-bold text-primary">Reliance Industries Ltd</h4>
+              <p className="text-sm text-muted-foreground">Oil & Gas</p>
+              <p className="text-3xl font-bold text-foreground mt-2">2745.5₹</p>
+            </div>
+
+            {/* Buy Button */}
+            <div className="bg-primary text-primary-foreground rounded-xl p-4 text-center mb-6">
+              <p className="font-bold text-lg">Buy</p>
+              <p className="text-sm opacity-90">Target ₹3200</p>
+              <p className="text-xs opacity-75">85% of confidence</p>
+            </div>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-muted/50 rounded-xl p-3 text-center">
+                <p className="text-xs text-muted-foreground">Market Cap</p>
+                <p className="text-sm font-bold text-primary">18.5l Cr</p>
+              </div>
+              <div className="bg-muted/50 rounded-xl p-3 text-center">
+                <p className="text-xs text-muted-foreground">PV Ratio</p>
+                <p className="text-sm font-bold text-primary">24.5</p>
+              </div>
+              <div className="bg-muted/50 rounded-xl p-3 text-center">
+                <p className="text-xs text-muted-foreground">ROE</p>
+                <p className="text-sm font-bold text-primary">8.9%</p>
+              </div>
+              <div className="bg-muted/50 rounded-xl p-3 text-center">
+                <p className="text-xs text-muted-foreground">Revenue</p>
+                <p className="text-sm font-bold text-primary">7.92l Cr</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Right - Accessibility Rate */}
+          <div className="border-2 border-primary/20 rounded-3xl p-6 relative">
+            {/* Corner decoration */}
+            <div className="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-primary rounded-tl-xl"></div>
+            <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-primary rounded-br-xl"></div>
+            
+            <div className="flex items-center justify-center h-full">
+              <div className="relative">
+                {/* Semi-circle gauge */}
+                <svg className="w-48 h-32" viewBox="0 0 200 120">
+                  {/* Background arc */}
+                  <path
+                    d="M 20 100 A 80 80 0 0 1 180 100"
+                    fill="none"
+                    stroke="hsl(var(--muted))"
+                    strokeWidth="20"
+                    strokeLinecap="round"
+                  />
+                  {/* Colored segments */}
+                  {[...Array(12)].map((_, i) => {
+                    const startAngle = 180 + (i * 15);
+                    const endAngle = 180 + ((i + 1) * 15) - 3;
+                    const startRad = (startAngle * Math.PI) / 180;
+                    const endRad = (endAngle * Math.PI) / 180;
+                    const x1 = 100 + 80 * Math.cos(startRad);
+                    const y1 = 100 + 80 * Math.sin(startRad);
+                    const x2 = 100 + 80 * Math.cos(endRad);
+                    const y2 = 100 + 80 * Math.sin(endRad);
+                    return (
+                      <path
+                        key={i}
+                        d={`M ${x1} ${y1} A 80 80 0 0 1 ${x2} ${y2}`}
+                        fill="none"
+                        stroke="hsl(var(--primary))"
+                        strokeWidth="16"
+                        strokeLinecap="round"
+                        opacity={i < 3 ? 1 : 0.3}
+                      />
+                    );
+                  })}
+                </svg>
+                <div className="absolute inset-0 flex items-end justify-center pb-2">
                   <div className="text-center">
-                    <span className="text-2xl font-bold text-primary">20%</span>
-                    <p className="text-[10px] text-muted-foreground">Buy<br />Hold</p>
+                    <p className="text-3xl font-bold text-foreground">20%</p>
+                    <p className="text-sm text-muted-foreground">Accessibility rate</p>
                   </div>
-                </div>
-              </div>
-
-              {/* Mini Stats */}
-              <div className="grid grid-cols-4 gap-4 text-center text-xs">
-                <div>
-                  <p className="text-muted-foreground">P/E Ratio</p>
-                  <p className="font-semibold text-card-foreground">24.5</p>
-                </div>
-                <div>
-                  <p className="text-muted-foreground">P/E</p>
-                  <p className="font-semibold text-card-foreground">24.5</p>
-                </div>
-                <div>
-                  <p className="text-muted-foreground">P/B</p>
-                  <p className="font-semibold text-card-foreground">2.8</p>
-                </div>
-                <div>
-                  <p className="text-muted-foreground">Div Yield</p>
-                  <p className="font-semibold text-card-foreground">0.3%</p>
-                </div>
-              </div>
-
-              {/* Progress Bars */}
-              <div className="mt-6 space-y-3">
-                <div className="flex items-center gap-3">
-                  <span className="text-xs text-muted-foreground w-12">Buy</span>
-                  <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                    <div className="h-full w-[80%] bg-accent rounded-full"></div>
-                  </div>
-                  <span className="text-xs text-muted-foreground">80%</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-xs text-muted-foreground w-12">Hold</span>
-                  <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
-                    <div className="h-full w-[50%] bg-primary rounded-full"></div>
-                  </div>
-                  <span className="text-xs text-muted-foreground">50%</span>
                 </div>
               </div>
             </div>
 
-            {/* Analysis Scores & Events */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-card rounded-2xl p-5 card-shadow">
-                <h5 className="text-sm font-bold text-card-foreground mb-4">Analysis Scores</h5>
-                <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <span className="text-xs text-muted-foreground">Fundamental Scores</span>
-                    <span className="text-xs font-semibold text-primary">8.2/10</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-xs text-muted-foreground">Technical Scores</span>
-                    <span className="text-xs font-semibold text-primary">7.0/10</span>
-                  </div>
+            {/* Additional Stats */}
+            <div className="grid grid-cols-2 gap-3 mt-6">
+              <div className="bg-muted/50 rounded-xl p-3 text-center">
+                <p className="text-xs text-muted-foreground">Fair Value</p>
+                <p className="text-sm font-bold text-muted-foreground">24.5</p>
+              </div>
+              <div className="bg-muted/50 rounded-xl p-3 text-center">
+                <p className="text-xs text-muted-foreground">Weak Return</p>
+                <p className="text-sm font-bold text-muted-foreground">24.5</p>
+              </div>
+              <div className="bg-muted/50 rounded-xl p-3 text-center">
+                <p className="text-xs text-muted-foreground">Dept/Equity</p>
+                <p className="text-sm font-bold text-primary">24.5</p>
+              </div>
+              <div className="bg-muted/50 rounded-xl p-3 text-center">
+                <p className="text-xs text-muted-foreground">High Debt</p>
+                <p className="text-sm font-bold text-destructive">High Debt</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Analysis Scores & Upcoming Events */}
+        <div className="mt-6 grid lg:grid-cols-2 gap-6">
+          {/* Analysis Scores */}
+          <div className="border-2 border-primary/20 rounded-3xl p-6 relative">
+            <div className="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-primary rounded-tl-xl"></div>
+            
+            <h5 className="text-xl font-bold text-foreground mb-6">Analysis Scores</h5>
+            
+            <div className="space-y-5">
+              <div>
+                <div className="flex justify-between mb-2">
+                  <span className="text-sm text-muted-foreground">Fundamental Scores</span>
+                  <span className="text-sm font-bold text-primary">8.2/10</span>
+                </div>
+                <div className="h-2 bg-muted rounded-full overflow-hidden">
+                  <div className="h-full w-[82%] bg-gradient-to-r from-primary to-primary/60 rounded-full"></div>
                 </div>
               </div>
-
-              <div className="bg-card rounded-2xl p-5 card-shadow">
-                <h5 className="text-sm font-bold text-card-foreground mb-4">Upcoming Events</h5>
-                <div className="space-y-3">
-                  {events.map((event, index) => (
-                    <div key={index} className="flex items-center justify-between">
-                      <div>
-                        <p className="text-xs font-medium text-card-foreground">{event.title}</p>
-                        <p className="text-[10px] text-muted-foreground">{event.date}</p>
-                      </div>
-                      <span className={`text-[10px] px-2 py-1 rounded ${
-                        event.type === "high" ? "bg-accent text-accent-foreground" : "bg-primary text-primary-foreground"
-                      }`}>
-                        {event.type === "high" ? "High Impact" : "Low Impact"}
-                      </span>
-                    </div>
-                  ))}
+              
+              <div>
+                <div className="flex justify-between mb-2">
+                  <span className="text-sm text-muted-foreground">Technical Scores</span>
+                  <span className="text-sm font-bold text-primary">7.2/10</span>
                 </div>
+                <div className="h-2 bg-muted rounded-full overflow-hidden">
+                  <div className="h-full w-[72%] bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Upcoming Events */}
+          <div className="border-2 border-primary/20 rounded-3xl p-6 relative">
+            <div className="absolute -top-3 -right-3 w-6 h-6 border-t-2 border-r-2 border-primary rounded-tr-xl"></div>
+            
+            <h5 className="text-xl font-bold text-primary text-center mb-6">Upcoming Events</h5>
+            
+            <div className="space-y-4">
+              <div className="bg-muted/30 rounded-xl p-4 flex items-center justify-between">
+                <div>
+                  <p className="font-semibold text-foreground">Q3 Results Declaration</p>
+                  <p className="text-sm text-muted-foreground">2024-02-15</p>
+                </div>
+                <span className="bg-destructive text-destructive-foreground text-sm px-4 py-2 rounded-lg font-medium">
+                  High Impact
+                </span>
+              </div>
+              
+              <div className="bg-muted/30 rounded-xl p-4 flex items-center justify-between">
+                <div>
+                  <p className="font-semibold text-foreground">Q3 Results Declaration</p>
+                  <p className="text-sm text-muted-foreground">2024-02-15</p>
+                </div>
+                <span className="bg-emerald-500 text-white text-sm px-4 py-2 rounded-lg font-medium">
+                  Low Impact
+                </span>
               </div>
             </div>
           </div>
