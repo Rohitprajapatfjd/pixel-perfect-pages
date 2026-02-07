@@ -135,8 +135,8 @@
   .hero-container {
     background: linear-gradient(135deg, #2f5bff 0%, #1d3fd8 100%);
     position: relative;
-    overflow: hidden;
-    border-radius: 0 0 0 0;
+    overflow: visible;
+    border-radius: 20px 20px 0 0;
   }
 
   /* Top-left curved notch - white area where logo sits */
@@ -145,11 +145,11 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 220px;
-    height: 50px;
+    width: 200px;
+    height: 64px;
     background: white;
-    border-radius: 0 0 30px 0;
-    z-index: 2;
+    border-radius: 20px 0 30px 0;
+    z-index: 1;
   }
 
   .hero-container::after {
