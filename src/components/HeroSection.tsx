@@ -2,23 +2,72 @@ import HeroBackground from "./HeroBackground";
 import SpendingCard from "./SpendingCard";
 import DownloadCard from "./DownloadCard";
 import AnalysisCard from "./AnalysisCard";
-import HeroNavbar from "./HeroNavbar";
+import { ArrowUpRight } from "lucide-react";
 
 const HeroSection = () => {
+  const navLinks = [
+    { name: "Home", href: "#", active: true },
+    { name: "Education", href: "#" },
+    { name: "Algo", href: "#" },
+    { name: "Blog", href: "#" },
+    { name: "Contact", href: "#" },
+  ];
+
   return (
     <section className="bg-[hsl(var(--page-bg))] pt-6 px-6">
-      <div className="max-w-[1200px] mx-auto">
-        {/* Navbar on white background */}
-        <div className="bg-white rounded-t-[20px] px-8 md:px-12">
-          <HeroNavbar variant="light" />
+      <div className="max-w-[1200px] mx-auto relative">
+        {/* Logo positioned absolutely outside blue area */}
+        <div className="absolute left-0 top-0 z-20 bg-white rounded-tr-[30px] rounded-tl-[20px] px-6 py-4 pb-8" style={{ bottom: 'auto' }}>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 flex items-center justify-center">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M16 4L16 14" stroke="#2563EB" strokeWidth="3" strokeLinecap="round" />
+                <path d="M16 14L24 8" stroke="#2563EB" strokeWidth="3" strokeLinecap="round" />
+                <path d="M16 14L8 8" stroke="#2563EB" strokeWidth="3" strokeLinecap="round" />
+                <path d="M16 14L24 20" stroke="#22C55E" strokeWidth="3" strokeLinecap="round" />
+                <path d="M16 14L8 20" stroke="#22C55E" strokeWidth="3" strokeLinecap="round" />
+                <path d="M16 14L16 24" stroke="#22C55E" strokeWidth="3" strokeLinecap="round" />
+              </svg>
+            </div>
+            <span className="text-xl font-bold text-primary">Stockbazaari</span>
+          </div>
         </div>
 
-        {/* Hero Container with unique curved shapes */}
-        <div className="hero-container px-8 md:px-12 pt-8 pb-32 min-h-[520px]">
+        {/* Hero Container with blue background */}
+        <div className="hero-container px-8 md:px-12 pt-0 pb-32 min-h-[520px] rounded-t-[20px]">
           <HeroBackground />
 
-          {/* Bottom cutouts - 5 rectangular notches with center dip */}
-          <BottomNotches />
+          {/* Navbar inside blue area */}
+          <nav className="relative z-10 flex items-center justify-between h-16 pt-4">
+            {/* Empty space for logo */}
+            <div className="w-[200px]"></div>
+
+            {/* Center Nav Links */}
+            <div className="hidden md:flex items-center gap-10">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className={
+                    link.active
+                      ? "text-white font-semibold text-sm"
+                      : "text-white/80 hover:text-white transition-colors duration-200 text-sm font-medium"
+                  }
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+
+            {/* Download Button */}
+            <a
+              href="#"
+              className="flex items-center gap-2 font-medium text-sm text-white hover:opacity-90 transition-opacity group"
+            >
+              Download Now
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+          </nav>
 
           {/* Hero Content */}
           <div className="relative z-10 mt-8 md:mt-12">
@@ -46,6 +95,9 @@ const HeroSection = () => {
               <AnalysisCard />
             </div>
           </div>
+
+          {/* Bottom cutouts - 4 rectangular with center curved dip */}
+          <BottomNotches />
         </div>
 
         {/* Bottom section outside hero - white background */}
@@ -69,22 +121,28 @@ const BottomNotches = () => {
   return (
     <div className="absolute bottom-0 left-0 right-0 z-[2]">
       {/* Main container for notches */}
-      <div className="flex justify-between items-end h-[60px]">
-        {/* Left side notch */}
-        <div className="w-[80px] h-[50px] bg-white rounded-tr-[16px]"></div>
+      <div className="flex justify-center items-end h-[70px] px-8">
+        {/* Left rectangular cutout */}
+        <div className="w-[160px] h-[50px] bg-white rounded-t-[12px] mx-1"></div>
         
-        {/* Center notches group */}
-        <div className="flex-1 flex justify-center gap-3 items-end">
-          <div className="w-[120px] h-[45px] bg-white rounded-t-[14px]"></div>
-          <div className="w-[120px] h-[45px] bg-white rounded-t-[14px]"></div>
-          {/* Center curved dip - taller */}
-          <div className="w-[140px] h-[55px] bg-white rounded-t-[20px]"></div>
-          <div className="w-[120px] h-[45px] bg-white rounded-t-[14px]"></div>
-          <div className="w-[120px] h-[45px] bg-white rounded-t-[14px]"></div>
+        {/* Second rectangular cutout */}
+        <div className="w-[160px] h-[50px] bg-white rounded-t-[12px] mx-1"></div>
+        
+        {/* Center curved dip - taller with smooth curve */}
+        <div className="relative mx-1">
+          <svg width="180" height="70" viewBox="0 0 180 70" fill="none" className="block">
+            <path 
+              d="M0 70 L0 20 Q0 0 20 0 L160 0 Q180 0 180 20 L180 70 Z" 
+              fill="white"
+            />
+          </svg>
         </div>
         
-        {/* Right side notch */}
-        <div className="w-[80px] h-[50px] bg-white rounded-tl-[16px]"></div>
+        {/* Fourth rectangular cutout */}
+        <div className="w-[160px] h-[50px] bg-white rounded-t-[12px] mx-1"></div>
+        
+        {/* Right rectangular cutout */}
+        <div className="w-[160px] h-[50px] bg-white rounded-t-[12px] mx-1"></div>
       </div>
     </div>
   );

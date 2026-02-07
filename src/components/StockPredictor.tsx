@@ -1,247 +1,231 @@
-import { TrendingUp } from "lucide-react";
-
 const StockPredictor = () => {
   return (
-    <section className="bg-background py-16 px-6 md:px-12 lg:px-20">
-      <div className="max-w-7xl mx-auto">
-        {/* Header Badge */}
-        <div className="mb-8">
-          <span className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full font-semibold">
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-            </svg>
-            Stock Predictor
-          </span>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left - Content */}
-          <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              StockBazaari Shows Your<br />
-              Effortless Prediction
-            </h2>
-            <h3 className="text-xl text-muted-foreground mb-8">
-              Users Trust StockBazaari
-            </h3>
-          </div>
-
-          {/* Right - 3D Chart Illustration */}
-          <div className="flex justify-end">
-            <div className="relative">
-              {/* 3D Bar Chart */}
-              <svg className="w-64 h-48" viewBox="0 0 200 150" fill="none">
-                {/* Bars */}
-                <g transform="translate(20, 20)">
-                  {/* Bar 1 */}
-                  <path d="M10 100 L10 80 L25 75 L25 95 Z" fill="hsl(var(--primary))" opacity="0.8" />
-                  <path d="M10 80 L17 77 L32 72 L25 75 Z" fill="hsl(var(--primary))" />
-                  <path d="M25 75 L32 72 L32 92 L25 95 Z" fill="hsl(var(--primary))" opacity="0.6" />
-                  
-                  {/* Bar 2 */}
-                  <path d="M35 100 L35 70 L50 65 L50 95 Z" fill="hsl(var(--primary))" opacity="0.8" />
-                  <path d="M35 70 L42 67 L57 62 L50 65 Z" fill="hsl(var(--primary))" />
-                  <path d="M50 65 L57 62 L57 92 L50 95 Z" fill="hsl(var(--primary))" opacity="0.6" />
-                  
-                  {/* Bar 3 */}
-                  <path d="M60 100 L60 55 L75 50 L75 95 Z" fill="hsl(var(--primary))" opacity="0.8" />
-                  <path d="M60 55 L67 52 L82 47 L75 50 Z" fill="hsl(var(--primary))" />
-                  <path d="M75 50 L82 47 L82 92 L75 95 Z" fill="hsl(var(--primary))" opacity="0.6" />
-                  
-                  {/* Bar 4 */}
-                  <path d="M85 100 L85 40 L100 35 L100 95 Z" fill="hsl(var(--primary))" opacity="0.8" />
-                  <path d="M85 40 L92 37 L107 32 L100 35 Z" fill="hsl(var(--primary))" />
-                  <path d="M100 35 L107 32 L107 92 L100 95 Z" fill="hsl(var(--primary))" opacity="0.6" />
-                  
-                  {/* Bar 5 */}
-                  <path d="M110 100 L110 25 L125 20 L125 95 Z" fill="hsl(var(--primary))" opacity="0.8" />
-                  <path d="M110 25 L117 22 L132 17 L125 20 Z" fill="hsl(var(--primary))" />
-                  <path d="M125 20 L132 17 L132 92 L125 95 Z" fill="hsl(var(--primary))" opacity="0.6" />
-                </g>
-                
-                {/* Arrow */}
-                <path d="M50 90 Q 100 50, 150 20" stroke="hsl(var(--primary))" strokeWidth="3" fill="none" />
-                <polygon points="155,15 145,25 150,15" fill="hsl(var(--primary))" transform="rotate(-30, 150, 20)" />
-              </svg>
-              
-              {/* Description text */}
-              <p className="text-sm text-muted-foreground max-w-xs mt-4">
-                Built with enterprise-level security and designed for ease of use we empower individuals and business to transaction
+    <section className="bg-[hsl(var(--page-bg))] py-16 px-6">
+      <div className="max-w-[1200px] mx-auto">
+        <div className="bg-white rounded-[24px] p-8 md:p-12">
+          {/* Header */}
+          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-10">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-full text-sm font-medium mb-4">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z" />
+                </svg>
+                Stock Predictor
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-card-foreground">
+                StockBazaari Shows Your
+              </h2>
+              <h3 className="text-3xl md:text-4xl font-bold text-card-foreground">
+                Effortless Prediction
+              </h3>
+              <p className="text-xl text-muted-foreground mt-2">
+                Users Trust StockBazaari
               </p>
             </div>
-          </div>
-        </div>
 
-        {/* Stock Cards Row */}
-        <div className="mt-12 grid lg:grid-cols-2 gap-6">
-          {/* Left - Stock Card */}
-          <div className="border-2 border-primary/20 rounded-3xl p-6 relative">
-            {/* Corner decoration */}
-            <div className="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-primary rounded-tl-xl"></div>
-            <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-primary rounded-br-xl"></div>
-            
-            <div className="text-center mb-6">
-              <h4 className="text-xl font-bold text-primary">Reliance Industries Ltd</h4>
-              <p className="text-sm text-muted-foreground">Oil & Gas</p>
-              <p className="text-3xl font-bold text-foreground mt-2">2745.5₹</p>
-            </div>
-
-            {/* Buy Button */}
-            <div className="bg-primary text-primary-foreground rounded-xl p-4 text-center mb-6">
-              <p className="font-bold text-lg">Buy</p>
-              <p className="text-sm opacity-90">Target ₹3200</p>
-              <p className="text-xs opacity-75">85% of confidence</p>
-            </div>
-
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-3">
-              <div className="bg-muted/50 rounded-xl p-3 text-center">
-                <p className="text-xs text-muted-foreground">Market Cap</p>
-                <p className="text-sm font-bold text-primary">18.5l Cr</p>
-              </div>
-              <div className="bg-muted/50 rounded-xl p-3 text-center">
-                <p className="text-xs text-muted-foreground">PV Ratio</p>
-                <p className="text-sm font-bold text-primary">24.5</p>
-              </div>
-              <div className="bg-muted/50 rounded-xl p-3 text-center">
-                <p className="text-xs text-muted-foreground">ROE</p>
-                <p className="text-sm font-bold text-primary">8.9%</p>
-              </div>
-              <div className="bg-muted/50 rounded-xl p-3 text-center">
-                <p className="text-xs text-muted-foreground">Revenue</p>
-                <p className="text-sm font-bold text-primary">7.92l Cr</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Right - Accessibility Rate */}
-          <div className="border-2 border-primary/20 rounded-3xl p-6 relative">
-            {/* Corner decoration */}
-            <div className="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-primary rounded-tl-xl"></div>
-            <div className="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-primary rounded-br-xl"></div>
-            
-            <div className="flex items-center justify-center h-full">
+            {/* 3D Bar Chart Illustration */}
+            <div className="flex-shrink-0">
               <div className="relative">
-                {/* Semi-circle gauge */}
-                <svg className="w-48 h-32" viewBox="0 0 200 120">
-                  {/* Background arc */}
-                  <path
-                    d="M 20 100 A 80 80 0 0 1 180 100"
-                    fill="none"
-                    stroke="hsl(var(--muted))"
-                    strokeWidth="20"
-                    strokeLinecap="round"
-                  />
-                  {/* Colored segments */}
-                  {[...Array(12)].map((_, i) => {
-                    const startAngle = 180 + (i * 15);
-                    const endAngle = 180 + ((i + 1) * 15) - 3;
-                    const startRad = (startAngle * Math.PI) / 180;
-                    const endRad = (endAngle * Math.PI) / 180;
-                    const x1 = 100 + 80 * Math.cos(startRad);
-                    const y1 = 100 + 80 * Math.sin(startRad);
-                    const x2 = 100 + 80 * Math.cos(endRad);
-                    const y2 = 100 + 80 * Math.sin(endRad);
-                    return (
-                      <path
-                        key={i}
-                        d={`M ${x1} ${y1} A 80 80 0 0 1 ${x2} ${y2}`}
-                        fill="none"
-                        stroke="hsl(var(--primary))"
-                        strokeWidth="16"
-                        strokeLinecap="round"
-                        opacity={i < 3 ? 1 : 0.3}
-                      />
-                    );
-                  })}
+                <svg width="200" height="140" viewBox="0 0 200 140">
+                  {/* 3D Bars */}
+                  <defs>
+                    <linearGradient id="bar1" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#3B82F6" />
+                      <stop offset="100%" stopColor="#60A5FA" />
+                    </linearGradient>
+                    <linearGradient id="bar2" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#2563EB" />
+                      <stop offset="100%" stopColor="#3B82F6" />
+                    </linearGradient>
+                  </defs>
+                  
+                  {/* Bar 1 */}
+                  <rect x="20" y="80" width="30" height="50" rx="4" fill="url(#bar1)" />
+                  <rect x="50" y="80" width="8" height="50" fill="#1D4ED8" opacity="0.5" />
+                  
+                  {/* Bar 2 */}
+                  <rect x="65" y="60" width="30" height="70" rx="4" fill="url(#bar1)" />
+                  <rect x="95" y="60" width="8" height="70" fill="#1D4ED8" opacity="0.5" />
+                  
+                  {/* Bar 3 */}
+                  <rect x="110" y="40" width="30" height="90" rx="4" fill="url(#bar1)" />
+                  <rect x="140" y="40" width="8" height="90" fill="#1D4ED8" opacity="0.5" />
+                  
+                  {/* Bar 4 */}
+                  <rect x="155" y="20" width="30" height="110" rx="4" fill="url(#bar1)" />
+                  <rect x="185" y="20" width="8" height="110" fill="#1D4ED8" opacity="0.5" />
+                  
+                  {/* Arrow */}
+                  <path d="M30 90 L170 25" stroke="#1D4ED8" strokeWidth="3" strokeLinecap="round" />
+                  <polygon points="175,15 165,30 180,28" fill="#1D4ED8" />
                 </svg>
-                <div className="absolute inset-0 flex items-end justify-center pb-2">
-                  <div className="text-center">
-                    <p className="text-3xl font-bold text-foreground">20%</p>
-                    <p className="text-sm text-muted-foreground">Accessibility rate</p>
+                <p className="text-xs text-muted-foreground mt-2 max-w-[180px]">
+                  Built with enterprise-level security and designed for ease of use we empower individuals and business to transaction
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Content Grid */}
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Left Column */}
+            <div className="space-y-6">
+              {/* Stock Card */}
+              <div className="border border-border rounded-[16px] p-5">
+                <h4 className="text-lg font-bold text-primary">Reliance Industries Ltd</h4>
+                <p className="text-sm text-muted-foreground">Oil & Gas</p>
+                <p className="text-2xl font-bold text-card-foreground mt-2">2745.5₹</p>
+                
+                {/* Buy Button */}
+                <div className="bg-primary rounded-[12px] p-4 mt-4 text-center">
+                  <p className="text-white font-bold text-lg">Buy</p>
+                  <p className="text-white/80 text-sm">Target ₹3200</p>
+                  <p className="text-white/80 text-xs">85% of confidence</p>
+                </div>
+
+                {/* Metrics Grid */}
+                <div className="grid grid-cols-2 gap-3 mt-4">
+                  <div className="bg-muted/50 rounded-lg p-3 text-center">
+                    <p className="text-xs text-muted-foreground">Market Cap</p>
+                    <p className="text-sm font-bold text-card-foreground">18.5l Cr</p>
+                  </div>
+                  <div className="bg-muted/50 rounded-lg p-3 text-center">
+                    <p className="text-xs text-muted-foreground">PV Ratio</p>
+                    <p className="text-sm font-bold text-card-foreground">24.5</p>
+                  </div>
+                  <div className="bg-muted/50 rounded-lg p-3 text-center">
+                    <p className="text-xs text-muted-foreground">ROE</p>
+                    <p className="text-sm font-bold text-card-foreground">8.9%</p>
+                  </div>
+                  <div className="bg-muted/50 rounded-lg p-3 text-center">
+                    <p className="text-xs text-muted-foreground">Revenue</p>
+                    <p className="text-sm font-bold text-card-foreground">7.92l Cr</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Analysis Scores */}
+              <div className="border border-border rounded-[16px] p-5">
+                <h4 className="text-lg font-bold text-primary mb-4">Analysis Scores</h4>
+                
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-sm text-card-foreground">Fundamental Scores</span>
+                      <span className="text-sm font-bold text-primary">8.2/10</span>
+                    </div>
+                    <div className="h-2 bg-muted rounded-full overflow-hidden">
+                      <div className="h-full bg-primary rounded-full" style={{ width: '82%' }}></div>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-sm text-card-foreground">Technical Scores</span>
+                      <span className="text-sm font-bold text-primary">7.2/10</span>
+                    </div>
+                    <div className="h-2 bg-muted rounded-full overflow-hidden">
+                      <div className="h-full bg-primary rounded-full" style={{ width: '72%' }}></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Additional Stats */}
-            <div className="grid grid-cols-2 gap-3 mt-6">
-              <div className="bg-muted/50 rounded-xl p-3 text-center">
-                <p className="text-xs text-muted-foreground">Fair Value</p>
-                <p className="text-sm font-bold text-muted-foreground">24.5</p>
+            {/* Right Column */}
+            <div className="space-y-6">
+              {/* Accessibility Rate Gauge */}
+              <div className="flex justify-center">
+                <div className="relative">
+                  <svg width="220" height="130" viewBox="0 0 220 130">
+                    {/* Background arc */}
+                    <path
+                      d="M 20 120 A 90 90 0 0 1 200 120"
+                      fill="none"
+                      stroke="#E2E8F0"
+                      strokeWidth="20"
+                      strokeLinecap="round"
+                    />
+                    {/* Progress arc - 20% */}
+                    <path
+                      d="M 20 120 A 90 90 0 0 1 56 50"
+                      fill="none"
+                      stroke="#3B82F6"
+                      strokeWidth="20"
+                      strokeLinecap="round"
+                    />
+                    {/* Tick marks */}
+                    {[...Array(12)].map((_, i) => {
+                      const angle = (180 / 11) * i;
+                      const rad = (angle * Math.PI) / 180;
+                      const x1 = 110 + 75 * Math.cos(Math.PI - rad);
+                      const y1 = 120 - 75 * Math.sin(Math.PI - rad);
+                      const x2 = 110 + 85 * Math.cos(Math.PI - rad);
+                      const y2 = 120 - 85 * Math.sin(Math.PI - rad);
+                      return (
+                        <line
+                          key={i}
+                          x1={x1}
+                          y1={y1}
+                          x2={x2}
+                          y2={y2}
+                          stroke="#CBD5E1"
+                          strokeWidth="2"
+                        />
+                      );
+                    })}
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center pt-6">
+                    <span className="text-3xl font-bold text-primary">20%</span>
+                    <span className="text-sm text-muted-foreground">Accessibility rate</span>
+                  </div>
+                </div>
               </div>
-              <div className="bg-muted/50 rounded-xl p-3 text-center">
-                <p className="text-xs text-muted-foreground">Weak Return</p>
-                <p className="text-sm font-bold text-muted-foreground">24.5</p>
-              </div>
-              <div className="bg-muted/50 rounded-xl p-3 text-center">
-                <p className="text-xs text-muted-foreground">Dept/Equity</p>
-                <p className="text-sm font-bold text-primary">24.5</p>
-              </div>
-              <div className="bg-muted/50 rounded-xl p-3 text-center">
-                <p className="text-xs text-muted-foreground">High Debt</p>
-                <p className="text-sm font-bold text-destructive">High Debt</p>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        {/* Analysis Scores & Upcoming Events */}
-        <div className="mt-6 grid lg:grid-cols-2 gap-6">
-          {/* Analysis Scores */}
-          <div className="border-2 border-primary/20 rounded-3xl p-6 relative">
-            <div className="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-primary rounded-tl-xl"></div>
-            
-            <h5 className="text-xl font-bold text-foreground mb-6">Analysis Scores</h5>
-            
-            <div className="space-y-5">
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-sm text-muted-foreground">Fundamental Scores</span>
-                  <span className="text-sm font-bold text-primary">8.2/10</span>
+              {/* Metrics Row */}
+              <div className="grid grid-cols-3 gap-4">
+                <div className="border border-border rounded-lg p-4">
+                  <p className="text-xs text-muted-foreground mb-1">PE Ratio</p>
+                  <p className="text-xl font-bold text-primary">24.5</p>
+                  <p className="text-xs text-accent">Fair Value</p>
                 </div>
-                <div className="h-2 bg-muted rounded-full overflow-hidden">
-                  <div className="h-full w-[82%] bg-gradient-to-r from-primary to-primary/60 rounded-full"></div>
+                <div className="border border-border rounded-lg p-4">
+                  <p className="text-xs text-muted-foreground mb-1">ROE</p>
+                  <p className="text-xl font-bold text-primary">24.5</p>
+                  <p className="text-xs text-star">Weak Return</p>
                 </div>
-              </div>
-              
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-sm text-muted-foreground">Technical Scores</span>
-                  <span className="text-sm font-bold text-primary">7.2/10</span>
-                </div>
-                <div className="h-2 bg-muted rounded-full overflow-hidden">
-                  <div className="h-full w-[72%] bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full"></div>
+                <div className="border border-border rounded-lg p-4">
+                  <p className="text-xs text-muted-foreground mb-1">Dept/Equity</p>
+                  <p className="text-xl font-bold text-card-foreground">24.5</p>
+                  <p className="text-xs text-destructive">High Debt</p>
                 </div>
               </div>
-            </div>
-          </div>
 
-          {/* Upcoming Events */}
-          <div className="border-2 border-primary/20 rounded-3xl p-6 relative">
-            <div className="absolute -top-3 -right-3 w-6 h-6 border-t-2 border-r-2 border-primary rounded-tr-xl"></div>
-            
-            <h5 className="text-xl font-bold text-primary text-center mb-6">Upcoming Events</h5>
-            
-            <div className="space-y-4">
-              <div className="bg-muted/30 rounded-xl p-4 flex items-center justify-between">
-                <div>
-                  <p className="font-semibold text-foreground">Q3 Results Declaration</p>
-                  <p className="text-sm text-muted-foreground">2024-02-15</p>
+              {/* Upcoming Events */}
+              <div className="border border-border rounded-[16px] p-5">
+                <h4 className="text-lg font-bold text-card-foreground mb-4 text-center">Upcoming Events</h4>
+                
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between bg-muted/30 rounded-lg p-3">
+                    <div>
+                      <p className="text-sm font-medium text-card-foreground">Q3 Results Declaration</p>
+                      <p className="text-xs text-muted-foreground">2024-02-15</p>
+                    </div>
+                    <span className="px-3 py-1 bg-destructive/10 text-destructive text-xs font-medium rounded-full">
+                      High Impact
+                    </span>
+                  </div>
+                  
+                  <div className="flex items-center justify-between bg-muted/30 rounded-lg p-3">
+                    <div>
+                      <p className="text-sm font-medium text-card-foreground">Q3 Results Declaration</p>
+                      <p className="text-xs text-muted-foreground">2024-02-15</p>
+                    </div>
+                    <span className="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full">
+                      Low Impact
+                    </span>
+                  </div>
                 </div>
-                <span className="bg-destructive text-destructive-foreground text-sm px-4 py-2 rounded-lg font-medium">
-                  High Impact
-                </span>
-              </div>
-              
-              <div className="bg-muted/30 rounded-xl p-4 flex items-center justify-between">
-                <div>
-                  <p className="font-semibold text-foreground">Q3 Results Declaration</p>
-                  <p className="text-sm text-muted-foreground">2024-02-15</p>
-                </div>
-                <span className="bg-emerald-500 text-white text-sm px-4 py-2 rounded-lg font-medium">
-                  Low Impact
-                </span>
               </div>
             </div>
           </div>
