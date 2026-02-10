@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { TrendingUp, Heart, IndianRupee, LogOut } from "lucide-react";
+import { TrendingUp, BarChart3, Heart, Flame, IndianRupee, LogOut } from "lucide-react";
 
 const OurServices = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const services = [
     {
       letter: "M",
-      title: "Market Direction",
+      title: "Market\nDirection",
       icon: TrendingUp,
       description: "We align your investments with the market's direction, not against it.",
       bullets: [
@@ -18,8 +18,8 @@ const OurServices = () => {
     },
     {
       letter: "I",
-      title: "Industry Ranking",
-      icon: TrendingUp,
+      title: "Industry\nRanking",
+      icon: BarChart3,
       description: "We identify the strongest industries — so you invest where growth is happening.",
       bullets: [
         { bold: "We continuously track and rank industries", text: "based on earnings acceleration, market leadership, and institutional interest." },
@@ -29,7 +29,7 @@ const OurServices = () => {
     },
     {
       letter: "L",
-      title: "Leading Stock",
+      title: "Leading\nStock",
       icon: Heart,
       description: "We identify the leaders in each industry — the stocks with the highest potential.",
       bullets: [
@@ -40,18 +40,18 @@ const OurServices = () => {
     },
     {
       letter: "A",
-      title: "Acceleration in Earnings",
-      icon: Heart,
-      description: "Earnings growth is the engine of stock price performance.",
+      title: "Acceleration\nin Earnings",
+      icon: Flame,
+      description: "We focus on companies where profits are growing faster — because earnings drive stock prices.",
       bullets: [
-        { bold: "We track quarterly and annual earnings growth", text: "to identify companies with accelerating profits." },
-        { bold: "We prioritize stocks with consistent earnings surprises", text: "— companies that beat analyst expectations quarter after quarter." },
+        { bold: "We track quarterly earnings trends across thousands of companies", text: "to spot those showing consistent improvement in sales, margins, and net profits." },
+        { bold: "We prioritize companies with rising earnings momentum,", text: "because it often signals strong business execution and future price strength." },
       ],
-      footer: "Sustainable earnings growth leads to sustainable stock price appreciation."
+      footer: "You receive recommendations of companies that are not just growing — but growing faster than before."
     },
     {
       letter: "R",
-      title: "Relative price strength",
+      title: "Relative price\nstrength",
       icon: IndianRupee,
       description: "Price action tells you what the market thinks about a stock.",
       bullets: [
@@ -62,7 +62,7 @@ const OurServices = () => {
     },
     {
       letter: "S",
-      title: "Selling rules",
+      title: "Selling\nrules",
       icon: LogOut,
       description: "Knowing when to sell is just as important as knowing when to buy.",
       bullets: [
@@ -76,7 +76,7 @@ const OurServices = () => {
   return (
     <section className="bg-[hsl(var(--page-bg))] py-16 px-6">
       <div className="max-w-[1200px] mx-auto">
-        <div className="bg-white rounded-[24px] p-8 md:p-12">
+        <div className="bg-card rounded-[24px] p-8 md:p-12">
           {/* Header */}
           <div className="mb-10">
             <div className="flex items-center gap-2 mb-4">
@@ -84,7 +84,7 @@ const OurServices = () => {
               <span className="text-primary font-semibold text-sm">Our Services</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-card-foreground">
-              Why Thousands of Users Trust StockBazaari
+              A successful investment approach
             </h2>
             <p className="text-muted-foreground text-sm mt-3 max-w-2xl">
               Built with enterprise-level security and designed for ease of use to empower individuals and businesses to transact freely.
@@ -92,85 +92,85 @@ const OurServices = () => {
           </div>
 
           {/* MILARS Interactive Section */}
-          <div className="bg-[hsl(var(--page-bg))] rounded-[20px] p-6 md:p-8">
-            <div className="flex flex-col lg:flex-row gap-6">
-              {/* Left - Expanded Content Area */}
-              <div className="lg:w-[55%] bg-white rounded-[16px] p-6 border border-border min-h-[320px]">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                    <span className="text-sm font-bold text-white">{services[activeIndex].letter}</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-card-foreground">{services[activeIndex].title}</h3>
-                </div>
-                
-                <p className="text-muted-foreground text-sm mb-4">
-                  {services[activeIndex].description}
-                </p>
+          <div className="bg-[hsl(var(--page-bg))] rounded-[20px] border border-border overflow-hidden">
+            <div className="flex min-h-[420px]">
+              {services.map((service, index) => {
+                const isActive = activeIndex === index;
+                const hasActive = activeIndex !== null;
+                const Icon = service.icon;
 
-                <ul className="space-y-3 mb-4">
-                  {services[activeIndex].bullets.map((bullet, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm">
-                      <span className="text-primary mt-1">•</span>
-                      <span>
-                        <strong className="text-card-foreground">{bullet.bold}</strong>{" "}
-                        <span className="text-muted-foreground">{bullet.text}</span>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
-                <p className="text-muted-foreground text-sm italic">
-                  {services[activeIndex].footer}
-                </p>
-              </div>
-
-              {/* Right - Letter Cards */}
-              <div className="lg:w-[45%] flex gap-2">
-                {services.map((service, index) => {
-                  const isActive = activeIndex === index;
-                  const Icon = service.icon;
-                  
-                  return (
+                return (
+                  <div
+                    key={index}
+                    className="relative flex flex-col transition-all duration-500 ease-in-out cursor-pointer border-r border-border last:border-r-0"
+                    style={{
+                      flex: isActive ? "5" : hasActive ? "1" : "1",
+                    }}
+                    onMouseEnter={() => setActiveIndex(index)}
+                  >
+                    {/* Collapsed view - always visible */}
                     <div
-                      key={index}
-                      className={`relative flex flex-col items-center justify-between py-6 px-2 rounded-[12px] border transition-all duration-300 cursor-pointer ${
-                        isActive 
-                          ? "bg-[hsl(var(--page-bg))] border-border flex-1" 
-                          : "bg-white border-border hover:bg-muted/50 w-[60px]"
+                      className={`flex flex-col items-center justify-between h-full py-8 px-2 transition-opacity duration-300 ${
+                        isActive ? "opacity-0 absolute inset-0 pointer-events-none" : "opacity-100"
                       }`}
-                      onMouseEnter={() => setActiveIndex(index)}
                     >
-                      {/* Letter */}
                       <div className="flex-1 flex items-center justify-center">
-                        <span className={`font-bold transition-all duration-300 ${
-                          isActive ? "text-5xl text-card-foreground" : "text-3xl text-card-foreground"
-                        }`}>
+                        <span className="text-5xl md:text-6xl font-bold text-card-foreground tracking-tight">
                           {service.letter}
                         </span>
                       </div>
-
-                      {/* Title - only show when active */}
-                      <div className={`text-center transition-all duration-300 ${isActive ? "opacity-100" : "opacity-0 h-0"}`}>
-                        <p className="text-xs font-medium text-muted-foreground whitespace-nowrap">
-                          {service.title.split(' ').slice(0, 2).join(' ')}
-                        </p>
-                        {service.title.split(' ').length > 2 && (
-                          <p className="text-xs font-medium text-muted-foreground whitespace-nowrap">
-                            {service.title.split(' ').slice(2).join(' ')}
+                      <div className="text-center mt-4 mb-6">
+                        {service.title.split("\n").map((line, i) => (
+                          <p key={i} className="text-sm font-medium text-card-foreground leading-tight">
+                            {line}
                           </p>
-                        )}
+                        ))}
                       </div>
+                      <Icon className="w-6 h-6 text-muted-foreground" />
+                    </div>
 
-                      {/* Icon at bottom */}
-                      <div className="mt-4">
-                        <Icon className={`transition-all duration-300 ${
-                          isActive ? "w-6 h-6 text-primary" : "w-5 h-5 text-muted-foreground"
-                        }`} />
+                    {/* Expanded view - only when active */}
+                    <div
+                      className={`flex flex-col h-full transition-opacity duration-300 ${
+                        isActive ? "opacity-100" : "opacity-0 absolute inset-0 pointer-events-none"
+                      }`}
+                    >
+                      <div className="p-8 flex-1 overflow-y-auto">
+                        {/* Title row */}
+                        <div className="flex items-center gap-3 mb-5">
+                          <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+                            <span className="text-sm font-bold text-primary-foreground">{service.letter}</span>
+                          </div>
+                          <h3 className="text-xl font-bold text-card-foreground">{service.title.replace("\n", " ")}</h3>
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-muted-foreground text-[15px] leading-relaxed mb-5 text-justify">
+                          {service.description}
+                        </p>
+
+                        {/* Bullets */}
+                        <ul className="space-y-4 mb-5">
+                          {service.bullets.map((bullet, idx) => (
+                            <li key={idx} className="flex items-start gap-2.5 text-[15px] leading-relaxed">
+                              <span className="text-card-foreground mt-1.5 text-lg leading-none">•</span>
+                              <span>
+                                <strong className="text-card-foreground">{bullet.bold}</strong>{" "}
+                                <span className="text-muted-foreground">{bullet.text}</span>
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        {/* Footer */}
+                        <p className="text-muted-foreground text-[15px] leading-relaxed">
+                          {service.footer}
+                        </p>
                       </div>
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
