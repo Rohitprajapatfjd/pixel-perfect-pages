@@ -1,6 +1,6 @@
 const HeroBackground = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden m-[100px]">
       {/* Grid lines SVG - both horizontal and vertical curves */}
       <svg
         className="absolute inset-0 w-full h-full"
