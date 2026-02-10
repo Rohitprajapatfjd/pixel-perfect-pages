@@ -92,68 +92,88 @@ const OurServices = () => {
           </div>
 
           {/* MILARS Interactive Section */}
-          <div className="bg-[hsl(var(--page-bg))] rounded-[20px] border border-border overflow-hidden">
-            <div className="flex min-h-[420px]">
+          <div
+            className="bg-[hsl(var(--page-bg))] rounded-[20px] border border-border overflow-hidden"
+            onMouseLeave={() => setActiveIndex(null)}
+          >
+            <div className="flex" style={{ height: 420 }}>
               {services.map((service, index) => {
                 const isActive = activeIndex === index;
                 const hasActive = activeIndex !== null;
                 const Icon = service.icon;
 
+                // Calculate widths: active gets ~60%, others share remainder equally
+                const totalItems = services.length;
+                let widthPercent: number;
+                if (hasActive) {
+                  widthPercent = isActive ? 58 : (100 - 58) / (totalItems - 1);
+                } else {
+                  widthPercent = 100 / totalItems;
+                }
+
                 return (
                   <div
                     key={index}
-                    className="relative flex flex-col transition-all duration-500 ease-in-out cursor-pointer border-r border-border last:border-r-0"
+                    className="relative overflow-hidden border-r border-border last:border-r-0"
                     style={{
-                      flex: isActive ? "5" : hasActive ? "1" : "1",
+                      width: `${widthPercent}%`,
+                      transition: "width 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                      flexShrink: 0,
                     }}
                     onMouseEnter={() => setActiveIndex(index)}
                   >
-                    {/* Collapsed view - always visible */}
+                    {/* Collapsed view */}
                     <div
-                      className={`flex flex-col items-center justify-between h-full py-8 px-2 transition-opacity duration-300 ${
-                        isActive ? "opacity-0 absolute inset-0 pointer-events-none" : "opacity-100"
-                      }`}
+                      className="flex flex-col items-center justify-between h-full py-8 px-2"
+                      style={{
+                        opacity: isActive ? 0 : 1,
+                        transition: "opacity 0.25s ease",
+                        pointerEvents: isActive ? "none" : "auto",
+                      }}
                     >
                       <div className="flex-1 flex items-center justify-center">
-                        <span className="text-5xl md:text-6xl font-bold text-card-foreground tracking-tight">
+                        <span className="text-5xl md:text-6xl font-bold text-card-foreground tracking-tight select-none">
                           {service.letter}
                         </span>
                       </div>
                       <div className="text-center mt-4 mb-6">
                         {service.title.split("\n").map((line, i) => (
-                          <p key={i} className="text-sm font-medium text-card-foreground leading-tight">
+                          <p key={i} className="text-xs font-medium text-card-foreground leading-tight whitespace-nowrap">
                             {line}
                           </p>
                         ))}
                       </div>
-                      <Icon className="w-6 h-6 text-muted-foreground" />
+                      <Icon className="w-5 h-5 text-muted-foreground" />
                     </div>
 
-                    {/* Expanded view - only when active */}
+                    {/* Expanded view */}
                     <div
-                      className={`flex flex-col h-full transition-opacity duration-300 ${
-                        isActive ? "opacity-100" : "opacity-0 absolute inset-0 pointer-events-none"
-                      }`}
+                      className="absolute inset-0 flex flex-col h-full"
+                      style={{
+                        opacity: isActive ? 1 : 0,
+                        transition: "opacity 0.3s ease 0.1s",
+                        pointerEvents: isActive ? "auto" : "none",
+                      }}
                     >
-                      <div className="p-8 flex-1 overflow-y-auto">
+                      <div className="p-6 flex-1 overflow-y-auto">
                         {/* Title row */}
-                        <div className="flex items-center gap-3 mb-5">
+                        <div className="flex items-center gap-3 mb-4">
                           <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
                             <span className="text-sm font-bold text-primary-foreground">{service.letter}</span>
                           </div>
-                          <h3 className="text-xl font-bold text-card-foreground">{service.title.replace("\n", " ")}</h3>
+                          <h3 className="text-lg font-bold text-card-foreground whitespace-nowrap">{service.title.replace("\n", " ")}</h3>
                         </div>
 
                         {/* Description */}
-                        <p className="text-muted-foreground text-[15px] leading-relaxed mb-5 text-justify">
+                        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                           {service.description}
                         </p>
 
                         {/* Bullets */}
-                        <ul className="space-y-4 mb-5">
+                        <ul className="space-y-3 mb-4">
                           {service.bullets.map((bullet, idx) => (
-                            <li key={idx} className="flex items-start gap-2.5 text-[15px] leading-relaxed">
-                              <span className="text-card-foreground mt-1.5 text-lg leading-none">•</span>
+                            <li key={idx} className="flex items-start gap-2 text-sm leading-relaxed">
+                              <span className="text-card-foreground mt-0.5 leading-none">•</span>
                               <span>
                                 <strong className="text-card-foreground">{bullet.bold}</strong>{" "}
                                 <span className="text-muted-foreground">{bullet.text}</span>
@@ -163,7 +183,7 @@ const OurServices = () => {
                         </ul>
 
                         {/* Footer */}
-                        <p className="text-muted-foreground text-[15px] leading-relaxed">
+                        <p className="text-muted-foreground text-sm leading-relaxed">
                           {service.footer}
                         </p>
                       </div>
