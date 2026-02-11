@@ -1,6 +1,6 @@
 const StockPredictor = () => {
   return (
-    <section className="bg-[hsl(var(--page-bg))] py-16 px-6">
+    <section className="bg-[hsl(var(--page-bg))] py-2 px-6">
       <div className="max-w-[1200px] mx-auto">
         {/* Curved border container */}
         <div className="relative">
@@ -19,7 +19,7 @@ const StockPredictor = () => {
             </svg>
           </div>
 
-          <div className="bg-card rounded-[24px] p-8 md:p-12 border-2 border-primary/10" style={{ borderStyle: 'solid', borderImage: 'none' }}>
+          <div className="bg-card rounded-[24px] p-4 md:p-8 border-2 border-primary/10" style={{ borderStyle: 'solid', borderImage: 'none' }}>
             {/* Header */}
             <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-10">
               <div>
@@ -43,29 +43,7 @@ const StockPredictor = () => {
               {/* 3D Bar Chart Illustration */}
               <div className="flex-shrink-0">
                 <div className="relative">
-                  <svg width="200" height="140" viewBox="0 0 200 140">
-                    <defs>
-                      <linearGradient id="bar1" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="hsl(221, 83%, 53%)" />
-                        <stop offset="100%" stopColor="hsl(221, 83%, 65%)" />
-                      </linearGradient>
-                    </defs>
-                    {/* Bar 1 */}
-                    <rect x="20" y="80" width="30" height="50" rx="4" fill="url(#bar1)" />
-                    <rect x="50" y="80" width="8" height="50" fill="hsl(224, 76%, 40%)" opacity="0.5" />
-                    {/* Bar 2 */}
-                    <rect x="65" y="60" width="30" height="70" rx="4" fill="url(#bar1)" />
-                    <rect x="95" y="60" width="8" height="70" fill="hsl(224, 76%, 40%)" opacity="0.5" />
-                    {/* Bar 3 */}
-                    <rect x="110" y="40" width="30" height="90" rx="4" fill="url(#bar1)" />
-                    <rect x="140" y="40" width="8" height="90" fill="hsl(224, 76%, 40%)" opacity="0.5" />
-                    {/* Bar 4 */}
-                    <rect x="155" y="20" width="30" height="110" rx="4" fill="url(#bar1)" />
-                    <rect x="185" y="20" width="8" height="110" fill="hsl(224, 76%, 40%)" opacity="0.5" />
-                    {/* Arrow */}
-                    <path d="M30 90 L170 25" stroke="hsl(224, 76%, 40%)" strokeWidth="3" strokeLinecap="round" />
-                    <polygon points="175,15 165,30 180,28" fill="hsl(224, 76%, 40%)" />
-                  </svg>
+                 <img className="w-[200px]" src="img/bar.png" alt="" />
                   <p className="text-xs text-muted-foreground mt-2 max-w-[180px]">
                     Built with enterprise-level security and designed for ease of use we empower individuals and business to transaction
                   </p>
