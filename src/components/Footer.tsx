@@ -2,121 +2,111 @@ import { Phone, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="bg-gray-100 pt-12 pb-6">
       {/* Contact Banner */}
-      <section className="bg-primary py-12 px-6 md:px-12 lg:px-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+      <section className="px-6 md:px-12 lg:px-20 mb-10">
+        <div className="max-w-7xl mx-auto relative rounded-2xl overflow-hidden bg-gradient-to-r from-[#4f46e5] to-[#9ec5d8] px-8 py-10 md:py-12">
+
+          {/* Faded background text */}
+          <span className="absolute right-10 top-[80%] -translate-y-1/2 text-6xl md:text-7xl font-bold text-white/10 pointer-events-none">
+            StockBazaari
+          </span>
+
+          <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            
+            {/* Left Content */}
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-2">
+              <h2 className="text-3xl md:text-4xl font-semibold text-white mb-2">
                 Contact Us for Assistance
               </h2>
-              <p className="text-primary-foreground/80 text-sm">
+              <p className="text-white/80 text-sm md:text-base mb-5">
                 Experienced stock market guide to gain benefits
               </p>
+
+              <button className="bg-[#0b0f3b] text-white px-6 py-3 rounded-lg text-sm font-medium">
+                Our areas of stock
+              </button>
             </div>
+
+            {/* Logo Right */}
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 flex items-center justify-center">
-                <svg width="40" height="40" viewBox="0 0 32 32" fill="none">
-                  <path d="M8 8L16 4L24 8L16 12L8 8Z" fill="#22C55E" />
-                  <path d="M8 8V16L16 20V12L8 8Z" fill="#16A34A" />
-                  <path d="M24 8V16L16 20V12L24 8Z" fill="#15803D" />
-                  <path d="M8 16L16 12L24 16L16 20L8 16Z" fill="#22C55E" opacity="0.8" />
-                  <path d="M8 16V24L16 28V20L8 16Z" fill="#16A34A" />
-                  <path d="M24 16V24L16 28V20L24 16Z" fill="#15803D" />
-                </svg>
-              </div>
-              <span className="text-2xl font-bold text-primary-foreground">Stockbazaari</span>
+              <img
+                src="/logo.png"
+                alt="logo"
+                className="w-12 h-12 object-contain"
+              />
+              <span className="text-2xl font-bold text-[#0b0f3b]">
+                Stockbazaari
+              </span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Main Footer */}
-      <section className="bg-card py-12 px-6 md:px-12 lg:px-20 border-t border-border">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
-            {/* Brand */}
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 flex items-center justify-center">
-                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                    <path d="M8 8L16 4L24 8L16 12L8 8Z" fill="#22C55E" />
-                    <path d="M8 8V16L16 20V12L8 8Z" fill="#16A34A" />
-                    <path d="M24 8V16L16 20V12L24 8Z" fill="#15803D" />
-                  </svg>
-                </div>
-                <span className="text-xl font-bold text-card-foreground">Stockbazaari</span>
-              </div>
-              <p className="text-sm text-muted-foreground mb-6">
-                Your trusted partner in stock market education and trading success.
-              </p>
-              <div className="flex gap-3">
-                {["facebook", "twitter", "linkedin", "instagram"].map((social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors text-primary"
-                  >
-                    <span className="text-xs font-bold uppercase">{social[0]}</span>
-                  </a>
-                ))}
-              </div>
+      <section className="px-6 md:px-12 lg:px-20">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10">
+
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <img src="/logo.png" alt="logo" className="w-8 h-8" />
+              <span className="text-xl font-bold text-[#0b0f3b]">
+                Stockbazaari
+              </span>
             </div>
 
-            {/* Quick Links */}
-            <div>
-              <h4 className="font-bold text-card-foreground mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                {["Compliance", "Advisory", "Algo Trading", "Courses"].map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <p className="text-sm text-gray-600 mb-5">
+              Your trusted partner in stock market education and trading success.
+            </p>
 
-            {/* Legal */}
-            <div>
-              <h4 className="font-bold text-card-foreground mb-4">Legal</h4>
-              <ul className="space-y-2">
-                {["Privacy Policy", "Terms of Service", "Disclaimer", "Refund Policy"].map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                      {link}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h4 className="font-bold text-card-foreground mb-4">Contact Us</h4>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Phone className="w-4 h-4 text-primary" />
-                  +91 98765 43210
-                </li>
-                <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Mail className="w-4 h-4 text-primary" />
-                  info@stockbazaari.com
-                </li>
-                <li className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <MapPin className="w-4 h-4 text-primary" />
-                  Mumbai, Maharashtra, India
-                </li>
-              </ul>
+            {/* Social icons */}
+            <div className="flex gap-2">
+              <div className="w-9 h-9 bg-blue-600 rounded-md"></div>
+              <div className="w-9 h-9 bg-sky-500 rounded-md"></div>
+              <div className="w-9 h-9 bg-pink-500 rounded-md"></div>
+              <div className="w-9 h-9 bg-blue-800 rounded-md"></div>
+              <div className="w-9 h-9 bg-red-600 rounded-md"></div>
+              <div className="w-9 h-9 bg-green-600 rounded-md"></div>
             </div>
           </div>
 
-          {/* Copyright */}
-          <div className="mt-12 pt-6 border-t border-border text-center">
-            <p className="text-sm text-muted-foreground">
-              © 2024 StockBazaari. All rights reserved.
-            </p>
+          {/* Quick Links */}
+          <div>
+            <h4 className="font-semibold mb-4">Quick links</h4>
+            <ul className="space-y-3 text-sm text-gray-600">
+              <li>Compliance</li>
+              <li>Advisory</li>
+              <li>Algo Trading</li>
+              <li>Courses</li>
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h4 className="font-semibold mb-4">Legal</h4>
+            <ul className="space-y-3 text-sm text-gray-600">
+              <li>Privacy Policy</li>
+              <li>Terms of Service</li>
+              <li>Disclaimer</li>
+              <li>Refund Policy</li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="font-semibold mb-4">Contact Us</h4>
+            <ul className="space-y-3 text-sm text-gray-600">
+              <li className="flex items-center gap-2">
+                <Phone size={16} /> +919876543210
+              </li>
+              <li className="flex items-center gap-2">
+                <Mail size={16} /> info@stockbazaari.com
+              </li>
+              <li className="flex items-center gap-2">
+                <MapPin size={16} /> Mumbai, Maharashtra, India
+              </li>
+            </ul>
           </div>
         </div>
       </section>

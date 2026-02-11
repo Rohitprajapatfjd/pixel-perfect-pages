@@ -1,4 +1,5 @@
 import { Zap, BookOpen, TrendingUp, Brain } from "lucide-react";
+import barImage from "../../public/img/bar.jpg";
 
 const TodaysBenefits = () => {
   const benefits = [
@@ -25,9 +26,9 @@ const TodaysBenefits = () => {
   ];
 
   return (
-    <section className="bg-[hsl(var(--page-bg))] py-16 px-6">
+    <section className="bg-[hsl(var(--page-bg))] px-6">
       <div className="max-w-[1200px] mx-auto">
-        <div className="bg-card rounded-[24px] p-8 md:p-12">
+        <div className="bg-card rounded-[24px] p-4 md:p-8">
           {/* Header */}
           <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-10">
             <div>
@@ -51,23 +52,8 @@ const TodaysBenefits = () => {
             {/* Top-right illustration placeholder - parabola chart */}
             <div className="flex-shrink-0">
               <div className="relative">
-                <svg width="160" height="120" viewBox="0 0 160 120">
-                  {/* Cloud/globe shape */}
-                  <defs>
-                    <linearGradient id="paraGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="hsl(221, 83%, 53%)" stopOpacity="0.15" />
-                      <stop offset="100%" stopColor="hsl(221, 83%, 53%)" stopOpacity="0.05" />
-                    </linearGradient>
-                  </defs>
-                  <ellipse cx="80" cy="55" rx="65" ry="50" fill="url(#paraGrad)" stroke="hsl(221, 83%, 53%)" strokeWidth="1" strokeOpacity="0.2" />
-                  {/* Parabola curve */}
-                  <path d="M20 90 Q50 20 80 50 Q110 80 140 25" fill="none" stroke="hsl(221, 83%, 53%)" strokeWidth="2.5" strokeLinecap="round" />
-                  {/* Dots on curve */}
-                  <circle cx="20" cy="90" r="3" fill="hsl(221, 83%, 53%)" />
-                  <circle cx="80" cy="50" r="3" fill="hsl(221, 83%, 53%)" />
-                  <circle cx="140" cy="25" r="3" fill="hsl(221, 83%, 53%)" />
-                </svg>
-                <p className="text-xs text-muted-foreground mt-2 max-w-[180px]">
+                <img className="w-[180px]" src="img/cloud.jpg" alt="Growth bar"/>
+                <p className="text-xs text-muted-foreground mt-2 max-w-[220px]">
                   Built with enterprise-level security and designed for ease of use we empower individuals and business to transaction
                 </p>
               </div>
@@ -78,37 +64,7 @@ const TodaysBenefits = () => {
           <div className="grid lg:grid-cols-2 gap-8 items-start">
             {/* Left - Trusted Banking Card with orbital illustration */}
             <div className="border border-border rounded-[20px] p-8 relative overflow-hidden">
-              {/* Orbital rings illustration */}
-              <div className="flex justify-center mb-6">
-                <div className="relative w-[200px] h-[200px]">
-                  {/* Orbital rings */}
-                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
-                    <ellipse cx="100" cy="100" rx="90" ry="40" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="4 4" />
-                    <ellipse cx="100" cy="100" rx="70" ry="55" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="4 4" transform="rotate(60 100 100)" />
-                    <ellipse cx="100" cy="100" rx="70" ry="55" fill="none" stroke="hsl(var(--border))" strokeWidth="1" strokeDasharray="4 4" transform="rotate(-60 100 100)" />
-                    {/* Center icon */}
-                    <circle cx="100" cy="100" r="20" fill="hsl(221, 83%, 53%)" fillOpacity="0.1" />
-                    {/* Orbital dots */}
-                    <circle cx="30" cy="80" r="6" fill="hsl(221, 83%, 93%)" stroke="hsl(221, 83%, 53%)" strokeWidth="1" />
-                    <circle cx="170" cy="80" r="6" fill="hsl(221, 83%, 93%)" stroke="hsl(221, 83%, 53%)" strokeWidth="1" />
-                    <circle cx="100" cy="45" r="6" fill="hsl(221, 83%, 93%)" stroke="hsl(221, 83%, 53%)" strokeWidth="1" />
-                    <circle cx="55" cy="140" r="6" fill="hsl(221, 83%, 93%)" stroke="hsl(221, 83%, 53%)" strokeWidth="1" />
-                    <circle cx="145" cy="140" r="6" fill="hsl(221, 83%, 93%)" stroke="hsl(221, 83%, 53%)" strokeWidth="1" />
-                  </svg>
-                  {/* Center icon */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                      <svg className="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                        <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h4 className="text-xl font-bold text-card-foreground mb-2">Trusted Banking Network</h4>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Connect seamlessly with global stock market for secure and reliable money management. Easily create & virtual cards for Safer online trading
-              </p>
+              <img src="img/networking.png" alt="" />
             </div>
 
             {/* Right - Benefits List */}

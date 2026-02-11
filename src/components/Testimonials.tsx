@@ -1,5 +1,9 @@
 import { Play } from "lucide-react";
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 const Testimonials = () => {
   const testimonials = [
     {
@@ -19,6 +23,22 @@ const Testimonials = () => {
       avatar: "R",
     },
     {
+      name: "Matthew S.",
+      role: "Sales Representative",
+      question: "What is a core iCIMS value?",
+      duration: "0:19",
+      quote: "A core value at the company is drive. We want to achieve...",
+      avatar: "M",
+    },
+     {
+      name: "Matthew S.",
+      role: "Sales Representative",
+      question: "What is a core iCIMS value?",
+      duration: "0:19",
+      quote: "A core value at the company is drive. We want to achieve...",
+      avatar: "M",
+    },
+     {
       name: "Matthew S.",
       role: "Sales Representative",
       question: "What is a core iCIMS value?",
@@ -54,42 +74,67 @@ const Testimonials = () => {
         </div>
 
         {/* Testimonial Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-card rounded-2xl overflow-hidden card-shadow">
-              {/* Video Thumbnail */}
-              <div className="relative aspect-video bg-gradient-to-br from-primary to-primary-dark">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <p className="text-primary-foreground font-medium text-sm mb-2">{testimonial.question}</p>
-                    <div className="w-12 h-12 mx-auto rounded-full bg-primary-foreground/20 flex items-center justify-center">
-                      <Play className="w-6 h-6 text-primary-foreground fill-current" />
-                    </div>
-                  </div>
-                </div>
-                <div className="absolute bottom-3 right-3 bg-black/50 text-white text-xs px-2 py-1 rounded">
-                  {testimonial.duration}
-                </div>
-              </div>
+        <div className="max-w-7xl mx-auto px-4">
 
-              {/* Content */}
-              <div className="p-5">
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-                  {testimonial.quote}
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                    <span className="text-primary-foreground font-bold">{testimonial.avatar}</span>
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-card-foreground">{testimonial.name}</p>
-                    <p className="text-xs text-muted-foreground">{testimonial.role}</p>
-                  </div>
+        <Swiper
+          modules={[Navigation, Pagination]}
+          spaceBetween={20}
+          loop={true}
+          navigation
+          pagination={{
+            clickable: true,
+            dynamicBullets: true,
+          }}
+          breakpoints={{
+            0: {
+              slidesPerView: 2.2,
+              spaceBetween: 15,
+            },
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 30,
+            },
+          }}
+        >
+          {testimonials.map((item, index) => (
+            <SwiperSlide key={index}>
+              <div className="bg-white rounded-xl border-2 shadow-md p-5 h-[420px] flex flex-col justify-between">
+
+                {/* Heading */}
+                <div className="flex items-start gap-3">
+                  <div className="w-1 h-10 bg-green-500 rounded"></div>
+                  <h3 className="text-gray-800 font-medium">
+                    {item.question}
+                  </h3>
                 </div>
+
+                {/* Content */}
+                <div className="bg-gray-200 rounded-lg h-56 flex items-end p-4">
+                  <p className="text-gray-700 text-sm">
+                    {item.quote}
+                  </p>
+                </div>
+
+                {/* Name */}
+                <div className="text-center">
+                  <p className="font-semibold text-gray-900">
+                    {item.name}
+                  </p>
+                  <p className="font-semibold text-gray-900">
+                    {item.role}
+                  </p>
+                </div>
+
               </div>
-            </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
+
+      </div>
       </div>
     </section>
   );

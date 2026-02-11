@@ -19,56 +19,80 @@ const OurIllustration = () => {
             Our illustration
           </span>
         </div>
+          <div className="max-w-6xl mx-auto relative">
 
-        {/* Table */}
-        <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr>
-                  <th className="bg-primary/10 text-primary text-left py-4 px-6 text-base font-bold first:rounded-tl-xl">
+            {/* Main Card */}
+            <div className="border-2 border-blue-600 rounded-2xl p-6 bg-[#ECF3FA]">
+              <div className="grid grid-cols-4 gap-6 text-center text-[#0C1892] font-medium">
+
+                {/* Company */}
+                <div className="bg-white rounded-xl">
+                  <div className="bg-[#BEEBFC] py-2 rounded-lg font-semibold">
                     Company
-                  </th>
-                  <th className="bg-emerald-500 text-white text-left py-4 px-6 text-base font-bold">
+                  </div>
+                  <div className="p-3 space-y-3">
+                    {data.map((item, index) => (
+                      <div key={index} className="bg-[#ECF3FA] py-2 rounded-lg">
+                        {item.company}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Entry Details */}
+                <div className="bg-white rounded-xl">
+                  <div className="bg-[#BEEBFC] py-2 rounded-lg font-semibold">
                     Entry Details
-                  </th>
-                  <th className="bg-primary/10 text-primary text-left py-4 px-6 text-base font-bold">
+                  </div>
+                  <div className="p-3 space-y-3">
+                    {data.map((item, index) => (
+                      <div key={index} className="bg-[#ECF3FA] py-2 rounded-lg">
+                        {item.entry}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Performance */}
+                <div className="bg-white rounded-xl">
+                  <div className="bg-[#BEEBFC] py-2 rounded-lg font-semibold">
                     Performance
-                  </th>
-                  <th className="bg-emerald-500 text-white text-left py-4 px-6 text-base font-bold last:rounded-tr-xl">
+                  </div>
+                  <div className="p-3 space-y-3">
+                    {data.map((item, index) => (
+                      <div key={index} className="bg-[#ECF3FA] py-2 rounded-lg">
+                        {item.performance}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Status */}
+                <div className="bg-white rounded-xl">
+                  <div className="bg-[#BEEBFC] py-2 rounded-lg font-semibold">
                     Status
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((row, index) => (
-                  <tr key={index} className="border-b border-muted last:border-0">
-                    <td className="py-4 px-6">
-                      <span className="bg-muted/50 text-foreground font-medium px-4 py-2 rounded-lg inline-block">
-                        {row.company}
-                      </span>
-                    </td>
-                    <td className="py-4 px-6">
-                      <span className="bg-primary/10 text-primary font-medium px-4 py-2 rounded-lg inline-block">
-                        {row.entry}
-                      </span>
-                    </td>
-                    <td className="py-4 px-6">
-                      <span className="text-emerald-600 font-semibold text-lg">
-                        {row.performance}
-                      </span>
-                    </td>
-                    <td className="py-4 px-6">
-                      <span className="bg-emerald-100 text-emerald-700 font-medium px-4 py-2 rounded-lg inline-block">
-                        {row.change}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                  </div>
+                  <div className="p-3 space-y-3">
+                    {data.map((item, index) => (
+                      <div key={index} className="bg-[#ECF3FA] py-2 rounded-lg">
+                        {item.change}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Bottom Curve */}
+            <div className="absolute left-1/2 -bottom-[0.9rem] transform -translate-x-1/2
+                  w-[35rem] h-[1rem] bg-[#ECF3FA]
+                  border-2 border-blue-600
+                  border-t-0
+                  rounded-b-[40px]">
+            </div>
+
           </div>
-        </div>
       </div>
     </section>
   );
