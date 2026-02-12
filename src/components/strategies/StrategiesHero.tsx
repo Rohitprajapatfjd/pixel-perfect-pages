@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Play } from "lucide-react";
-import HeroBackground from "../HeroBackground";
+import HeroBackground from "../common/HeroBackground";
 
 const navLinks = [
   { name: "Home", href: "/" },

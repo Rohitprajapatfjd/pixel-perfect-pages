@@ -3,7 +3,7 @@ import StatsBar from "@/components/strategies/StatsBar";
 import TopStrategies from "@/components/strategies/TopStrategies";
 import HowItWorks from "@/components/strategies/HowItWorks";
 import StrategiesCTA from "@/components/strategies/StrategiesCTA";
-import Footer from "@/components/Footer";
+import Footer from "@/components/common/Footer";
 
 const Strategies = () => {
   return (
