@@ -9,7 +9,7 @@ const HeroSection = () => {
   const navLinks = [
     { name: "Home", href: "#", active: true },
     { name: "Education", href: "#" },
-    { name: "Algo", href: "#" },
+    { name: "Algo", href: "/strategies" },
     { name: "Blog", href: "#" },
     { name: "Contact", href: "#" },
   ];
