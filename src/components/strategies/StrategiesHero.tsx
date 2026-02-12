@@ -4,7 +4,7 @@ import HeroBackground from "../common/HeroBackground";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Education", href: "#" },
+  { name: "Education", href: "/education" },
   { name: "Algo", href: "/strategies", active: true },
   { name: "Blog", href: "#" },
   { name: "Contact", href: "#" },

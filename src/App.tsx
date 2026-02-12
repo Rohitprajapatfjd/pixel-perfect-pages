@@ -7,6 +7,7 @@ import WebsiteLayout from "@/layouts/WebsiteLayout";
 import AdminLayout from "@/layouts/AdminLayout";
 import Home from "@/pages/website/Home";
 import Strategies from "@/pages/website/Strategies";
+import Education from "@/pages/website/Education";
 import NotFound from "@/pages/website/NotFound";
 import Dashboard from "@/pages/admin/Dashboard";
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route element={<WebsiteLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/strategies" element={<Strategies />} />
+            <Route path="/education" element={<Education />} />
           </Route>
 
           {/* Admin Routes */}

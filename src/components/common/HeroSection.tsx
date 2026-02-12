@@ -8,7 +8,7 @@ import { ArrowUpRight } from "lucide-react";
 const HeroSection = () => {
   const navLinks = [
     { name: "Home", href: "#", active: true },
-    { name: "Education", href: "#" },
+    { name: "Education", href: "/education" },
     { name: "Algo", href: "/strategies" },
     { name: "Blog", href: "#" },
     { name: "Contact", href: "#" },
