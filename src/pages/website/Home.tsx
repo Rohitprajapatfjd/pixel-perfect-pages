@@ -13,32 +13,32 @@ import Footer from "@/components/common/Footer";
 const Home = () => {
   return (
     <main className="min-h-screen overflow-hidden">
-      <FadeIn duration={0.8}>
+      <FadeIn duration={0.8} once={false}>
         <HeroSection />
       </FadeIn>
       <BottomSection />
-      <RevealSection>
+      <RevealSection once={false}>
         <TodaysSpotlight />
       </RevealSection>
-      <SlideUp>
+      <SlideUp once={false}>
         <CloudCompaniesReport />
       </SlideUp>
-      <RevealSection>
+      <RevealSection once={false}>
         <OurServices />
       </RevealSection>
-      <SlideUp delay={0.1}>
+      <SlideUp delay={0.1} once={false}>
         <TodaysBenefits />
       </SlideUp>
-      <RevealSection>
+      <RevealSection once={false}>
         <StockPredictor />
       </RevealSection>
-      <SlideUp>
+      <SlideUp once={false}>
         <OurIllustration />
       </SlideUp>
-      <FadeIn>
+      <FadeIn once={false}>
         <Testimonials />
       </FadeIn>
-      <FadeIn>
+      <FadeIn once={false}>
         <Footer />
       </FadeIn>
     </main>
