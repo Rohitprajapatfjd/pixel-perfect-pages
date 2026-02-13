@@ -10,7 +10,7 @@ const HeroSection = () => {
     { name: "Home", href: "#", active: true },
     { name: "Education", href: "/education" },
     { name: "Algo", href: "/strategies" },
-    { name: "Blog", href: "#" },
+    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "#" },
   ];
 
