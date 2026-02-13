@@ -9,7 +9,7 @@ import Footer from "@/components/common/Footer";
 const Strategies = () => {
   return (
     <div className="min-h-screen bg-[hsl(var(--page-bg))] overflow-hidden">
-      <FadeIn duration={0.8}>
+      <FadeIn duration={1.2}>
         <StrategiesHero />
       </FadeIn>
       <SlideUp>

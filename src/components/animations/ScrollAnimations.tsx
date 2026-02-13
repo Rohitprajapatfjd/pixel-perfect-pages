@@ -9,26 +9,26 @@ interface AnimationProps {
   once?: boolean;
 }
 
-// Fade in from below
-export const FadeIn = ({ children, className, delay = 0, duration = 0.6, once = true }: AnimationProps) => (
+// Fade in from below — slow & subtle
+export const FadeIn = ({ children, className, delay = 0, duration = 1.2, once = false }: AnimationProps) => (
   <motion.div
     className={className}
-    initial={{ opacity: 0, y: 40 }}
+    initial={{ opacity: 0, y: 25 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once, margin: "-50px" }}
+    viewport={{ once, margin: "-80px" }}
     transition={{ duration, delay, ease: [0.25, 0.4, 0.25, 1] }}
   >
     {children}
   </motion.div>
 );
 
-// Slide up with more dramatic movement
-export const SlideUp = ({ children, className, delay = 0, duration = 0.7, once = true }: AnimationProps) => (
+// Slide up — gentle movement
+export const SlideUp = ({ children, className, delay = 0, duration = 1.4, once = false }: AnimationProps) => (
   <motion.div
     className={className}
-    initial={{ opacity: 0, y: 80 }}
+    initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once, margin: "-80px" }}
+    viewport={{ once, margin: "-100px" }}
     transition={{ duration, delay, ease: [0.16, 1, 0.3, 1] }}
   >
     {children}
@@ -36,12 +36,12 @@ export const SlideUp = ({ children, className, delay = 0, duration = 0.7, once =
 );
 
 // Slide from left
-export const SlideInLeft = ({ children, className, delay = 0, duration = 0.7, once = true }: AnimationProps) => (
+export const SlideInLeft = ({ children, className, delay = 0, duration = 1.2, once = false }: AnimationProps) => (
   <motion.div
     className={className}
-    initial={{ opacity: 0, x: -60 }}
+    initial={{ opacity: 0, x: -40 }}
     whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once, margin: "-50px" }}
+    viewport={{ once, margin: "-80px" }}
     transition={{ duration, delay, ease: [0.25, 0.4, 0.25, 1] }}
   >
     {children}
@@ -49,12 +49,12 @@ export const SlideInLeft = ({ children, className, delay = 0, duration = 0.7, on
 );
 
 // Slide from right
-export const SlideInRight = ({ children, className, delay = 0, duration = 0.7, once = true }: AnimationProps) => (
+export const SlideInRight = ({ children, className, delay = 0, duration = 1.2, once = false }: AnimationProps) => (
   <motion.div
     className={className}
-    initial={{ opacity: 0, x: 60 }}
+    initial={{ opacity: 0, x: 40 }}
     whileInView={{ opacity: 1, x: 0 }}
-    viewport={{ once, margin: "-50px" }}
+    viewport={{ once, margin: "-80px" }}
     transition={{ duration, delay, ease: [0.25, 0.4, 0.25, 1] }}
   >
     {children}
@@ -62,19 +62,19 @@ export const SlideInRight = ({ children, className, delay = 0, duration = 0.7, o
 );
 
 // Scale reveal
-export const ScaleReveal = ({ children, className, delay = 0, duration = 0.6, once = true }: AnimationProps) => (
+export const ScaleReveal = ({ children, className, delay = 0, duration = 1.2, once = false }: AnimationProps) => (
   <motion.div
     className={className}
-    initial={{ opacity: 0, scale: 0.9 }}
+    initial={{ opacity: 0, scale: 0.95 }}
     whileInView={{ opacity: 1, scale: 1 }}
-    viewport={{ once, margin: "-50px" }}
+    viewport={{ once, margin: "-80px" }}
     transition={{ duration, delay, ease: [0.25, 0.4, 0.25, 1] }}
   >
     {children}
   </motion.div>
 );
 
-// Parallax wrapper - moves slower than scroll
+// Parallax wrapper
 interface ParallaxProps extends AnimationProps {
   speed?: number;
 }
@@ -92,7 +92,7 @@ export const Parallax = ({ children, className, speed = 0.3 }: ParallaxProps) =>
       initial={{ y: 50 * speed }}
       whileInView={{ y: -50 * speed }}
       viewport={{ once: false, margin: "-200px" }}
-      transition={{ duration: 0.8, ease: "linear" }}
+      transition={{ duration: 1.2, ease: "linear" }}
     >
       {children}
     </motion.div>
@@ -107,34 +107,25 @@ interface StaggerProps {
   once?: boolean;
 }
 
-const staggerVariants: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
-
 const staggerItemVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.4, 0.25, 1] },
+    transition: { duration: 0.9, ease: [0.25, 0.4, 0.25, 1] },
   },
 };
 
-export const StaggerContainer = ({ children, className, staggerDelay = 0.12, once = true }: StaggerProps) => (
+export const StaggerContainer = ({ children, className, staggerDelay = 0.15, once = false }: StaggerProps) => (
   <motion.div
     className={className}
     variants={{
-      ...staggerVariants,
+      hidden: {},
       visible: { transition: { staggerChildren: staggerDelay } },
     }}
     initial="hidden"
     whileInView="visible"
-    viewport={{ once, margin: "-50px" }}
+    viewport={{ once, margin: "-80px" }}
   >
     {children}
   </motion.div>
@@ -146,13 +137,13 @@ export const StaggerItem = ({ children, className }: { children: ReactNode; clas
   </motion.div>
 );
 
-// Section reveal with clip-path
-export const RevealSection = ({ children, className, delay = 0, duration = 0.8, once = true }: AnimationProps) => (
+// Section reveal with blur
+export const RevealSection = ({ children, className, delay = 0, duration = 1.4, once = false }: AnimationProps) => (
   <motion.div
     className={className}
-    initial={{ opacity: 0, y: 60, filter: "blur(10px)" }}
+    initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
     whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-    viewport={{ once, margin: "-100px" }}
+    viewport={{ once, margin: "-120px" }}
     transition={{ duration, delay, ease: [0.16, 1, 0.3, 1] }}
   >
     {children}

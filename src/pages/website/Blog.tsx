@@ -8,7 +8,7 @@ import Footer from "@/components/common/Footer";
 const Blog = () => {
   return (
     <div className="min-h-screen bg-white overflow-hidden">
-      <FadeIn duration={0.8}>
+      <FadeIn duration={1.2}>
         <BlogHero />
       </FadeIn>
       <SlideUp>

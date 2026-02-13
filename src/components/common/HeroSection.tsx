@@ -4,6 +4,7 @@ import SpendingCard from "./SpendingCard";
 import DownloadCard from "./DownloadCard";
 import AnalysisCard from "./AnalysisCard";
 import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
   const navLinks = [
@@ -75,26 +76,47 @@ const HeroSection = () => {
           <div className="relative z-10 mt-8 md:mt-12">
             <div className="grid lg:grid-cols-2 gap-8 items-start">
               {/* Left - Heading */}
-              <div>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, margin: "-50px" }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              >
                 <h1 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white leading-[1.15]">
                   Smart Digital<br />
                   Stock Market
                 </h1>
-              </div>
+              </motion.div>
 
               {/* Right - Paragraph */}
-              <div className="lg:pt-2">
+              <motion.div
+                className="lg:pt-2"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, margin: "-50px" }}
+                transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              >
                 <p className="text-white/90 text-[15px] max-w-[340px] leading-relaxed">
                   Manage your finance easily, quickly, and securely. Stockbazaari helps you manage transaction, digital cards, and financial analytics in one intuitive platform
                 </p>
-              </div>
+              </motion.div>
             </div>
 
             {/* Cards Row */}
             <div className="mt-10 flex flex-wrap gap-4 justify-start items-start">
-              <SpendingCard />
-              <DownloadCard />
-              <AnalysisCard />
+              {[0, 1, 2].map((i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 35 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: false, margin: "-30px" }}
+                  transition={{ duration: 1.0, delay: 0.3 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  {i === 0 && <SpendingCard />}
+                  {i === 1 && <DownloadCard />}
+                  {i === 2 && <AnalysisCard />}
+                </motion.div>
+              ))}
             </div>
           </div>
 
