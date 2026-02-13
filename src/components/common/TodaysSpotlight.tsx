@@ -1,4 +1,5 @@
 import { Play, Target, OctagonX, Youtube } from "lucide-react";
+import { SlideInLeft, SlideInRight } from "@/components/animations/ScrollAnimations";
 
 const TodaysSpotlight = () => {
   return (
@@ -7,6 +8,7 @@ const TodaysSpotlight = () => {
         <div className="bg-white rounded-3xl p-8 shadow-sm">
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Left - Hot Pick Card */}
+            <SlideInLeft>
             <div className="bg-primary rounded-2xl p-6 text-white relative overflow-hidden">
               {/* Header */}
               <div className="flex items-center justify-between mb-6">
@@ -103,8 +105,10 @@ const TodaysSpotlight = () => {
                 </div>
               </div>
             </div>
+            </SlideInLeft>
 
             {/* Right - Market Insight Video */}
+            <SlideInRight delay={0.2}>
             <div>
               {/* Header */}
               <div className="flex items-center justify-between mb-4">
@@ -203,6 +207,7 @@ const TodaysSpotlight = () => {
                 </div>
               </div>
             </div>
+            </SlideInRight>
           </div>
         </div>
       </div>
