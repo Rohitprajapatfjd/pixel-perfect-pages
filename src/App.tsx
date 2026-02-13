@@ -10,6 +10,7 @@ import Strategies from "@/pages/website/Strategies";
 import Education from "@/pages/website/Education";
 import Blog from "@/pages/website/Blog";
 import Services from "@/pages/website/Services";
+import Basket from "@/pages/website/Basket";
 import NotFound from "@/pages/website/NotFound";
 import Dashboard from "@/pages/admin/Dashboard";
 
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/education" element={<Education />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/basket" element={<Basket />} />
           </Route>
 
           {/* Admin Routes */}
