@@ -9,6 +9,7 @@ import Home from "@/pages/website/Home";
 import Strategies from "@/pages/website/Strategies";
 import Education from "@/pages/website/Education";
 import Blog from "@/pages/website/Blog";
+import Services from "@/pages/website/Services";
 import NotFound from "@/pages/website/NotFound";
 import Dashboard from "@/pages/admin/Dashboard";
 
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/strategies" element={<Strategies />} />
             <Route path="/education" element={<Education />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/services" element={<Services />} />
           </Route>
 
           {/* Admin Routes */}

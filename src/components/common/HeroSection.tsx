@@ -11,6 +11,7 @@ const HeroSection = () => {
     { name: "Education", href: "/education" },
     { name: "Algo", href: "/strategies" },
     { name: "Blog", href: "/blog" },
+    { name: "Ring", href: "/services" },
     { name: "Contact", href: "#" },
   ];
 
