@@ -1,7 +1,13 @@
+import { useState } from "react";
 import { Search, Sun, Settings, Maximize2 } from "lucide-react";
+import ProfileDrawer from "./ProfileDrawer";
 
 const AdminTopbar = () => {
+  const [profileOpen, setProfileOpen] = useState(false);
+
   return (
+    <>
+    <ProfileDrawer open={profileOpen} onOpenChange={setProfileOpen} />
     <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-border bg-card px-6">
       {/* Search */}
       <div className="flex items-center gap-3">
@@ -34,7 +40,10 @@ const AdminTopbar = () => {
         <button className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground hover:bg-secondary">
           <Settings className="h-4 w-4" />
         </button>
-        <div className="flex items-center gap-2 pl-2 border-l border-border">
+        <div
+          className="flex items-center gap-2 pl-2 border-l border-border cursor-pointer hover:opacity-80 transition-opacity"
+          onClick={() => setProfileOpen(true)}
+        >
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold">
             D
           </div>
@@ -45,7 +54,7 @@ const AdminTopbar = () => {
         </div>
       </div>
     </header>
+    </>
   );
 };
-
 export default AdminTopbar;
