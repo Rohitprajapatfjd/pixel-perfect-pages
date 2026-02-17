@@ -7,32 +7,22 @@ import Footer from "@/components/common/Footer";
 
 const Services = () => {
   return (
-    <div className="snap-container">
-      <section className="snap-section">
-        <FadeIn duration={1.2}>
-          <ServiceHero />
-        </FadeIn>
-      </section>
-      <section className="snap-section">
-        <RevealSection>
-          <ResearchServicesGrid />
-        </RevealSection>
-      </section>
-      <section className="snap-section">
-        <SlideUp>
-          <LittleMastersSection />
-        </SlideUp>
-      </section>
-      <section className="snap-section">
-        <SlideUp>
-          <ServiceCTA />
-        </SlideUp>
-      </section>
-      <section className="snap-section">
-        <FadeIn>
-          <Footer />
-        </FadeIn>
-      </section>
+    <div className="min-h-screen bg-[hsl(var(--page-bg))] overflow-hidden">
+      <FadeIn duration={1.2}>
+        <ServiceHero />
+      </FadeIn>
+      <RevealSection>
+        <ResearchServicesGrid />
+      </RevealSection>
+      <SlideUp>
+        <LittleMastersSection />
+      </SlideUp>
+      <SlideUp>
+        <ServiceCTA />
+      </SlideUp>
+      <FadeIn>
+        <Footer />
+      </FadeIn>
     </div>
   );
 };

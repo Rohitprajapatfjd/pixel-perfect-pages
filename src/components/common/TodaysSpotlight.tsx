@@ -3,7 +3,7 @@ import { SlideInLeft, SlideInRight } from "@/components/animations/ScrollAnimati
 
 const TodaysSpotlight = () => {
   return (
-    <section className="bg-muted/30 py-8 px-6 md:px-12 lg:px-20 w-full">
+    <section className="bg-muted/30 py-12 px-6 md:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
         <div className="bg-white rounded-3xl p-8 shadow-sm">
           <div className="grid lg:grid-cols-2 gap-8">
