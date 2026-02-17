@@ -1,5 +1,4 @@
 import { TrendingUp, TrendingDown } from "lucide-react";
-import { StaggerContainer, StaggerItem } from "@/components/animations/ScrollAnimations";
 
 const CloudCompaniesReport = () => {
   const companies = [
@@ -34,10 +33,9 @@ const CloudCompaniesReport = () => {
                   <th className="text-left py-4 px-4 font-medium">Recommendation</th>
                 </tr>
               </thead>
-              <StaggerContainer className="contents">
+              <tbody>
                 {companies.map((company, index) => (
-                  <StaggerItem key={index}>
-                  <tr className="border-b border-border last:border-0 hover:bg-muted/50 transition-colors">
+                  <tr key={index} className="border-b border-border last:border-0 hover:bg-muted/50 transition-colors">
                     <td className="py-4 px-6 text-sm font-medium text-card-foreground">{company.name}</td>
                     <td className="py-4 px-4 text-sm text-muted-foreground">{company.marketCap}</td>
                     <td className="py-4 px-4 text-sm text-muted-foreground">{company.revenue}</td>
@@ -74,9 +72,8 @@ const CloudCompaniesReport = () => {
                       </span>
                     </td>
                   </tr>
-                  </StaggerItem>
                 ))}
-              </StaggerContainer>
+              </tbody>
             </table>
           </div>
         </div>

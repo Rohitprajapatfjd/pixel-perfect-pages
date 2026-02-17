@@ -18,7 +18,7 @@ const HeroNavbar = ({ variant = "dark" }: HeroNavbarProps) => {
   return (
     <nav className="relative z-10 flex items-center justify-between h-16">
       {/* Logo */}
-      <div className="flex items-center gap-2">
+      {/* <div className="flex items-center gap-2">
         <div className="w-8 h-8 flex items-center justify-center">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
             <path d="M8 8L16 4L24 8L16 12L8 8Z" fill="#22C55E" />
@@ -32,7 +32,8 @@ const HeroNavbar = ({ variant = "dark" }: HeroNavbarProps) => {
         <span className={`text-xl font-bold ${isLight ? "text-primary" : "text-white"}`}>
           Stockbazaari
         </span>
-      </div>
+      </div> */}
+      <img src="img/logo.png" alt="Stackbazaari Logo" />
 
       {/* Center Nav Links */}
       <div className="hidden md:flex items-center gap-8">

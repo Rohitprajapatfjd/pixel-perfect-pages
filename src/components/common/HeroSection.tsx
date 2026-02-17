@@ -21,7 +21,7 @@ const HeroSection = () => {
       <div className="max-w-[1200px] mx-auto relative">
         {/* Logo positioned absolutely outside blue area */}
         <div className="absolute left-0 top-0 z-20 rounded-tr-[30px] rounded-tl-[20px] px-6 py-4 pb-8" style={{ bottom: 'auto' }}>
-          <div className="flex items-center gap-2">
+          {/* <div className="flex items-center gap-2">
             <div className="w-8 h-8 flex items-center justify-center">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
                 <path d="M16 4L16 14" stroke="#2563EB" strokeWidth="3" strokeLinecap="round" />
@@ -33,7 +33,8 @@ const HeroSection = () => {
               </svg>
             </div>
             <span className="text-xl font-bold text-primary">Stockbazaari</span>
-          </div>
+          </div> */}
+          <img src="img/logo.png" className="w-40" alt="Stackbazaari Logo" />
         </div>
 
         {/* Hero Container with blue background */}
