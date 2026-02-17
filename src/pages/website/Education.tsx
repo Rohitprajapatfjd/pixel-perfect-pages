@@ -6,19 +6,27 @@ import Footer from "@/components/common/Footer";
 
 const Education = () => {
   return (
-    <div className="min-h-screen bg-[hsl(var(--page-bg))] overflow-hidden">
-      <FadeIn duration={1.2}>
-        <EducationHero />
-      </FadeIn>
-      <RevealSection>
-        <CoursesSection />
-      </RevealSection>
-      <SlideUp>
-        <EducationCTA />
-      </SlideUp>
-      <FadeIn>
-        <Footer />
-      </FadeIn>
+    <div className="snap-container">
+      <section className="snap-section">
+        <FadeIn duration={1.2}>
+          <EducationHero />
+        </FadeIn>
+      </section>
+      <section className="snap-section">
+        <RevealSection>
+          <CoursesSection />
+        </RevealSection>
+      </section>
+      <section className="snap-section">
+        <SlideUp>
+          <EducationCTA />
+        </SlideUp>
+      </section>
+      <section className="snap-section">
+        <FadeIn>
+          <Footer />
+        </FadeIn>
+      </section>
     </div>
   );
 };
