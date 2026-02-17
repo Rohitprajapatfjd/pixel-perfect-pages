@@ -8,25 +8,37 @@ import Footer from "@/components/common/Footer";
 
 const Strategies = () => {
   return (
-    <div className="min-h-screen bg-[hsl(var(--page-bg))] overflow-hidden">
-      <FadeIn duration={1.2}>
-        <StrategiesHero />
-      </FadeIn>
-      <SlideUp>
-        <StatsBar />
-      </SlideUp>
-      <RevealSection>
-        <TopStrategies />
-      </RevealSection>
-      <SlideUp>
-        <HowItWorks />
-      </SlideUp>
-      <SlideUp>
-        <StrategiesCTA />
-      </SlideUp>
-      <FadeIn>
-        <Footer />
-      </FadeIn>
+    <div className="snap-container">
+      <section className="snap-section">
+        <FadeIn duration={1.2}>
+          <StrategiesHero />
+        </FadeIn>
+      </section>
+      <section className="snap-section">
+        <SlideUp>
+          <StatsBar />
+        </SlideUp>
+      </section>
+      <section className="snap-section">
+        <RevealSection>
+          <TopStrategies />
+        </RevealSection>
+      </section>
+      <section className="snap-section">
+        <SlideUp>
+          <HowItWorks />
+        </SlideUp>
+      </section>
+      <section className="snap-section">
+        <SlideUp>
+          <StrategiesCTA />
+        </SlideUp>
+      </section>
+      <section className="snap-section">
+        <FadeIn>
+          <Footer />
+        </FadeIn>
+      </section>
     </div>
   );
 };

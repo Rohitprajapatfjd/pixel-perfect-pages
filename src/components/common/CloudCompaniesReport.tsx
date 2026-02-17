@@ -9,7 +9,7 @@ const CloudCompaniesReport = () => {
   ];
 
   return (
-    <section className="bg-muted py-12 px-6 md:px-12 lg:px-20">
+    <section className="bg-muted py-8 px-6 md:px-12 lg:px-20 w-full">
       <div className="max-w-7xl mx-auto">
         {/* Header Badge */}
         <div className="flex items-center gap-2 mb-8">

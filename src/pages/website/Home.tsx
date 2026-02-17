@@ -12,35 +12,53 @@ import Footer from "@/components/common/Footer";
 
 const Home = () => {
   return (
-    <main className="min-h-screen overflow-hidden">
-      <FadeIn duration={0.8} once={false}>
-        <HeroSection />
-      </FadeIn>
+    <main className="snap-container">
+      <section className="snap-section">
+        <FadeIn duration={0.8} once={false}>
+          <HeroSection />
+        </FadeIn>
+      </section>
       <BottomSection />
-      <RevealSection once={false}>
-        <TodaysSpotlight />
-      </RevealSection>
-      <SlideUp once={false}>
-        <CloudCompaniesReport />
-      </SlideUp>
-      <RevealSection once={false}>
-        <OurServices />
-      </RevealSection>
-      <SlideUp delay={0.1} once={false}>
-        <TodaysBenefits />
-      </SlideUp>
-      <RevealSection once={false}>
-        <StockPredictor />
-      </RevealSection>
-      <SlideUp once={false}>
-        <OurIllustration />
-      </SlideUp>
-      <FadeIn once={false}>
-        <Testimonials />
-      </FadeIn>
-      <FadeIn once={false}>
-        <Footer />
-      </FadeIn>
+      <section className="snap-section">
+        <RevealSection once={false}>
+          <TodaysSpotlight />
+        </RevealSection>
+      </section>
+      <section className="snap-section">
+        <SlideUp once={false}>
+          <CloudCompaniesReport />
+        </SlideUp>
+      </section>
+      <section className="snap-section">
+        <RevealSection once={false}>
+          <OurServices />
+        </RevealSection>
+      </section>
+      <section className="snap-section">
+        <SlideUp delay={0.1} once={false}>
+          <TodaysBenefits />
+        </SlideUp>
+      </section>
+      <section className="snap-section">
+        <RevealSection once={false}>
+          <StockPredictor />
+        </RevealSection>
+      </section>
+      <section className="snap-section">
+        <SlideUp once={false}>
+          <OurIllustration />
+        </SlideUp>
+      </section>
+      <section className="snap-section">
+        <FadeIn once={false}>
+          <Testimonials />
+        </FadeIn>
+      </section>
+      <section className="snap-section">
+        <FadeIn once={false}>
+          <Footer />
+        </FadeIn>
+      </section>
     </main>
   );
 };

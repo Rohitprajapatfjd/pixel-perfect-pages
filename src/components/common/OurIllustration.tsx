@@ -8,7 +8,7 @@ const OurIllustration = () => {
   ];
 
   return (
-    <section className="bg-muted/30 py-16 px-6 md:px-12 lg:px-20">
+    <section className="bg-muted/30 py-8 px-6 md:px-12 lg:px-20 w-full">
       <div className="max-w-7xl mx-auto">
         {/* Header Badge */}
         <div className="mb-8">

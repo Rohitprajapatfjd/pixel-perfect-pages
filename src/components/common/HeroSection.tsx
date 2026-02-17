@@ -17,7 +17,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="bg-[hsl(var(--page-bg))] pt-6 px-6">
+    <section className="bg-[hsl(var(--page-bg))] pt-6 px-6 w-full">
       <div className="max-w-[1200px] mx-auto relative">
         {/* Logo positioned absolutely outside blue area */}
         <div className="absolute left-0 top-0 z-20 rounded-tr-[30px] rounded-tl-[20px] px-6 py-4 pb-8" style={{ bottom: 'auto' }}>
