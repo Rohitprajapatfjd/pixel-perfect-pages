@@ -49,7 +49,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="bg-background py-8 px-6 md:px-12 lg:px-20 w-full">
+    <section className="bg-background py-16 px-6 md:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-12">

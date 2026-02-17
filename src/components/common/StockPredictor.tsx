@@ -1,6 +1,6 @@
 const StockPredictor = () => {
   return (
-    <section className="bg-[hsl(var(--page-bg))] py-8 px-6 w-full">
+    <section className="bg-[hsl(var(--page-bg))] py-2 px-6">
       <div className="max-w-[1200px] mx-auto">
         {/* Curved border container */}
         <div className="relative">

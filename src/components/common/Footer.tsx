@@ -2,7 +2,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 pt-8 pb-6 w-full">
+    <footer className="bg-gray-100 pt-12 pb-6">
       {/* Contact Banner */}
       <section className="px-6 md:px-12 lg:px-20 mb-10">
         <div className="max-w-7xl mx-auto relative rounded-2xl overflow-hidden bg-gradient-to-r from-[#4f46e5] to-[#9ec5d8] px-8 py-10 md:py-12">

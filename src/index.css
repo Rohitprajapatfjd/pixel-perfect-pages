@@ -169,18 +169,4 @@
   .text-balance {
     text-wrap: balance;
   }
-
-  .snap-container {
-    scroll-snap-type: y mandatory;
-    overflow-y: auto;
-    height: 100vh;
-  }
-
-  .snap-section {
-    scroll-snap-align: start;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
 }

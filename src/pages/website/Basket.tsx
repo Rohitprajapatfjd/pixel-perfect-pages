@@ -8,37 +8,25 @@ import Footer from "@/components/common/Footer";
 
 const Basket = () => {
   return (
-    <div className="snap-container">
-      <section className="snap-section">
-        <FadeIn duration={1.2}>
-          <BasketHero />
-        </FadeIn>
-      </section>
-      <section className="snap-section">
-        <SlideUp>
-          <ComparisonTable />
-        </SlideUp>
-      </section>
-      <section className="snap-section">
-        <RevealSection>
-          <DifferentiatorSection />
-        </RevealSection>
-      </section>
-      <section className="snap-section">
-        <FadeIn>
-          <Testimonials />
-        </FadeIn>
-      </section>
-      <section className="snap-section">
-        <SlideUp>
-          <ServiceCTA />
-        </SlideUp>
-      </section>
-      <section className="snap-section">
-        <FadeIn>
-          <Footer />
-        </FadeIn>
-      </section>
+    <div className="min-h-screen bg-[hsl(var(--page-bg))] overflow-hidden">
+      <FadeIn duration={1.2}>
+        <BasketHero />
+      </FadeIn>
+      <SlideUp>
+        <ComparisonTable />
+      </SlideUp>
+      <RevealSection>
+        <DifferentiatorSection />
+      </RevealSection>
+      <FadeIn>
+        <Testimonials />
+      </FadeIn>
+      <SlideUp>
+        <ServiceCTA />
+      </SlideUp>
+      <FadeIn>
+        <Footer />
+      </FadeIn>
     </div>
   );
 };
