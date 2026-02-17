@@ -7,22 +7,32 @@ import Footer from "@/components/common/Footer";
 
 const Blog = () => {
   return (
-    <div className="min-h-screen bg-white overflow-hidden">
-      <FadeIn duration={1.2}>
-        <BlogHero />
-      </FadeIn>
-      <SlideUp>
-        <BlogFilterBar />
-      </SlideUp>
-      <RevealSection>
-        <SignUpBanner />
-      </RevealSection>
-      <SlideUp>
-        <BlogGrid />
-      </SlideUp>
-      <FadeIn>
-        <Footer />
-      </FadeIn>
+    <div className="snap-container">
+      <section className="snap-section">
+        <FadeIn duration={1.2}>
+          <BlogHero />
+        </FadeIn>
+      </section>
+      <section className="snap-section">
+        <SlideUp>
+          <BlogFilterBar />
+        </SlideUp>
+      </section>
+      <section className="snap-section">
+        <RevealSection>
+          <SignUpBanner />
+        </RevealSection>
+      </section>
+      <section className="snap-section">
+        <SlideUp>
+          <BlogGrid />
+        </SlideUp>
+      </section>
+      <section className="snap-section">
+        <FadeIn>
+          <Footer />
+        </FadeIn>
+      </section>
     </div>
   );
 };

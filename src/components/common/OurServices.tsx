@@ -74,7 +74,7 @@ const OurServices = () => {
   ];
 
   return (
-    <section className="bg-[hsl(var(--page-bg))] py-16 px-6">
+    <section className="bg-[hsl(var(--page-bg))] py-8 px-6 w-full">
       <div className="max-w-[1200px] mx-auto">
         <div className="bg-card rounded-[24px] p-8 md:p-12">
           {/* Header */}
