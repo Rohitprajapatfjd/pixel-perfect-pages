@@ -8,7 +8,7 @@ const SpendingCard = () => {
         <h3 className="text-sm font-semibold text-foreground mb-3">Spending Summary</h3>
         
         {/* Stats Row */}
-        <div className="flex items-center gap-4 text-xs">
+        <div className="flex items-center gap-2 text-xs">
           <div className="flex items-center gap-2">
             <span className="text-muted-foreground">Spend</span>
             <div className="flex items-center gap-1">
@@ -23,7 +23,6 @@ const SpendingCard = () => {
               <span className="font-semibold text-foreground">$3,980.65</span>
             </div>
           </div>
-          <span className="text-muted-foreground">Add</span>
         </div>
       </div>
 

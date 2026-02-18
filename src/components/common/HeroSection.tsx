@@ -5,6 +5,7 @@ import DownloadCard from "./DownloadCard";
 import AnalysisCard from "./AnalysisCard";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const HeroSection = () => {
   const navLinks = [
@@ -16,9 +17,20 @@ const HeroSection = () => {
     { name: "Contact", href: "#" },
   ];
 
+  const cards = [SpendingCard, DownloadCard, AnalysisCard];
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % cards.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="bg-[hsl(var(--page-bg))] pt-6 px-6">
-      <div className="max-w-[1200px] mx-auto relative">
+    <section className="relative w-full min-h-screen bg-[hsl(var(--page-bg))] overflow-hidden">
+      <div className="">
         {/* Logo positioned absolutely outside blue area */}
         <div className="absolute left-0 top-0 z-20 rounded-tr-[30px] rounded-tl-[20px] px-6 py-4 pb-8" style={{ bottom: 'auto' }}>
           {/* <div className="flex items-center gap-2">
@@ -38,8 +50,9 @@ const HeroSection = () => {
         </div>
 
         {/* Hero Container with blue background */}
-        <div className="hero-container px-8 md:px-12 pt-0 pb-32 min-h-[520px] rounded-t-[20px]">
+        <div className="hero-container relative w-full min-h-screen flex flex-col rounded-t-[20px] px-6 md:px-12 pt-6">
           <HeroBackground />
+          {/* relative w-full h-screen flex flex-col justify-between rounded-b-[30px] hero-container px-6 md:px-16 pt-6 */}
 
           {/* Navbar inside blue area */}
           <nav className="relative z-10 flex items-center justify-between h-16 pt-4">
@@ -74,7 +87,7 @@ const HeroSection = () => {
           </nav>
 
           {/* Hero Content */}
-          <div className="relative z-10 mt-8 md:mt-12">
+          <div className="relative z-10 flex-1 flex flex-col justify-center">
             <div className="grid lg:grid-cols-2 gap-8 items-start">
               {/* Left - Heading */}
               <motion.div
@@ -104,53 +117,80 @@ const HeroSection = () => {
             </div>
 
             {/* Cards Row */}
-            <div className="mt-10 flex flex-wrap gap-4 justify-start items-start">
-              {[0, 1, 2].map((i) => (
+            {/* Cards Section */}
+            <div className="mt-12">
+              
+              {/* Desktop View */}
+              <div className="hidden lg:flex justify-center gap-6 mb-4">
+                {[SpendingCard, DownloadCard, AnalysisCard].map((Card, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, margin: "-50px" }}
+                    transition={{
+                      duration: 0.8,
+                      delay: 0.2 + i * 0.15,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
+                    <Card />
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Mobile & Tablet Slider */}
+              <div className="lg:hidden relative w-full overflow-hidden">
+
                 <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 35 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, margin: "-30px" }}
-                  transition={{ duration: 1.0, delay: 0.3 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex"
+                  animate={{
+                    x: `-${index * 100}%`,
+                  }}
+                  transition={{
+                    duration: 0.8,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  drag="x"
+                  dragConstraints={{
+                    left: -(cards.length - 1) * window.innerWidth,
+                    right: 0,
+                  }}
+                  dragElastic={0.1}
                 >
-                  {i === 0 && <SpendingCard />}
-                  {i === 1 && <DownloadCard />}
-                  {i === 2 && <AnalysisCard />}
+                  {cards.map((Card, i) => (
+                    <div
+                      key={i}
+                      className="
+                        shrink-0
+                        w-full
+                        sm:w-1/2
+                        flex
+                        justify-center
+                        px-4
+                      "
+                    >
+                      <div className="w-[90%]">
+                        <Card />
+                      </div>
+                    </div>
+                  ))}
                 </motion.div>
-              ))}
+
+              </div>
+
             </div>
+
           </div>
 
           {/* Bottom cutouts */}
-          <HeroBottomNotches />
+          {/* <HeroBottomNotches /> */}
         </div>
 
         {/* Bottom section outside hero */}
-        <div className="bg-card rounded-b-[20px] flex items-center justify-between px-8 md:px-12 py-6">
-          <SpotlightButton />
-          
-          {/* Percentage stat */}
-          <div className="text-right hidden sm:block">
-            <p className="text-5xl md:text-6xl font-bold text-primary">
-              93.84<span className="text-3xl">%</span>
-            </p>
-            <p className="text-sm text-muted-foreground">Instant transfer Stockbazaari</p>
-          </div>
-        </div>
+        
       </div>
     </section>
-  );
-};
-
-
-const SpotlightButton = () => {
-  return (
-    <button className="flex items-center gap-2 bg-primary text-primary-foreground px-5 py-3 rounded-full font-medium text-sm hover:bg-primary-dark transition-colors button-shadow">
-      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z" />
-      </svg>
-      Today's Spotlight
-    </button>
   );
 };
 
