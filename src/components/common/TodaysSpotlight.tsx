@@ -1,4 +1,6 @@
+import { Slider } from "@radix-ui/react-slider";
 import { Play, Target, OctagonX, Youtube } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const TodaysSpotlight = () => {
   return (
@@ -81,15 +83,7 @@ const TodaysSpotlight = () => {
               </div>
 
               {/* Expert Analysis */}
-              <div className="bg-amber-400 rounded-lg px-3 py-2 mb-2">
-                <h4 className="font-bold text-black text-xs mb-1">
-                  Expert Analysis
-                </h4>
-                <p className="text-[10px] text-black/80 leading-snug">
-                  Strong breakout above resistance with volume surge.
-                  Institutional buying detected. Bullish momentum.
-                </p>
-              </div>
+              <StockMiniSlider/>
 
               {/* Confidence */}
               <div className="bg-primary-dark/30 rounded-lg p-3">
@@ -165,5 +159,70 @@ const SpotlightButton = () => {
     </button>
   );
 };
+
+const StockMiniSlider = () => {
+  const stocks = [
+    { name: "RELIANCE", price: "₹2,847.50", change: "+2.1%" },
+    { name: "TCS", price: "₹3,921.20", change: "+1.4%" },
+    { name: "HDFCBANK", price: "₹1,621.10", change: "-0.6%" },
+    { name: "INFY", price: "₹1,502.60", change: "+3.2%" },
+    { name: "ITC", price: "₹421.30", change: "+0.9%" },
+    { name: "SBIN", price: "₹742.15", change: "+1.8%" },
+  ];
+
+  const [start, setStart] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStart((prev) => (prev + 1) % stocks.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
+  const visibleStocks = [
+    stocks[start % stocks.length],
+    stocks[(start + 1) % stocks.length],
+    stocks[(start + 2) % stocks.length],
+    stocks[(start + 3) % stocks.length],
+  ];
+
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-2">
+      {visibleStocks.map((stock, i) => (
+        <div
+          key={i}
+          className="rounded-lg bg-white/80 backdrop-blur border border-white/40 p-2 shadow-sm transition-all duration-300 hover:shadow-md"
+        >
+          <p className="text-[10px] text-gray-950">
+            {new Date().toLocaleDateString("en-GB", {
+              day: "2-digit",
+              month: "short",
+            })}
+          </p>
+          <div className="text-center">
+             <p className="text-xs text-[#FFC828] font-semibold mt-1">
+              {stock.name}
+            </p>
+
+            <p className="text-sm font-bold text-primary">
+              {stock.price}
+            </p>
+          </div>
+
+          <p
+            className={`text-[10px] font-semibold mt-1 ${
+              stock.change.startsWith("+")
+                ? "text-emerald-500"
+                : "text-red-500"
+            }`}
+          >
+            {stock.change}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 
 export default TodaysSpotlight;
