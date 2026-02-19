@@ -1,4 +1,4 @@
-import { Play, Target, OctagonX, Youtube } from "lucide-react";
+import { Play, Youtube } from "lucide-react";
 
 const TodaysSpotlight = () => {
   return (
@@ -37,44 +37,50 @@ const TodaysSpotlight = () => {
               </div>
 
               {/* Stock Card */}
-              <div className="bg-primary-dark/30 rounded-lg p-3 mb-2">
-                <div className="flex justify-between">
+              <div className="spotlight-stock-card p-4 mb-5">
+                <div className="flex items-start justify-between gap-3">
                   <div>
-                    <h3 className="text-lg font-bold">RELIANCE</h3>
-                    <p className="text-[10px] text-white/70">NSE RELIANCE</p>
-                    <p className="text-lg font-bold text-emerald-400 mt-1">
-                      ₹2,847.50
-                    </p>
-                    <p className="text-[10px] text-white/70">
-                      Current Market Price
-                    </p>
+                    <h3 className="text-4xl md:text-5xl leading-none font-extrabold tracking-wide">RELIANCE</h3>
+                    <p className="text-lg text-white/90 mt-2">NSE RELIANCE</p>
                   </div>
 
-                  <span className="bg-white/20 px-3 py-1 rounded text-xs">
+                  <span className="bg-[#33D35B] px-6 py-2 rounded-lg text-2xl md:text-3xl font-bold leading-none">
                     +3.45%
                   </span>
+                </div>
+
+                <div className="spotlight-price-strip mt-4 p-5 flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-4xl md:text-5xl leading-none font-bold text-[#FFD33D]">₹2,847.50</p>
+                    <p className="text-base md:text-xl text-white/90 mt-2">Current Market Price</p>
+                  </div>
+
+                  <div className="rounded-2xl bg-[#DDE8DE] text-black px-5 py-3 min-w-[170px] md:min-w-[210px]">
+                    <p className="text-lg md:text-2xl leading-none">Entry</p>
+                    <p className="text-2xl md:text-3xl leading-none mt-2 font-semibold">₹ 2820</p>
+                  </div>
                 </div>
               </div>
 
               {/* Target/Stop/Buy */}
-              <div className="flex gap-2 mb-2">
-                <div className="bg-white rounded-lg p-2 flex-1 text-center">
-                  <Target className="mx-auto mb-1 text-red-500" size={14} />
-                  <p className="text-[10px] text-black">Target</p>
-                  <p className="text-[10px] text-primary">₹ 3,050</p>
+              <div className="flex gap-3 mb-2">
+                <div className="spotlight-action-card bg-white rounded-xl p-3 flex-1 text-center relative">
+                  <span className="spotlight-action-badge">🎯</span>
+                  <p className="text-sm md:text-lg mt-4 text-black">Target</p>
+                  <p className="text-sm md:text-base text-primary font-semibold">₹ 3,050</p>
                 </div>
 
-                <div className="bg-white rounded-lg p-2 flex-1 text-center">
-                  <OctagonX className="mx-auto mb-1 text-red-500" size={14} />
-                  <p className="text-[10px] text-black">Stop</p>
-                  <p className="text-[10px] text-gray-400">-</p>
+                <div className="spotlight-action-card bg-[#EAF7E9] rounded-xl p-3 flex-1 text-center relative">
+                  <span className="spotlight-action-badge">🛑</span>
+                  <p className="text-sm md:text-lg mt-4 text-black">Stop</p>
+                  <p className="text-sm md:text-base text-[#4A49E3] font-semibold">₹2,780</p>
                 </div>
 
-                <div className="bg-white rounded-lg p-2 flex-1 flex items-center justify-center gap-1">
-                  <button className="w-8 h-8 rounded-full bg-emerald-500 text-white text-[10px] font-bold">
+                <div className="spotlight-action-card bg-[#F4ECEC] rounded-xl p-3 flex-1 flex items-center justify-center gap-4 relative">
+                  <button className="spotlight-trade-btn bg-[#40CC3E]">
                     BUY
                   </button>
-                  <button className="w-8 h-8 rounded-full bg-red-500 text-white text-[10px] font-bold">
+                  <button className="spotlight-trade-btn bg-[#DA2222]">
                     SELL
                   </button>
                 </div>
