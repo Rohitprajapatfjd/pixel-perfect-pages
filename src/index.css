@@ -138,7 +138,34 @@
   overflow: hidden;
   border-radius: 20px 20px 0 0;
 
- clip-path: polygon(1% 9%, 19% 9%, 23% 1%, 24% 1%, 99% 1%, 99% 92%, 71% 92%, 69% 98%, 52% 98%, 29% 98%, 27% 92%, 1% 92%);
+  /* Curved profile tuned to match Figma arcs and avoid jagged sharp joints */
+  clip-path: polygon(
+    1% 10%,
+    16% 10%,
+    18% 9.6%,
+    19.5% 8.8%,
+    20.8% 7.5%,
+    22% 5.8%,
+    23.2% 3.5%,
+    24% 2%,
+    99% 2%,
+    99% 90%,
+    73% 90%,
+    71.5% 90.4%,
+    70.2% 91.2%,
+    69.2% 92.5%,
+    68.5% 94.2%,
+    67.8% 96.2%,
+    67% 98%,
+    31% 98%,
+    30.2% 96.2%,
+    29.5% 94.2%,
+    28.8% 92.5%,
+    27.8% 91.2%,
+    26.5% 90.4%,
+    25% 90%,
+    1% 90%
+  );
 }
 
 
@@ -166,7 +193,68 @@
 
 @layer components {
   .curve-box {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 94%, 72% 94%, 64% 100%, 0% 100%);
+    clip-path: polygon(
+      0% 0%,
+      100% 0%,
+      100% 93%,
+      78% 93%,
+      75% 93.4%,
+      72.8% 94.2%,
+      71% 95.8%,
+      69.5% 97.8%,
+      68.5% 100%,
+      63.5% 100%,
+      62.5% 97.8%,
+      61% 95.8%,
+      59.2% 94.2%,
+      57% 93.4%,
+      54% 93%,
+      0% 93%
+    );
   }
-}
 
+
+  .spotlight-stock-card {
+    border: 4px solid rgba(120, 190, 255, 0.75);
+    border-radius: 4px;
+    background: linear-gradient(180deg, #1567d9 0%, #1460ce 100%);
+  }
+
+  .spotlight-price-strip {
+    background: linear-gradient(90deg, #2d86f2 0%, #2b80ee 84%, #2678e6 84%, #2678e6 100%);
+    border-radius: 8px;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 84%, 95% 84%, 86% 100%, 0% 100%);
+  }
+
+  .spotlight-action-card {
+    min-height: 82px;
+  }
+
+  .spotlight-action-badge {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 9999px;
+    background: #fff;
+    border: 2px solid #d8d8d8;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .spotlight-trade-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 9999px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.45), 0 3px 0 rgba(0, 0, 0, 0.28);
+  }
+
+}
