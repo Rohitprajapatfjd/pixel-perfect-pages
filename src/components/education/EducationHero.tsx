@@ -24,17 +24,18 @@ const EducationHero = () => {
     <section className="bg-[hsl(var(--page-bg))]">
       <div className="max-w-full relative">
         {/* Logo notch */}
-        <div className="absolute left-0 top-0 z-20 rounded-tr-[30px] rounded-tl-[20px] px-6 py-4 pb-8">
+        <div className="absolute -left-1 -top-2 md:left-0 lg:left-10 md:top-6 lg:top-0 z-50 px-4 sm:px-6 py-4">
           <Link to="/" className="flex items-center gap-2">
-            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-              <path d="M16 4L16 14" stroke="#2563EB" strokeWidth="3" strokeLinecap="round" />
-              <path d="M16 14L24 8" stroke="#2563EB" strokeWidth="3" strokeLinecap="round" />
-              <path d="M16 14L8 8" stroke="#2563EB" strokeWidth="3" strokeLinecap="round" />
-              <path d="M16 14L24 20" stroke="#22C55E" strokeWidth="3" strokeLinecap="round" />
-              <path d="M16 14L8 20" stroke="#22C55E" strokeWidth="3" strokeLinecap="round" />
-              <path d="M16 14L16 24" stroke="#22C55E" strokeWidth="3" strokeLinecap="round" />
-            </svg>
-            <span className="text-xl font-bold text-primary">Stockbazaari</span>
+          <img
+            src="img/logo.png"
+            className="hidden sm:block w-32"
+            alt="Stackbazaari Logo"
+          />
+          <img
+            src="img/mobile-logo.png"
+            className="sm:hidden w-12"
+            alt="Stackbazaari Logo"
+          />
           </Link>
         </div>
 
