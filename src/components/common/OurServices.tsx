@@ -80,19 +80,21 @@ const OurServices = () => {
           </div>
 
           {/* MILARS Interactive Section */}
-          <div
-            className="bg-[hsl(var(--page-bg))] rounded-[20px] border border-border overflow-hidden"
-            onMouseLeave={() => setActiveIndex(null)}
-          >
-            <div className="flex" style={{ height: 380 }}>
+          <div className="bg-[hsl(var(--page-bg))] rounded-[20px] border border-border overflow-hidden">
+
+            {/* ================= DESKTOP VERSION ================= */}
+            <div
+              className="hidden md:flex"
+              style={{ height: 380 }}
+              onMouseLeave={() => setActiveIndex(null)}
+            >
               {services.map((service, index) => {
                 const isActive = activeIndex === index;
                 const hasActive = activeIndex !== null;
                 const Icon = service.icon;
 
-                // Calculate widths: active gets ~60%, others share remainder equally
                 const totalItems = services.length;
-                let widthPercent: number;
+                let widthPercent;
                 if (hasActive) {
                   widthPercent = isActive ? 58 : (100 - 58) / (totalItems - 1);
                 } else {
@@ -180,6 +182,73 @@ const OurServices = () => {
                 );
               })}
             </div>
+
+            {/* ================= MOBILE ACCORDION VERSION ================= */}
+            <div className="md:hidden divide-y divide-border">
+              {services.map((service, index) => {
+                const isActive = activeIndex === index;
+                const Icon = service.icon;
+
+                return (
+                  <div key={index}>
+
+                    {/* Accordion Header */}
+                    <button
+                      onClick={() =>
+                        setActiveIndex(isActive ? null : index)
+                      }
+                      className="w-full flex items-center justify-between px-5 py-4 text-left"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
+                          <span className="text-sm font-bold text-primary-foreground">
+                            {service.letter}
+                          </span>
+                        </div>
+                        <h3 className="text-sm font-semibold text-card-foreground">
+                          {service.title.replace("\n", " ")}
+                        </h3>
+                      </div>
+
+                      <Icon className={`w-4 h-4 transition-transform ${isActive ? "rotate-180" : ""}`} />
+                    </button>
+
+                    {/* Accordion Content */}
+                    <div
+                      className={`overflow-hidden transition-all duration-400 ${
+                        isActive ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+                      }`}
+                    >
+                      <div className="px-5 pb-5 space-y-4 text-sm">
+
+                        <p className="text-muted-foreground leading-relaxed">
+                          {service.description}
+                        </p>
+
+                        <ul className="space-y-3">
+                          {service.bullets.map((bullet, idx) => (
+                            <li key={idx} className="flex items-start gap-2">
+                              <span className="mt-1">•</span>
+                              <span>
+                                <strong>{bullet.bold}</strong>{" "}
+                                <span className="text-muted-foreground">
+                                  {bullet.text}
+                                </span>
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        <p className="text-muted-foreground leading-relaxed">
+                          {service.footer}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
           </div>
 
           {/* Contact Sales Button */}
