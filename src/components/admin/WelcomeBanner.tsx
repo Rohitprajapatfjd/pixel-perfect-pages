@@ -2,9 +2,9 @@ import welcomeImg from "@/assets/admin/welcome-illustration.png";
 
 const WelcomeBanner = () => {
   return (
-    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary-dark to-primary-darker p-8 text-primary-foreground">
+    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary-dark to-primary-darker p-5 md:p-8 text-primary-foreground">
       <div className="relative z-10 max-w-md">
-        <h1 className="text-3xl font-bold italic leading-tight">
+        <h1 className="text-2xl md:text-3xl font-bold italic leading-tight">
           Good Morning Nishita
         </h1>
         <p className="mt-2 text-sm text-primary-foreground/80">
@@ -23,7 +23,7 @@ const WelcomeBanner = () => {
       <img
         src={welcomeImg}
         alt="Welcome"
-        className="absolute right-6 bottom-0 h-[180px] w-auto object-contain"
+        className="absolute right-2 bottom-0 hidden h-[140px] w-auto object-contain md:right-6 md:block md:h-[180px]"
       />
     </div>
   );

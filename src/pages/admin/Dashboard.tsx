@@ -33,7 +33,7 @@ const Dashboard = () => {
             View All
           </button>
         </div>
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {stats.map((s) => (
             <StatCard key={s.title} {...s} />
           ))}
@@ -49,7 +49,7 @@ const Dashboard = () => {
           </div>
           <button className="text-xs font-semibold text-primary hover:underline">View all →</button>
         </div>
-        <div className="grid grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6">
           {quickActions.map((a) => (
             <QuickActionCard key={a.title} {...a} />
           ))}
