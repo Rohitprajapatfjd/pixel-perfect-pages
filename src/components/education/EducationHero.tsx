@@ -21,8 +21,8 @@ const teamMembers = [
 
 const EducationHero = () => {
   return (
-    <section className="bg-[hsl(var(--page-bg))] pt-6 px-6">
-      <div className="max-w-[1200px] mx-auto relative">
+    <section className="bg-[hsl(var(--page-bg))]">
+      <div className="max-w-full relative">
         {/* Logo notch */}
         <div className="absolute left-0 top-0 z-20 rounded-tr-[30px] rounded-tl-[20px] px-6 py-4 pb-8">
           <Link to="/" className="flex items-center gap-2">
@@ -39,7 +39,7 @@ const EducationHero = () => {
         </div>
 
         {/* Hero Container */}
-        <div className="hero-container px-8 md:px-12 pt-0 pb-0 min-h-[480px] rounded-[20px] overflow-hidden relative">
+        <div className="hero-container-1 px-8 md:px-12 pt-0 pb-0 min-h-[480px] rounded-[20px] overflow-hidden relative">
           <HeroBackground />
 
           {/* Navbar */}
@@ -67,7 +67,7 @@ const EducationHero = () => {
           </nav>
 
           {/* Hero Content */}
-          <div className="relative z-10 mt-12 md:mt-20 text-center">
+          <div className="relative z-10 my-12 md:my-20 text-center">
             <h1 className="text-3xl md:text-4xl lg:text-5xl text-white leading-[1.2] mb-4">
               With <span className="font-bold">StockBazaari Learn to</span> Invest{" "}
               <span className="font-bold">in stock</span>
@@ -75,19 +75,19 @@ const EducationHero = () => {
           </div>
 
           {/* Team Photo */}
-          <div className="relative z-10 mt-8 flex justify-center">
+          <div className="relative z-10 flex mt-10  justify-center">
             <div className="relative">
               <img
                 src="/img/team-education.png"
                 alt="Our Team"
-                className="max-h-[280px] object-contain"
+                className="max-h-[340px] object-contain"
                 onError={(e) => {
                   // Fallback if image doesn't load
                   (e.target as HTMLImageElement).style.display = 'none';
                 }}
               />
               {/* Team member labels */}
-              <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-3 px-4">
+              {/* <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-3 px-4">
                 {teamMembers.map((member) => (
                   <div
                     key={member.name}
@@ -97,7 +97,7 @@ const EducationHero = () => {
                     <p className="text-xs text-white/80">{member.role}</p>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
