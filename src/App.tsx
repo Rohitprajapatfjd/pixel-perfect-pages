@@ -48,10 +48,7 @@ const App = () => (
                 <Route path="/basket" element={<Basket />} />
               </Route>
 
-              <Route path="/admin/login" element={<RoleAuthPage role="admin" mode="login" />} />
-              <Route path="/admin/register" element={<RoleAuthPage role="admin" mode="register" />} />
-              <Route path="/merchant/login" element={<RoleAuthPage role="merchant" mode="login" />} />
-              <Route path="/merchant/register" element={<RoleAuthPage role="merchant" mode="register" />} />
+              <Route path="/login" element={<RoleAuthPage />} />
 
               <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
                 <Route path="/admin" element={<AdminLayout />}>

@@ -116,7 +116,7 @@ export function AppSidebar() {
           className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-muted-foreground hover:bg-accent transition-colors w-full"
           onClick={() => {
             logout();
-            navigate("/merchant/login");
+            navigate("/login");
           }}
         >
           <LogOut className="h-4 w-4" />

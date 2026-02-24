@@ -28,19 +28,39 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(() => {
     const saved = localStorage.getItem('helpdesk_user');
     if (saved) {
-      try { return JSON.parse(saved); } catch { return null; }
+      try {
+        return JSON.parse(saved);
+      } catch {
+        return null;
+      }
     }
     return null;
   });
 
   const login = useCallback((email: string, _password: string, role: UserRole): boolean => {
+    const normalizedEmail = email.trim().toLowerCase();
+
+    if ((role === 'admin' || role === 'merchant') && normalizedEmail === 'admin@gmail.com') {
+      const staticUser: User = {
+        id: `static-${role}`,
+        name: role === 'admin' ? 'Static Admin' : 'Static Merchant',
+        email: 'admin@gmail.com',
+        role,
+      };
+      setUser(staticUser);
+      localStorage.setItem('helpdesk_user', JSON.stringify(staticUser));
+      return true;
+    }
+
     const availableUsers = [...mockUsers, ...registeredUsers];
-    const found = availableUsers.find(u => u.email === email && u.role === role);
+    const found = availableUsers.find((existingUser) => existingUser.email.toLowerCase() === normalizedEmail && existingUser.role === role);
+
     if (found) {
       setUser(found);
       localStorage.setItem('helpdesk_user', JSON.stringify(found));
       return true;
     }
+
     return false;
   }, [registeredUsers]);
 
@@ -64,8 +84,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       localStorage.setItem('helpdesk_registered_users', JSON.stringify(updatedUsers));
       return updatedUsers;
     });
+
     setUser(newUser);
     localStorage.setItem('helpdesk_user', JSON.stringify(newUser));
+
     return true;
   }, [registeredUsers]);
 

@@ -11,8 +11,7 @@ const ProtectedRoute = ({ allowedRoles }: ProtectedRouteProps) => {
   const location = useLocation();
 
   if (!isAuthenticated || !user || !allowedRoles.includes(user.role)) {
-    const fallbackRole = allowedRoles.includes("admin") ? "admin" : "merchant";
-    return <Navigate to={`/${fallbackRole}/login`} replace state={{ from: location }} />;
+    return <Navigate to="/login" replace state={{ from: location }} />;
   }
 
   return <Outlet />;
