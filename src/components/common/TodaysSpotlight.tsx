@@ -1,11 +1,12 @@
 import { Play, Target, OctagonX, Youtube } from "lucide-react";
 import { useEffect, useState } from "react";
+import StockMiniSlider from "./StockMiniSlider";
 
 const TodaysSpotlight = () => {
   return (
-    <section className="bg-muted/30 h-screen flex items-center">
+    <section className="bg-muted/30 min-h-screen md:h-screen flex items-center">
       <div className="max-w-7xl mx-auto w-full">
-        <div className="bg-[#ECF3FA] rounded-[28px] px-5 py-3 shadow-sm curve-box h-[92vh] flex flex-col">
+        <div className="bg-[#ECF3FA] rounded-[28px] px-5 py-2 shadow-sm curve-box sm:h-[98vh] flex flex-col">
 
           {/* Top Header */}
           <div className="flex items-center justify-between px-3 mb-2">
@@ -22,10 +23,10 @@ const TodaysSpotlight = () => {
           </div>
 
           {/* Main Grid */}
-          <div className="grid lg:grid-cols-2 gap-0 flex-1 overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-1">
 
             {/* LEFT SIDE */}
-            <div className="bg-primary rounded-2xl p-3 text-white h-full flex flex-col justify-between">
+            <div className="bg-primary rounded-2xl p-6 text-white h-full flex flex-col justify-between">
 
               {/* Header */}
               <div className="flex items-center justify-between mb-1">
@@ -42,7 +43,7 @@ const TodaysSpotlight = () => {
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <h3 className="text-lg md:text-xl leading-none font-extrabold tracking-wide">RELIANCE</h3>
-                    <p className="text-sm text-white/90 mt-2">NSE RELIANCE</p>
+                    <p className="text-xs text-white/90 mt-2">NSE RELIANCE</p>
                   </div>
 
                   <span className="bg-[#33D35B] px-6 py-1 rounded-lg text-lg md:text-xl font-bold leading-none">
@@ -64,17 +65,19 @@ const TodaysSpotlight = () => {
               </div>
 
               {/* Target/Stop/Buy */}
-              <div className="flex gap-3 mb-2">
+              <div className="flex gap-3 mb-1">
                 <div className="spotlight-action-card bg-white rounded-xl px-3 py-2 flex-1 text-center relative">
                   <span className="spotlight-action-badge">🎯</span>
-                  <p className="text-sm md:text-lg mt-2 text-black">Target</p>
-                  <p className="text-sm md:text-base text-primary font-semibold">₹ 3,050</p>
+                  <p className="mt-2 text-[9px] text-black">🔒</p>
+                  <p className="text-[10px] md:text-[10px] text-black">Target</p>
+                  <p className="text-[8px] md:text-[8px] text-primary font-semibold">₹ 3,050</p>
                 </div>
 
-                <div className="spotlight-action-card bg-[#EAF7E9] rounded-xl p-3 flex-1 text-center relative">
+                <div className="spotlight-action-card bg-[#EAF7E9] rounded-xl px-3 py-2 flex-1 text-center relative">
                   <span className="spotlight-action-badge">🛑</span>
-                  <p className="text-sm md:text-lg mt-2 text-black">Stop</p>
-                  <p className="text-sm md:text-base text-[#4A49E3] font-semibold">₹2,780</p>
+                  <p className="mt-2 text-[9px] text-black">🔒</p>
+                  <p className="text-[10px] md:text-[10px] text-black">Stop</p>
+                  <p className="text-[8px] md:text-[8px] text-[#4A49E3] font-semibold">₹2,780</p>
                 </div>
 
                 <div className="spotlight-action-card bg-[#F4ECEC] rounded-xl p-3 flex-1 flex items-center justify-center gap-4 relative">
@@ -107,7 +110,7 @@ const TodaysSpotlight = () => {
 
               {/* Header */}
               <div className="flex items-center justify-between mb-2">
-                <h3 className="font-bold text-sm">Stockbaazzari</h3>
+                <img src="img/logo.png" className="w-28 sm:w-40" alt="Stackbazaari Logo" />
                 <button className="flex items-center gap-1 bg-red-600 text-white px-2 py-1 rounded text-xs">
                   <Youtube size={14} />
                   SUBSCRIBE
@@ -165,69 +168,6 @@ const SpotlightButton = () => {
   );
 };
 
-const StockMiniSlider = () => {
-  const stocks = [
-    { name: "RELIANCE", price: "₹2,847.50", change: "+2.1%" },
-    { name: "TCS", price: "₹3,921.20", change: "+1.4%" },
-    { name: "HDFCBANK", price: "₹1,621.10", change: "-0.6%" },
-    { name: "INFY", price: "₹1,502.60", change: "+3.2%" },
-    { name: "ITC", price: "₹421.30", change: "+0.9%" },
-    { name: "SBIN", price: "₹742.15", change: "+1.8%" },
-  ];
-
-  const [start, setStart] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setStart((prev) => (prev + 1) % stocks.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
-
-  const visibleStocks = [
-    stocks[start % stocks.length],
-    stocks[(start + 1) % stocks.length],
-    stocks[(start + 2) % stocks.length],
-    stocks[(start + 3) % stocks.length],
-  ];
-
-  return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-2">
-      {visibleStocks.map((stock, i) => (
-        <div
-          key={i}
-          className="rounded-lg bg-white/80 backdrop-blur border border-white/40 p-2 shadow-sm transition-all duration-300 hover:shadow-md"
-        >
-          <p className="text-[10px] text-gray-950">
-            {new Date().toLocaleDateString("en-GB", {
-              day: "2-digit",
-              month: "short",
-            })}
-          </p>
-          <div className="text-center">
-             <p className="text-xs text-[#FFC828] font-semibold mt-1">
-              {stock.name}
-            </p>
-
-            <p className="text-sm font-bold text-primary">
-              {stock.price}
-            </p>
-          </div>
-
-          <p
-            className={`text-[10px] font-semibold mt-1 ${
-              stock.change.startsWith("+")
-                ? "text-emerald-500"
-                : "text-red-500"
-            }`}
-          >
-            {stock.change}
-          </p>
-        </div>
-      ))}
-    </div>
-  );
-};
 
 
 export default TodaysSpotlight;

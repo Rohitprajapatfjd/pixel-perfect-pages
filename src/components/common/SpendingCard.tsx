@@ -2,7 +2,7 @@ import { Star } from "lucide-react";
 
 const SpendingCard = () => {
   return (
-    <div className="bg-white rounded-2xl p-4 shadow-card w-[260px] flex-shrink-0">
+    <div className="bg-white rounded-2xl p-3 shadow-card w-[260px] flex-shrink-0">
       {/* Header */}
       <div className="mb-4">
         <h3 className="text-sm font-semibold text-foreground mb-3">Spending Summary</h3>
@@ -27,7 +27,7 @@ const SpendingCard = () => {
       </div>
 
       {/* Top Rated Badge */}
-      <div className="bg-primary/10 rounded-xl p-3 mb-3">
+      <div className="bg-primary/10 rounded-xl p-3 mb-1">
         <div className="flex items-center gap-1 mb-2">
           <span className="text-xs font-medium text-primary">⭐ Top-Rated</span>
           <div className="flex ml-auto">

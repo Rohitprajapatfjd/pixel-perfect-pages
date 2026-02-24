@@ -1,14 +1,14 @@
 import { Phone, Mail, MapPin } from "lucide-react";
-
+import { Facebook, Twitter, Instagram, Linkedin, Youtube, MessageCircle } from "lucide-react";
 const Footer = () => {
   return (
     <footer className="bg-gray-100 pt-12 pb-6">
       {/* Contact Banner */}
-      <section className="px-6 md:px-12 lg:px-20 mb-10">
-        <div className="max-w-7xl mx-auto relative rounded-2xl overflow-hidden bg-gradient-to-r from-[#4f46e5] to-[#9ec5d8] px-8 py-10 md:py-12">
+      <section className="px-1 md:px-6 lg:px-8 mb-10">
+        <div className="max-w-7xl mx-auto relative rounded-2xl overflow-hidden bg-gradient-to-r from-[#4f46e5] to-[#9ec5d8] px-3 py-10 md:py-12">
 
           {/* Faded background text */}
-          <span className="absolute right-10 top-[80%] -translate-y-1/2 text-6xl md:text-7xl font-bold text-white/10 pointer-events-none">
+          <span className="absolute right-10 top-[80%] -translate-y-1/2 text-4xl md:text-7xl font-bold text-white/45 sm:text-white/10 pointer-events-none">
             StockBazaari
           </span>
 
@@ -16,7 +16,7 @@ const Footer = () => {
             
             {/* Left Content */}
             <div>
-              <h2 className="text-3xl md:text-4xl font-semibold text-white mb-2">
+              <h2 className="text-xl md:text-4xl font-semibold text-white mb-2">
                 Contact Us for Assistance
               </h2>
               <p className="text-white/80 text-sm md:text-base mb-5">
@@ -31,29 +31,23 @@ const Footer = () => {
             {/* Logo Right */}
             <div className="flex items-center gap-3">
               <img
-                src="/logo.png"
+                src="img/logo.png"
                 alt="logo"
-                className="w-12 h-12 object-contain"
+                className="hidden sm:block sm:w-50 object-contain"
               />
-              <span className="text-2xl font-bold text-[#0b0f3b]">
-                Stockbazaari
-              </span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Main Footer */}
-      <section className="px-6 md:px-12 lg:px-20">
+      <section className="px-3 md:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10">
 
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <img src="/logo.png" alt="logo" className="w-8 h-8" />
-              <span className="text-xl font-bold text-[#0b0f3b]">
-                Stockbazaari
-              </span>
+              <img src="img/logo.png" alt="logo" className="w-30" />
             </div>
 
             <p className="text-sm text-gray-600 mb-5">
@@ -62,12 +56,29 @@ const Footer = () => {
 
             {/* Social icons */}
             <div className="flex gap-2">
-              <div className="w-9 h-9 bg-blue-600 rounded-md"></div>
-              <div className="w-9 h-9 bg-sky-500 rounded-md"></div>
-              <div className="w-9 h-9 bg-pink-500 rounded-md"></div>
-              <div className="w-9 h-9 bg-blue-800 rounded-md"></div>
-              <div className="w-9 h-9 bg-red-600 rounded-md"></div>
-              <div className="w-9 h-9 bg-green-600 rounded-md"></div>
+              <div className="w-9 h-9 bg-blue-600 rounded-md flex items-center justify-center text-white">
+                <Facebook size={18} />
+              </div>
+
+              <div className="w-9 h-9 bg-sky-500 rounded-md flex items-center justify-center text-white">
+                <Twitter size={18} />
+              </div>
+
+              <div className="w-9 h-9 bg-pink-500 rounded-md flex items-center justify-center text-white">
+                <Instagram size={18} />
+              </div>
+
+              <div className="w-9 h-9 bg-blue-800 rounded-md flex items-center justify-center text-white">
+                <Linkedin size={18} />
+              </div>
+
+              <div className="w-9 h-9 bg-red-600 rounded-md flex items-center justify-center text-white">
+                <Youtube size={18} />
+              </div>
+
+              <div className="w-9 h-9 bg-green-600 rounded-md flex items-center justify-center text-white">
+                <MessageCircle size={18} />
+              </div>
             </div>
           </div>
 

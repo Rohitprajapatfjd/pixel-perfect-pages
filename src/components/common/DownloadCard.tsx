@@ -2,9 +2,9 @@ import { Smartphone } from "lucide-react";
 
 const DownloadCard = () => {
   return (
-    <div className="bg-white rounded-2xl p-4 shadow-card w-[260px] flex-shrink-0">
+    <div className="bg-white rounded-2xl p-3 shadow-card w-[260px] flex-shrink-0">
       {/* Header */}
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex items-center gap-2 mb-2">
         <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
           <Smartphone className="w-4 h-4 text-primary" />
         </div>
@@ -12,13 +12,13 @@ const DownloadCard = () => {
       </div>
 
       {/* Balance Card */}
-      <div className="bg-emerald-500 rounded-xl p-4 text-white mb-4">
+      <div className="bg-emerald-500 rounded-xl p-3 text-white mb-2">
         <div className="flex items-center justify-between mb-1">
           <span className="text-xs text-white/90">Your Balance NeoPay</span>
           <div className="w-6 h-4 bg-white/20 rounded"></div>
         </div>
         <p className="text-[10px] text-white/75 mb-2">Total Your Balance</p>
-        <p className="text-2xl font-bold">$8,420.00</p>
+        <p className="text-xl font-bold">$8,420.00</p>
       </div>
 
       {/* Progress Bar */}
