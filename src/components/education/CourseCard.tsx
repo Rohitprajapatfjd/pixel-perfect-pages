@@ -20,15 +20,15 @@ const CourseCard = ({
   isFeatured = false,
 }: CourseCardProps) => {
   return (
-    <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+    <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow w-full max-w-[320px] md:max-w-none mx-auto">
       {/* Card Image Area */}
-      <div className={`relative h-[160px] ${isFeatured ? "bg-gradient-to-br from-blue-500 to-blue-700" : "bg-gradient-to-br from-blue-600 to-blue-800"}`}>
+      <div className={`relative h-[160px] ${isFeatured ? "bg-gradient-to-br from-[#1f51af] via-[#1c49a0] to-[#163d87]" : "bg-gradient-to-br from-[#2454ad] via-[#1f4aa2] to-[#173d8a]"}`}>
         {/* Badges */}
         <div className="absolute top-3 left-3 flex gap-2">
-          <span className={`text-xs font-semibold px-3 py-1 rounded-md ${isFeatured ? "bg-green-500 text-white" : "bg-red-500 text-white"}`}>
+          <span className="text-xs font-semibold px-3 py-1 rounded-md bg-[#EF4642] text-white">
             BESTSELLER
           </span>
-          <span className="text-xs font-medium px-3 py-1 rounded-md bg-blue-100 text-blue-700">
+          <span className="text-xs font-medium px-3 py-1 rounded-md bg-[#F4F6FB] text-[#1D3F8D]">
             Intermidiete
           </span>
         </div>
@@ -54,7 +54,7 @@ const CourseCard = ({
             {discount}
           </span>
         </div>
-        <p className="text-xs text-red-500 mb-3">{urgency}</p>
+        <p className="text-xs text-[#EF4642] mb-3">{urgency}</p>
 
         {/* Enroll Button */}
         <button className={`w-full py-2.5 rounded-lg text-sm font-semibold text-white transition-colors ${

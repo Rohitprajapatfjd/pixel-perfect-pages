@@ -6,8 +6,8 @@ const navLinks = [
   { name: "Home", href: "/" },
   { name: "Education", href: "/education", active: true },
   { name: "Algo", href: "/strategies" },
-  { name: "Blog", href: "#" },
-  { name: "Contact", href: "#" },
+  { name: "Blog", href: "blog" },
+  { name: "Contact", href: "/contact" },
 ];
 
 const teamMembers = [
@@ -45,7 +45,7 @@ const EducationHero = () => {
 
           {/* Navbar */}
           <nav className="relative z-10 flex items-center justify-between h-16 pt-4">
-            <div className="w-[200px]" />
+            <div className="w-[130px] md:w-[200px]" />
             <div className="hidden md:flex items-center gap-10">
               {navLinks.map((link) => (
                 <Link
@@ -61,7 +61,7 @@ const EducationHero = () => {
                 </Link>
               ))}
             </div>
-            <a href="#" className="flex items-center gap-2 font-medium text-sm text-white hover:opacity-90 transition-opacity group">
+            <a href="#" className="flex items-center gap-2 font-medium text-xs sm:text-sm text-white hover:opacity-90 transition-opacity group">
               Download Now
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>

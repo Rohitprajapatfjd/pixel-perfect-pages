@@ -4,7 +4,8 @@ import {
   LayoutDashboard, MessageSquare, Globe, Image, Code2, Languages,
   PenTool, FileText, BookOpen, AlignLeft, ChevronDown, ChevronLeft,
   Sparkles,
-  Ticket
+  Ticket,
+  X
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -52,9 +53,10 @@ const navGroups: NavGroup[] = [
 interface AdminSidebarProps {
   collapsed: boolean;
   onToggle: () => void;
+  isMobile?: boolean;
 }
 
-const AdminSidebar = ({ collapsed, onToggle }: AdminSidebarProps) => {
+const AdminSidebar = ({ collapsed, onToggle, isMobile = false }: AdminSidebarProps) => {
   const location = useLocation();
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({
     MAIN: true,
@@ -69,7 +71,7 @@ const AdminSidebar = ({ collapsed, onToggle }: AdminSidebarProps) => {
   return (
     <aside
       className={cn(
-        "fixed left-0 top-0 z-30 flex h-screen flex-col border-r border-border bg-card transition-all duration-300",
+        "flex h-screen flex-col border-r border-border bg-card transition-all duration-300",
         collapsed ? "w-[68px]" : "w-[250px]"
       )}
     >
@@ -87,7 +89,11 @@ const AdminSidebar = ({ collapsed, onToggle }: AdminSidebarProps) => {
           onClick={onToggle}
           className="flex h-7 w-7 items-center justify-center rounded-lg text-muted-foreground hover:bg-secondary transition-colors"
         >
-          <ChevronLeft className={cn("h-4 w-4 transition-transform", collapsed && "rotate-180")} />
+          {isMobile ? (
+            <X className="h-4 w-4" />
+          ) : (
+            <ChevronLeft className={cn("h-4 w-4 transition-transform", collapsed && "rotate-180")} />
+          )}
         </button>
       </div>
 

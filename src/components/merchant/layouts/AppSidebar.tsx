@@ -10,7 +10,7 @@ import {
   LogOut,
 } from "lucide-react";
 import { NavLink } from "@/components/merchant/layouts/NavLink";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,
@@ -23,23 +23,26 @@ import {
   SidebarHeader,
   SidebarFooter,
 } from "@/components/ui/sidebar";
+import { useAuth } from "@/context/AuthContext";
 
 const mainItems = [
-  { title: "Dashboard", url: "/", icon: LayoutDashboard },
-  { title: "Stock Tips", url: "/stock-tips", icon: TrendingUp },
-  { title: "Algo Service", url: "/algo-service", icon: Bot },
-  { title: "Basket System", url: "/baskets", icon: ShoppingBasket },
+  { title: "Dashboard", url: "/merchant", icon: LayoutDashboard },
+  { title: "Stock Tips", url: "/merchant/stock-tips", icon: TrendingUp },
+  { title: "Algo Service", url: "/merchant/algo-service", icon: Bot },
+  { title: "Basket System", url: "/merchant/baskets", icon: ShoppingBasket },
 ];
 
 const manageItems = [
-  { title: "Services", url: "/services", icon: Zap },
-  { title: "Cart & Transactions", url: "/cart", icon: ShoppingCart },
-  { title: "Calendar", url: "/calendar", icon: Calendar },
-  { title: "Profile", url: "/profile", icon: User },
+  { title: "Services", url: "/merchant/services", icon: Zap },
+  { title: "Cart & Transactions", url: "/merchant/cart", icon: ShoppingCart },
+  { title: "Calendar", url: "/merchant/calendar", icon: Calendar },
+  { title: "Profile", url: "/merchant/profile", icon: User },
 ];
 
 export function AppSidebar() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuth();
   const isActive = (path: string) => location.pathname === path;
 
   return (
@@ -109,7 +112,13 @@ export function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter className="p-4 border-t border-border">
-        <button className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-muted-foreground hover:bg-accent transition-colors w-full">
+        <button
+          className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-muted-foreground hover:bg-accent transition-colors w-full"
+          onClick={() => {
+            logout();
+            navigate("/merchant/login");
+          }}
+        >
           <LogOut className="h-4 w-4" />
           <span>Logout</span>
         </button>

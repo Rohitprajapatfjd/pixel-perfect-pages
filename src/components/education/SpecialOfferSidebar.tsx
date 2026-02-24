@@ -4,18 +4,18 @@ const SpecialOfferSidebar = () => {
   return (
     <div className="space-y-5">
       {/* Special Offer Card */}
-      <div className="bg-red-600 text-white rounded-xl p-5">
+      <div className="bg-[#EF4642] text-white rounded-xl p-5">
         <h3 className="font-bold text-lg mb-1">Special Offer</h3>
         <p className="text-sm mb-3">
           Get <span className="text-2xl font-bold">40%</span>off on all courses
         </p>
         <div className="mb-2">
-          <p className="text-xs text-red-200 mb-1">Like coupon Code</p>
+          <p className="text-xs text-white/80 mb-1">Like coupon Code</p>
           <div className="bg-white rounded-md px-3 py-2">
             <span className="text-gray-900 font-semibold text-sm">TRADE40</span>
           </div>
         </div>
-        <p className="text-xs text-red-200">valid for next 48 hours only!</p>
+        <p className="text-xs text-white/80">valid for next 48 hours only!</p>
       </div>
 
       {/* Quick Enquiry Form */}
@@ -77,14 +77,14 @@ const SpecialOfferSidebar = () => {
       <div className="bg-cyan-500 text-white rounded-xl p-5">
         <h3 className="font-bold text-sm mb-3">Need Help?</h3>
         <div className="space-y-2">
-          <a href="tel:+919876543210" className="flex items-center gap-2 bg-red-500 rounded-lg px-3 py-2.5 text-sm hover:bg-red-600 transition-colors">
+          <a href="tel:+919876543210" className="flex items-center gap-2 bg-[#EF4642] rounded-lg px-3 py-2.5 text-sm hover:bg-[#de3f3a] transition-colors">
             <Phone className="w-4 h-4" />
             <div>
               <p className="font-semibold text-xs">Call Us</p>
               <p className="text-xs text-white/80">+919876543210</p>
             </div>
           </a>
-          <a href="mailto:info@stockbazaari.com" className="flex items-center gap-2 bg-red-500 rounded-lg px-3 py-2.5 text-sm hover:bg-red-600 transition-colors">
+          <a href="mailto:info@stockbazaari.com" className="flex items-center gap-2 bg-[#EF4642] rounded-lg px-3 py-2.5 text-sm hover:bg-[#de3f3a] transition-colors">
             <Mail className="w-4 h-4" />
             <div>
               <p className="font-semibold text-xs">Email Us</p>
