@@ -13,37 +13,48 @@ import Services from "@/pages/website/Services";
 import Basket from "@/pages/website/Basket";
 import NotFound from "@/pages/website/NotFound";
 import Dashboard from "@/pages/admin/Dashboard";
+import TicketSection from "./pages/admin/Ticket";
+import { TicketProvider } from "./context/TicketContext";
+import { AuthProvider } from "./context/AuthContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          {/* Website Routes */}
-          <Route element={<WebsiteLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/strategies" element={<Strategies />} />
-            <Route path="/education" element={<Education />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/basket" element={<Basket />} />
-          </Route>
+ <QueryClientProvider client={queryClient}>
+  <TooltipProvider>
+    <Toaster />
+    <Sonner />
+    <BrowserRouter>
 
-          {/* Admin Routes */}
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<Dashboard />} />
-          </Route>
+      <AuthProvider>
+        <TicketProvider>
 
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+          <Routes>
+            {/* Website Routes */}
+            <Route element={<WebsiteLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/strategies" element={<Strategies />} />
+              <Route path="/education" element={<Education />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/basket" element={<Basket />} />
+            </Route>
+
+            {/* Admin Routes */}
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Dashboard />} />
+            </Route>
+             <Route path="/admin/ticket" element={<TicketSection />} />
+
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+
+        </TicketProvider>
+      </AuthProvider>
+
+    </BrowserRouter>
+  </TooltipProvider>
+</QueryClientProvider>
 );
 
 export default App;

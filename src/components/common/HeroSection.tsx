@@ -1,10 +1,10 @@
 import HeroBackground from "./HeroBackground";
-import HeroBottomNotches from "./HeroBottomNotches";
 import SpendingCard from "./SpendingCard";
 import DownloadCard from "./DownloadCard";
 import AnalysisCard from "./AnalysisCard";
-import { ArrowUpRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const HeroSection = () => {
   const navLinks = [
@@ -16,140 +16,211 @@ const HeroSection = () => {
     { name: "Contact", href: "#" },
   ];
 
+  const cards = [SpendingCard, DownloadCard, AnalysisCard];
+
+  const [index, setIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+
+  /* Auto slider */
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % cards.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="bg-[hsl(var(--page-bg))] pt-6 px-6">
-      <div className="max-w-[1200px] mx-auto relative">
-        {/* Logo positioned absolutely outside blue area */}
-        <div className="absolute left-0 top-0 z-20 rounded-tr-[30px] rounded-tl-[20px] px-6 py-4 pb-8" style={{ bottom: 'auto' }}>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 flex items-center justify-center">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <path d="M16 4L16 14" stroke="#2563EB" strokeWidth="3" strokeLinecap="round" />
-                <path d="M16 14L24 8" stroke="#2563EB" strokeWidth="3" strokeLinecap="round" />
-                <path d="M16 14L8 8" stroke="#2563EB" strokeWidth="3" strokeLinecap="round" />
-                <path d="M16 14L24 20" stroke="#22C55E" strokeWidth="3" strokeLinecap="round" />
-                <path d="M16 14L8 20" stroke="#22C55E" strokeWidth="3" strokeLinecap="round" />
-                <path d="M16 14L16 24" stroke="#22C55E" strokeWidth="3" strokeLinecap="round" />
-              </svg>
-            </div>
-            <span className="text-xl font-bold text-primary">Stockbazaari</span>
+    <section className="relative w-full min-h-screen bg-[hsl(var(--page-bg))] overflow-hidden">
+      
+      {/* LOGO */}
+      <div className="absolute -left-1 -top-2 md:left-0 lg:left-10 md:top-6 lg:top-0 z-50 px-4 sm:px-6 py-4">
+        <img
+          src="img/logo.png"
+          className="hidden sm:block w-32"
+          alt="Stackbazaari Logo"
+        />
+        <img
+          src="img/mobile-logo.png"
+          className="sm:hidden w-12"
+          alt="Stackbazaari Logo"
+        />
+      </div>
+
+      {/* HERO CONTAINER */}
+      <div className="relative w-full min-h-screen flex flex-col rounded-t-[20px] px-6 md:px-12 pt-6 hero-container">
+        <HeroBackground />
+
+        {/* ================= NAVBAR ================= */}
+        <nav className="relative z-40 flex items-center justify-between h-16">
+
+          <div className="w-[200px]" />
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-10">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className={
+                  link.active
+                    ? "text-white font-semibold text-sm"
+                    : "text-white/80 hover:text-white transition text-sm font-medium"
+                }
+              >
+                {link.name}
+              </a>
+            ))}
           </div>
-        </div>
 
-        {/* Hero Container with blue background */}
-        <div className="hero-container px-8 md:px-12 pt-0 pb-32 min-h-[520px] rounded-t-[20px]">
-          <HeroBackground />
+          {/* Right Section */}
+          <div className="flex items-center gap-4">
 
-          {/* Navbar inside blue area */}
-          <nav className="relative z-10 flex items-center justify-between h-16 pt-4">
-            {/* Empty space for logo */}
-            <div className="w-[200px]"></div>
-
-            {/* Center Nav Links */}
-            <div className="hidden md:flex items-center gap-10">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className={
-                    link.active
-                      ? "text-white font-semibold text-sm"
-                      : "text-white/80 hover:text-white transition-colors duration-200 text-sm font-medium"
-                  }
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
-
-            {/* Download Button */}
+            {/* Desktop Download */}
             <a
               href="#"
-              className="flex items-center gap-2 font-medium text-sm text-white hover:opacity-90 transition-opacity group"
+              className="hidden md:flex items-center gap-2 text-white text-sm font-medium group"
             >
               Download Now
-              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition" />
             </a>
-          </nav>
 
-          {/* Hero Content */}
-          <div className="relative z-10 mt-8 md:mt-12">
-            <div className="grid lg:grid-cols-2 gap-8 items-start">
-              {/* Left - Heading */}
+            {/* Modern Animated Burger */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden relative z-50 text-white"
+            >
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-50px" }}
-                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                animate={{ rotate: isOpen ? 180 : 0 }}
+                transition={{ duration: 0.4 }}
               >
-                <h1 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white leading-[1.15]">
-                  Smart Digital<br />
-                  Stock Market
-                </h1>
+                {isOpen ? <X size={28} /> : <Menu size={28} />}
               </motion.div>
+            </button>
+          </div>
+        </nav>
 
-              {/* Right - Paragraph */}
+        {/* ================= MODERN MOBILE MENU ================= */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 md:hidden z-40"
+            >
+              {/* Blur Background */}
+              <div
+                className="absolute inset-0 bg-black/40 backdrop-blur-xl"
+                onClick={() => setIsOpen(false)}
+              />
+
+              {/* Sliding Panel */}
               <motion.div
-                className="lg:pt-2"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-50px" }}
-                transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ y: "-100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "-100%" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="relative h-full bg-gradient-to-br from-blue-600 to-blue-700 flex flex-col justify-center items-center space-y-10"
               >
-                <p className="text-white/90 text-[15px] max-w-[340px] leading-relaxed">
-                  Manage your finance easily, quickly, and securely. Stockbazaari helps you manage transaction, digital cards, and financial analytics in one intuitive platform
-                </p>
-              </motion.div>
-            </div>
+                {navLinks.map((link, i) => (
+                  <motion.a
+                    key={link.name}
+                    href={link.href}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + i * 0.1 }}
+                    className="text-white text-2xl font-semibold tracking-wide hover:scale-105 transition-transform"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.name}
+                  </motion.a>
+                ))}
 
-            {/* Cards Row */}
-            <div className="mt-10 flex flex-wrap gap-4 justify-start items-start">
-              {[0, 1, 2].map((i) => (
+                <motion.a
+                  href="#"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                  className="flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-full font-semibold shadow-lg hover:scale-105 transition"
+                >
+                  Download Now
+                  <ArrowUpRight className="w-5 h-5" />
+                </motion.a>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ================= HERO CONTENT ================= */}
+        <div className="relative z-10 flex-1 flex flex-col justify-center">
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+            >
+              <h1 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white leading-[1.15]">
+                Smart Digital <br />
+                Stock Market
+              </h1>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+            >
+              <p className="text-white/90 text-[15px] max-w-[340px] leading-relaxed">
+                Manage your finance easily, quickly, and securely.
+                Stockbazaari helps you manage transactions,
+                digital cards, and analytics in one intuitive platform.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* ================= CARDS ================= */}
+          <div className="mt-12">
+
+            {/* Desktop */}
+            <div className="hidden lg:flex justify-center gap-6">
+              {cards.map((Card, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 35 }}
+                  initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: false, margin: "-30px" }}
-                  transition={{ duration: 1.0, delay: 0.3 + i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.8, delay: i * 0.15 }}
                 >
-                  {i === 0 && <SpendingCard />}
-                  {i === 1 && <DownloadCard />}
-                  {i === 2 && <AnalysisCard />}
+                  <Card />
                 </motion.div>
               ))}
             </div>
-          </div>
 
-          {/* Bottom cutouts */}
-          <HeroBottomNotches />
-        </div>
+            {/* Mobile Slider */}
+            <div className="lg:hidden overflow-hidden">
+              <motion.div
+                className="flex"
+                animate={{ x: `-${index * 100}%` }}
+                transition={{ duration: 0.8 }}
+              >
+                {cards.map((Card, i) => (
+                  <div
+                    key={i}
+                    className="w-full shrink-0 flex justify-center px-4"
+                  >
+                    <div className="w-[90%]">
+                      <Card />
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
 
-        {/* Bottom section outside hero */}
-        <div className="bg-card rounded-b-[20px] flex items-center justify-between px-8 md:px-12 py-6">
-          <SpotlightButton />
-          
-          {/* Percentage stat */}
-          <div className="text-right hidden sm:block">
-            <p className="text-5xl md:text-6xl font-bold text-primary">
-              93.84<span className="text-3xl">%</span>
-            </p>
-            <p className="text-sm text-muted-foreground">Instant transfer Stockbazaari</p>
           </div>
         </div>
       </div>
     </section>
-  );
-};
-
-
-const SpotlightButton = () => {
-  return (
-    <button className="flex items-center gap-2 bg-primary text-primary-foreground px-5 py-3 rounded-full font-medium text-sm hover:bg-primary-dark transition-colors button-shadow">
-      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z" />
-      </svg>
-      Today's Spotlight
-    </button>
   );
 };
 

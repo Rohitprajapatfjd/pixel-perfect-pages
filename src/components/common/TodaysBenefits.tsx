@@ -26,11 +26,11 @@ const TodaysBenefits = () => {
   ];
 
   return (
-    <section className="bg-[hsl(var(--page-bg))] px-6">
-      <div className="max-w-[1200px] mx-auto">
+    <section className="bg-[hsl(var(--page-bg))]">
+      <div className="max-w-full">
         <div className="bg-card rounded-[24px] p-4 md:p-8">
           {/* Header */}
-          <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 mb-10">
+          <div className="flex lg:flex-row lg:items-start lg:justify-between gap-6 mb-2">
             <div>
               <div className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium mb-4">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -38,13 +38,13 @@ const TodaysBenefits = () => {
                 </svg>
                 Today's Benefits
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-card-foreground">
+              <h2 className="text-base md:text-3xl font-bold text-card-foreground">
                 Why StockBazaari Makes
               </h2>
-              <h3 className="text-3xl md:text-4xl font-bold text-card-foreground">
+              <h3 className="text-base md:text-3xl font-bold text-card-foreground">
                 Your Finance Effortless
               </h3>
-              <p className="text-xl text-muted-foreground mt-2">
+              <p className="text-sm text-muted-foreground mt-2">
                 Users Trust StockBazaari
               </p>
             </div>
@@ -52,8 +52,8 @@ const TodaysBenefits = () => {
             {/* Top-right illustration placeholder - parabola chart */}
             <div className="flex-shrink-0">
               <div className="relative">
-                <img className="w-[180px]" src="img/cloud.jpg" alt="Growth bar"/>
-                <p className="text-xs text-muted-foreground mt-2 max-w-[220px]">
+                <img className="w-[120px]" src="img/cloud.jpg" alt="Growth bar"/>
+                <p className="text-[8px] sm:text-xs text-muted-foreground mt-2 max-w-[140px] md:max-w-[220px]">
                   Built with enterprise-level security and designed for ease of use we empower individuals and business to transaction
                 </p>
               </div>
@@ -61,16 +61,16 @@ const TodaysBenefits = () => {
           </div>
 
           {/* Content Grid */}
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_2fr] gap-6 items-start">
             {/* Left - Trusted Banking Card with orbital illustration */}
-            <div className="border border-border rounded-[20px] p-8 relative overflow-hidden">
-              <img src="img/networking.png" alt="" />
+            <div className="p-4 relative overflow-hidden">
+              <img className="w-[350px]" src="img/networking.png" alt="" />
             </div>
 
             {/* Right - Benefits List */}
             <div className="space-y-4">
               {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-start gap-4 p-4 rounded-[16px] border border-border hover:border-primary/30 transition-colors">
+                <div key={index} className="flex items-start gap-4 p-4 rounded-[16px] border border-border hover:border-primary/30 transition-colors card-curve-section bg-[#ECF3FA]">
                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <benefit.icon className="w-5 h-5 text-primary" />
                   </div>

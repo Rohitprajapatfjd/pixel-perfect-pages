@@ -2,9 +2,9 @@ import { ArrowUpRight } from "lucide-react";
 
 const AnalysisCard = () => {
   return (
-    <div className="bg-white rounded-2xl p-4 shadow-card w-[260px] flex-shrink-0">
+    <div className="bg-white rounded-2xl p-3 shadow-card w-[300px] flex-shrink-0">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-3">
           <span className="stat-badge bg-primary/10 text-primary text-xs">
             Trusted by 50,000+ users worldwide
@@ -16,16 +16,15 @@ const AnalysisCard = () => {
       </div>
 
       {/* Title */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-3">
         <h3 className="text-lg font-semibold text-foreground">Analysis</h3>
         <span className="stat-badge bg-emerald-500 text-white text-xs">Active Customer</span>
       </div>
 
       {/* Chart */}
-      <div className="relative h-32">
+      <div className="relative h-28">
         {/* Y-axis labels */}
         <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-[10px] text-muted-foreground">
-          <span>100</span>
           <span>80</span>
           <span>60</span>
           <span>40</span>

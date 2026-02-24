@@ -6,7 +6,7 @@ const OurServices = () => {
 
   const services = [
     {
-      letter: "M",
+      letter: "B",
       title: "Market\nDirection",
       icon: TrendingUp,
       description: "We align your investments with the market's direction, not against it.",
@@ -17,7 +17,7 @@ const OurServices = () => {
       footer: "You won't receive random stock ideas. Every recommendation is aligned with the broader market conditions — helping you grow when the time is right, and stay protected when it's not."
     },
     {
-      letter: "I",
+      letter: "R",
       title: "Industry\nRanking",
       icon: BarChart3,
       description: "We identify the strongest industries — so you invest where growth is happening.",
@@ -28,7 +28,7 @@ const OurServices = () => {
       footer: "Every stock recommendation you receive is backed not just by company research, but also by strong industry tailwinds — increasing the probability of long-term success."
     },
     {
-      letter: "L",
+      letter: "A",
       title: "Leading\nStock",
       icon: Heart,
       description: "We identify the leaders in each industry — the stocks with the highest potential.",
@@ -39,7 +39,7 @@ const OurServices = () => {
       footer: "Our goal is to help you invest in quality stocks early — before they become widely popular."
     },
     {
-      letter: "A",
+      letter: "I",
       title: "Acceleration\nin Earnings",
       icon: Flame,
       description: "We focus on companies where profits are growing faster — because earnings drive stock prices.",
@@ -50,7 +50,7 @@ const OurServices = () => {
       footer: "You receive recommendations of companies that are not just growing — but growing faster than before."
     },
     {
-      letter: "R",
+      letter: "N",
       title: "Relative price\nstrength",
       icon: IndianRupee,
       description: "Price action tells you what the market thinks about a stock.",
@@ -60,51 +60,41 @@ const OurServices = () => {
       ],
       footer: "We focus on stocks showing positive momentum — not those fighting against market trends."
     },
-    {
-      letter: "S",
-      title: "Selling\nrules",
-      icon: LogOut,
-      description: "Knowing when to sell is just as important as knowing when to buy.",
-      bullets: [
-        { bold: "We provide clear sell signals", text: "based on technical breakdowns, earnings disappointments, or sector rotation." },
-        { bold: "Our sell rules protect your capital", text: "by cutting losses short and locking in gains at the right time." },
-      ],
-      footer: "Discipline in selling separates successful investors from the rest."
-    },
   ];
 
   return (
-    <section className="bg-[hsl(var(--page-bg))] py-16 px-6">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="bg-card rounded-[24px] p-8 md:p-12">
+    <section className="bg-[hsl(var(--page-bg))] py-6">
+      <div className="max-w-full">
+        <div className="bg-card rounded-[24px] px-4 md:px-6 py-3">
           {/* Header */}
-          <div className="mb-10">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-3 h-3 rounded-full bg-primary"></div>
-              <span className="text-primary font-semibold text-sm">Our Services</span>
+          <div className="mb-2">
+            <div className="mb-4">
+              <SpotlightButton/>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-card-foreground">
+            <h2 className="text-2xl md:text-3xl font-bold text-card-foreground">
               A successful investment approach
             </h2>
-            <p className="text-muted-foreground text-sm mt-3 max-w-2xl">
+            <p className="text-muted-foreground text-sm mt-1 max-w-2xl">
               Built with enterprise-level security and designed for ease of use to empower individuals and businesses to transact freely.
             </p>
           </div>
 
           {/* MILARS Interactive Section */}
-          <div
-            className="bg-[hsl(var(--page-bg))] rounded-[20px] border border-border overflow-hidden"
-            onMouseLeave={() => setActiveIndex(null)}
-          >
-            <div className="flex" style={{ height: 420 }}>
+          <div className="bg-[hsl(var(--page-bg))] rounded-[20px] border border-border overflow-hidden">
+
+            {/* ================= DESKTOP VERSION ================= */}
+            <div
+              className="hidden md:flex"
+              style={{ height: 380 }}
+              onMouseLeave={() => setActiveIndex(null)}
+            >
               {services.map((service, index) => {
                 const isActive = activeIndex === index;
                 const hasActive = activeIndex !== null;
                 const Icon = service.icon;
 
-                // Calculate widths: active gets ~60%, others share remainder equally
                 const totalItems = services.length;
-                let widthPercent: number;
+                let widthPercent;
                 if (hasActive) {
                   widthPercent = isActive ? 58 : (100 - 58) / (totalItems - 1);
                 } else {
@@ -192,6 +182,73 @@ const OurServices = () => {
                 );
               })}
             </div>
+
+            {/* ================= MOBILE ACCORDION VERSION ================= */}
+            <div className="md:hidden divide-y divide-border">
+              {services.map((service, index) => {
+                const isActive = activeIndex === index;
+                const Icon = service.icon;
+
+                return (
+                  <div key={index}>
+
+                    {/* Accordion Header */}
+                    <button
+                      onClick={() =>
+                        setActiveIndex(isActive ? null : index)
+                      }
+                      className="w-full flex items-center justify-between px-5 py-4 text-left"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
+                          <span className="text-sm font-bold text-primary-foreground">
+                            {service.letter}
+                          </span>
+                        </div>
+                        <h3 className="text-sm font-semibold text-card-foreground">
+                          {service.title.replace("\n", " ")}
+                        </h3>
+                      </div>
+
+                      <Icon className={`w-4 h-4 transition-transform ${isActive ? "rotate-180" : ""}`} />
+                    </button>
+
+                    {/* Accordion Content */}
+                    <div
+                      className={`overflow-hidden transition-all duration-400 ${
+                        isActive ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+                      }`}
+                    >
+                      <div className="px-5 pb-5 space-y-4 text-sm">
+
+                        <p className="text-muted-foreground leading-relaxed">
+                          {service.description}
+                        </p>
+
+                        <ul className="space-y-3">
+                          {service.bullets.map((bullet, idx) => (
+                            <li key={idx} className="flex items-start gap-2">
+                              <span className="mt-1">•</span>
+                              <span>
+                                <strong>{bullet.bold}</strong>{" "}
+                                <span className="text-muted-foreground">
+                                  {bullet.text}
+                                </span>
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        <p className="text-muted-foreground leading-relaxed">
+                          {service.footer}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
           </div>
 
           {/* Contact Sales Button */}
@@ -206,6 +263,17 @@ const OurServices = () => {
         </div>
       </div>
     </section>
+  );
+};
+
+const SpotlightButton = () => {
+  return (
+    <button className="flex items-center gap-2 bg-primary text-primary-foreground px-5 py-3 rounded-full font-medium text-sm hover:bg-primary-dark transition-colors button-shadow">
+      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z" />
+      </svg>
+      Our Services
+    </button>
   );
 };
 

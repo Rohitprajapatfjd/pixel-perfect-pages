@@ -3,7 +3,8 @@ import { NavLink, useLocation } from "react-router-dom";
 import {
   LayoutDashboard, MessageSquare, Globe, Image, Code2, Languages,
   PenTool, FileText, BookOpen, AlignLeft, ChevronDown, ChevronLeft,
-  Sparkles
+  Sparkles,
+  Ticket
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -34,6 +35,7 @@ const navGroups: NavGroup[] = [
       { title: "Image Generator", icon: Image, href: "/admin/image-generator" },
       { title: "Code Generator", icon: Code2, href: "/admin/code-generator" },
       { title: "Translation Hub", icon: Languages, href: "/admin/translation-hub" },
+      { title: "Support Tickets", icon: Ticket, href: "/admin/ticket" },
     ],
   },
   {

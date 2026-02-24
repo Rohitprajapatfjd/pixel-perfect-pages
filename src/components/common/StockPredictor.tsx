@@ -1,27 +1,14 @@
 const StockPredictor = () => {
   return (
-    <section className="bg-[hsl(var(--page-bg))] py-2 px-6">
-      <div className="max-w-[1200px] mx-auto">
+    <section className="bg-[hsl(var(--page-bg))] py-2">
+      <div className="max-w-full">
         {/* Curved border container */}
         <div className="relative">
           {/* Top curved SVG border */}
-          <div className="absolute -top-6 left-0 right-0 overflow-hidden" style={{ height: 48 }}>
-            <svg
-              viewBox="0 0 1200 48"
-              fill="none"
-              preserveAspectRatio="none"
-              className="w-full h-full"
-            >
-              <path
-                d="M0 48V24C0 10.745 10.745 0 24 0H1176C1189.25 0 1200 10.745 1200 24V48H700C700 48 650 28 600 28C550 28 500 48 500 48H0Z"
-                fill="white"
-              />
-            </svg>
-          </div>
 
-          <div className="bg-card rounded-[24px] p-4 md:p-8 border-2 border-primary/10" style={{ borderStyle: 'solid', borderImage: 'none' }}>
+          <div className="bg-card rounded-[24px] p-4 md:p-8" style={{ borderStyle: 'solid', borderImage: 'none' }}>
             {/* Header */}
-            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-10">
+            <div className="flex lg:flex-row lg:items-start lg:justify-between gap-8 mb-4">
               <div>
                 <div className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium mb-4">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -29,13 +16,13 @@ const StockPredictor = () => {
                   </svg>
                   Stock Predictor
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-card-foreground">
+                <h2 className="text-base md:text-3xl font-bold text-card-foreground">
                   StockBazaari Shows Your
                 </h2>
-                <h3 className="text-3xl md:text-4xl font-bold text-card-foreground">
+                <h3 className="text-base md:text-3xl font-bold text-card-foreground">
                   Effortless Prediction
                 </h3>
-                <p className="text-xl text-muted-foreground mt-2">
+                <p className="text-xs sm:text-sm text-muted-foreground mt-2">
                   Users Trust StockBazaari
                 </p>
               </div>
@@ -43,8 +30,8 @@ const StockPredictor = () => {
               {/* 3D Bar Chart Illustration */}
               <div className="flex-shrink-0">
                 <div className="relative">
-                 <img className="w-[200px]" src="img/bar.png" alt="" />
-                  <p className="text-xs text-muted-foreground mt-2 max-w-[180px]">
+                 <img className="w-[140px] sm:w-[160px]" src="img/bar.png" alt="" />
+                  <p className="text-[8px] sm:text-xs text-muted-foreground mt-2 max-w-[140px] md:max-w-[220px]">
                     Built with enterprise-level security and designed for ease of use we empower individuals and business to transaction
                   </p>
                 </div>
@@ -52,37 +39,37 @@ const StockPredictor = () => {
             </div>
 
             {/* Content Grid */}
-            <div className="grid lg:grid-cols-2 gap-8">
+            <div className="grid lg:grid-cols-[1fr_2fr] gap-5 px-5">
               {/* Left Column */}
               <div className="space-y-6">
                 {/* Stock Card */}
-                <div className="border-2 border-primary/15 rounded-[16px] p-5">
-                  <h4 className="text-lg font-bold text-primary">Reliance Industries Ltd</h4>
+                <div className="border-2 border-primary/15 rounded-[16px] px-4 py-3 text-center">
+                  <h4 className="text-base font-bold text-primary">Reliance Industries Ltd</h4>
                   <p className="text-sm text-muted-foreground">Oil & Gas</p>
-                  <p className="text-2xl font-bold text-card-foreground mt-2">2745.5₹</p>
+                  <p className="text-xl font-bold text-card-foreground mt-2">₹2745.5</p>
                   
                   {/* Buy Button */}
-                  <div className="bg-primary rounded-[12px] p-4 mt-4 text-center">
+                  <div className="bg-primary rounded-[12px] px-4 py-1 text-center">
                     <p className="text-primary-foreground font-bold text-lg">Buy</p>
                     <p className="text-primary-foreground/80 text-sm">Target ₹3200</p>
                     <p className="text-primary-foreground/80 text-xs">85% of confidence</p>
                   </div>
 
                   {/* Metrics Grid */}
-                  <div className="grid grid-cols-2 gap-3 mt-4">
-                    <div className="bg-muted/50 rounded-lg p-3 text-center">
+                  <div className="grid grid-cols-2 gap-3 mt-2">
+                    <div className="bg-[#ECF3FA] rounded-lg px-3 py-1 text-center">
                       <p className="text-xs text-muted-foreground">Market Cap</p>
                       <p className="text-sm font-bold text-card-foreground">18.5l Cr</p>
                     </div>
-                    <div className="bg-muted/50 rounded-lg p-3 text-center">
+                    <div className="bg-[#ECF3FA] rounded-lg p-3 text-center">
                       <p className="text-xs text-muted-foreground">PV Ratio</p>
                       <p className="text-sm font-bold text-card-foreground">24.5</p>
                     </div>
-                    <div className="bg-muted/50 rounded-lg p-3 text-center">
+                    <div className="bg-[#ECF3FA] rounded-lg p-3 text-center">
                       <p className="text-xs text-muted-foreground">ROE</p>
                       <p className="text-sm font-bold text-card-foreground">8.9%</p>
                     </div>
-                    <div className="bg-muted/50 rounded-lg p-3 text-center">
+                    <div className="bg-[#ECF3FA] rounded-lg p-3 text-center">
                       <p className="text-xs text-muted-foreground">Revenue</p>
                       <p className="text-sm font-bold text-card-foreground">7.92l Cr</p>
                     </div>
@@ -169,21 +156,21 @@ const StockPredictor = () => {
                 </div>
 
                 {/* Metrics Row */}
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="border-2 border-primary/15 rounded-lg p-4">
+                <div className="grid grid-cols-3 gap-2 sm:gap-4">
+                  <div className="border-2 border-primary/15 rounded-lg px-4 py-2 bg-[#ECF3FA]">
                     <p className="text-xs text-muted-foreground mb-1">PE Ratio</p>
-                    <p className="text-xl font-bold text-primary">24.5</p>
-                    <p className="text-xs text-accent">Fair Value</p>
+                    <p className="text-lg sm:text-xl font-bold text-primary">24.5</p>
+                    <p className="text-[11px] sm:text-xs text-accent">Fair Value</p>
                   </div>
-                  <div className="border-2 border-primary/15 rounded-lg p-4">
+                  <div className="border-2 border-primary/15 rounded-lg px-4 py-2 bg-[#ECF3FA]">
                     <p className="text-xs text-muted-foreground mb-1">ROE</p>
-                    <p className="text-xl font-bold text-primary">24.5</p>
-                    <p className="text-xs text-[hsl(var(--star))]">Weak Return</p>
+                    <p className="text-lg sm:text-xl font-bold text-primary">24.5</p>
+                    <p className="text-[11px] sm:text-xs text-[hsl(var(--star))]">Weak Return</p>
                   </div>
-                  <div className="border-2 border-primary/15 rounded-lg p-4">
+                  <div className="border-2 border-primary/15 rounded-lg px-4 py-2 bg-[#ECF3FA]">
                     <p className="text-xs text-muted-foreground mb-1">Dept/Equity</p>
-                    <p className="text-xl font-bold text-card-foreground">24.5</p>
-                    <p className="text-xs text-destructive">High Debt</p>
+                    <p className="text-lg sm:text-xl font-bold text-card-foreground">24.5</p>
+                    <p className="text-[11px] sm:text-xs text-destructive">High Debt</p>
                   </div>
                 </div>
 
@@ -192,7 +179,7 @@ const StockPredictor = () => {
                   <h4 className="text-lg font-bold text-card-foreground mb-4 text-center">Upcoming Events</h4>
                   
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between bg-muted/30 rounded-lg p-3">
+                    <div className="flex items-center justify-between bg-[#ECF3FA] rounded-lg p-3">
                       <div>
                         <p className="text-sm font-medium text-card-foreground">Q3 Results Declaration</p>
                         <p className="text-xs text-muted-foreground">2024-02-15</p>
@@ -202,7 +189,7 @@ const StockPredictor = () => {
                       </span>
                     </div>
                     
-                    <div className="flex items-center justify-between bg-muted/30 rounded-lg p-3">
+                    <div className="flex items-center justify-between bg-[#ECF3FA] rounded-lg p-3">
                       <div>
                         <p className="text-sm font-medium text-card-foreground">Q3 Results Declaration</p>
                         <p className="text-xs text-muted-foreground">2024-02-15</p>

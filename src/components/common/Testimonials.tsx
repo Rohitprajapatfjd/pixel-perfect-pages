@@ -49,20 +49,20 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="bg-background py-16 px-6 md:px-12 lg:px-20">
+    <section className="bg-background py-2 px-6 md:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-12">
+        <div className="flex items-center justify-between mb-4">
           <div>
-            <div className="flex items-center gap-2 mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <span className="text-star text-lg">★</span>
               <span className="text-primary font-semibold text-sm">Our Testimonials</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-card-foreground mb-2">
+            <h2 className="text-xl md:text-2xl font-bold text-card-foreground mb-2">
               Trusted by Our Growing<br />
               Community
             </h2>
-            <h3 className="text-xl text-muted-foreground">
+            <h3 className="text-sm text-muted-foreground">
               Users Trust StockBazaari
             </h3>
           </div>
@@ -85,24 +85,19 @@ const Testimonials = () => {
             clickable: true,
             dynamicBullets: true,
           }}
+          slidesPerView={1} // default mobile
           breakpoints={{
-            0: {
-              slidesPerView: 2.2,
-              spaceBetween: 15,
-            },
             640: {
               slidesPerView: 2,
-              spaceBetween: 20,
             },
             1024: {
               slidesPerView: 4,
-              spaceBetween: 30,
             },
           }}
         >
           {testimonials.map((item, index) => (
             <SwiperSlide key={index}>
-              <div className="bg-white rounded-xl border-2 shadow-md p-5 h-[420px] flex flex-col justify-between">
+              <div className="bg-white rounded-xl border-2 shadow-md p-3 h-[410px] flex flex-col justify-between">
 
                 {/* Heading */}
                 <div className="flex items-start gap-3">
