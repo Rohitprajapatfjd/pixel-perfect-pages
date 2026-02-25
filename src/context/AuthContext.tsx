@@ -40,11 +40,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const login = useCallback((email: string, _password: string, role: UserRole): boolean => {
     const normalizedEmail = email.trim().toLowerCase();
 
-    if ((role === 'admin' || role === 'merchant') && normalizedEmail === 'admin@gmail.com') {
+    const staticUsersByRole: Partial<Record<UserRole, { email: string; name: string }>> = {
+      admin: { email: 'admin@gmail.com', name: 'Static Admin' },
+      merchant: { email: 'user@gmail.com', name: 'Static Merchant' },
+    };
+
+    const staticUserConfig = staticUsersByRole[role];
+
+    if (staticUserConfig && normalizedEmail === staticUserConfig.email) {
       const staticUser: User = {
         id: `static-${role}`,
-        name: role === 'admin' ? 'Static Admin' : 'Static Merchant',
-        email: 'admin@gmail.com',
+        name: staticUserConfig.name,
+        email: staticUserConfig.email,
         role,
       };
       setUser(staticUser);

@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
+import { UserRole } from "@/types/ticket";
 
 const palette = {
   primary: "#0C1892",
@@ -27,19 +28,45 @@ const RoleAuthPage = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  const resolveDestination = () => fromState?.from?.pathname || "/admin";
+  const getRoleFromEmail = (currentEmail: string): UserRole | null => {
+    const normalizedEmail = currentEmail.trim().toLowerCase();
+
+    if (normalizedEmail === "admin@gmail.com") return "admin";
+    if (normalizedEmail === "user@gmail.com") return "merchant";
+
+    return null;
+  };
+
+  const resolveDestination = (role: UserRole) => {
+    const requestedPath = fromState?.from?.pathname;
+
+    if (!requestedPath) {
+      return role === "admin" ? "/admin" : "/merchant";
+    }
+
+    if (role === "admin" && requestedPath.startsWith("/admin")) return requestedPath;
+    if (role === "merchant" && requestedPath.startsWith("/merchant")) return requestedPath;
+
+    return role === "admin" ? "/admin" : "/merchant";
+  };
 
   const handleSignIn = (event: FormEvent) => {
     event.preventDefault();
     setError("");
 
-    const didSucceed = login(email.trim().toLowerCase(), password, "admin");
-    if (!didSucceed) {
-      setError("Use admin@gmail.com and any password.");
+    const role = getRoleFromEmail(email);
+    if (!role) {
+      setError("Use admin@gmail.com for admin or user@gmail.com for merchant.");
       return;
     }
 
-    navigate(resolveDestination(), { replace: true });
+    const didSucceed = login(email.trim().toLowerCase(), password, role);
+    if (!didSucceed) {
+      setError("Use admin@gmail.com for admin or user@gmail.com for merchant.");
+      return;
+    }
+
+    navigate(resolveDestination(role), { replace: true });
   };
 
   const handleSignUp = (event: FormEvent) => {
