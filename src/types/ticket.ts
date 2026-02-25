@@ -1,7 +1,7 @@
 export type TicketStatus = 'open' | 'in_progress' | 'under_review' | 'resolved' | 'closed';
 export type TicketPriority = 'critical' | 'high' | 'medium' | 'low';
 export type TicketCategory = 'technical' | 'billing' | 'account' | 'feature_request' | 'bug_report' | 'general';
-export type UserRole = 'user' | 'admin';
+export type UserRole = 'user' | 'admin' | 'merchant';
 export type ColorLabel = 'red' | 'orange' | 'yellow' | 'green' | 'blue' | 'purple';
 
 export interface User {
