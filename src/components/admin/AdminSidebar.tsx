@@ -47,11 +47,11 @@ const navGroups: NavGroup[] = [
   {
     label: "CORE TOOLS",
     items: [
-      { title: "AI Chat", icon: MessageSquare, href: "/admin/ai-chat" },
-      { title: "Website Builder", icon: Globe, href: "/admin/website-builder", badge: "NEW" },
-      { title: "Image Generator", icon: Image, href: "/admin/image-generator" },
-      { title: "Code Generator", icon: Code2, href: "/admin/code-generator" },
-      { title: "Translation Hub", icon: Languages, href: "/admin/translation-hub" },
+      { title: "Enquires", icon: MessageSquare, href: "/admin/ai-chat" },
+      { title: "Algo", icon: Globe, href: "/admin/website-builder", badge: "NEW" },
+      { title: "Education", icon: Image, href: "/admin/image-generator" },
+      { title: "Add User", icon: Code2, href: "/admin/code-generator" },
+      { title: "Coupon & Offer", icon: Languages, href: "/admin/translation-hub" },
       {
         title: "Support Tickets",
         icon: Ticket,
@@ -66,12 +66,12 @@ const navGroups: NavGroup[] = [
     ],
   },
   {
-    label: "WRITING",
+    label: "REPORT",
     items: [
-      { title: "Content Writer", icon: PenTool, href: "/admin/content-writer" },
-      { title: "Blog Post", icon: FileText, href: "/admin/blog-post", badge: "NEW" },
-      { title: "Article Writer", icon: BookOpen, href: "/admin/article-writer", badge: "NEW" },
-      { title: "Summarizer", icon: AlignLeft, href: "/admin/summarizer" },
+      { title: "Transaction Report", icon: PenTool, href: "/admin/content-writer" },
+      { title: "Reports", icon: FileText, href: "/admin/blog-post", badge: "NEW" },
+      { title: "User Login List", icon: BookOpen, href: "/admin/article-writer", badge: "NEW" },
+      { title: "Client MIS", icon: AlignLeft, href: "/admin/summarizer" },
     ],
   },
 ];

@@ -123,7 +123,7 @@ const TicketSection: React.FC = () => {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-4">
         {stats.map((s, i) => (
           <motion.div key={s.label} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
             <Card className="glass-card stat-card-hover">
@@ -211,7 +211,7 @@ const TicketSection: React.FC = () => {
           <div className="space-y-2">
             {criticalTickets.map(ticket => (
               <Card key={ticket.id} className="glass-card border-destructive/20 cursor-pointer hover:border-destructive/40 transition-colors" onClick={() => { setSelectedTicket(ticket); }}>
-                <CardContent className="p-3 flex items-center justify-between">
+                <CardContent className="p-3 grid grid-cols-1 gap-3 md:flex items-center justify-between ">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-destructive animate-pulse" />
                     <span className="text-xs text-muted-foreground font-mono">{ticket.ticketNumber}</span>
