@@ -139,25 +139,34 @@
   border-radius: 20px 20px 0 0;
 
  /* Curved profile tuned to match Figma arcs and avoid jagged sharp joints */
-clip-path: polygon(
-  1% 8%,
-  18% 8%,
-  20% 7%,
-  22% 5%,
-  24% 2%,
-  99% 2%,
-  99% 93%,
-  90% 93%,
-  88% 94.5%,
-  86% 96.5%,
-  84% 98%,
-  16% 98%,
-  14% 96.5%,
-  12% 94.5%,
-  10% 93%,
-  1% 93%
-);
+  clip-path: polygon(
+    1% 8%,
+    18% 8%,
+    20% 7%,
+    22% 5%,
+    24% 2%,
+    99% 2%,
+    99% 93%,
+    90% 93%,
+    88% 94.5%,
+    86% 96.5%,
+    84% 98%,
+    16% 98%,
+    14% 96.5%,
+    12% 94.5%,
+    10% 93%,
+    1% 93%
+  );
  
+}
+
+.hero-container-1 {
+  background: linear-gradient(135deg, #2f5bff 0%, #1d3fd8 100%);
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+
+  clip-path: polygon(1% 8%, 16% 8%, 18% 1%, 99% 1%, 99% 100%, 1% 100%);
 }
 
 @screen sm {

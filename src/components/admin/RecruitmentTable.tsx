@@ -25,7 +25,8 @@ const RecruitmentTable = () => {
           View All
         </button>
       </div>
-      <table className="w-full">
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[620px]">
         <thead>
           <tr className="text-left text-xs text-muted-foreground">
             <th className="pb-3 font-medium">Full Name</th>
@@ -64,6 +65,7 @@ const RecruitmentTable = () => {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };

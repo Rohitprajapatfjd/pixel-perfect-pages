@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import DashboardLayout from '@/components/admin/TicketLayout';
 import { useTickets } from '@/context/TicketContext';
 import { Ticket, TicketStatus, TicketPriority, ColorLabel } from '@/types/ticket';
 import { mockExecutives, trendData, categoryData } from '@/data/mockData';
@@ -17,6 +16,7 @@ import { Progress } from '@/components/ui/progress';
 import { motion } from 'framer-motion';
 import { formatDistanceToNow, format } from 'date-fns';
 import { toast } from 'sonner';
+import { useParams } from 'react-router-dom';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
   ResponsiveContainer, BarChart, Bar, Cell,
@@ -47,9 +47,15 @@ const colorLabelClasses: Record<ColorLabel, string> = {
   green: 'bg-label-green', blue: 'bg-label-blue', purple: 'bg-label-purple',
 };
 
+const ticketSections = ['overview', 'tickets', 'team', 'analytics'] as const;
+type TicketSectionType = typeof ticketSections[number];
+
 const TicketSection: React.FC = () => {
+  const { section = 'overview' } = useParams<{ section?: string }>();
   const { tickets, updateStatus, updatePriority, updateColorLabel, assignExecutive, addComment } = useTickets();
-  const [activeTab, setActiveTab] = useState('overview');
+  const activeTab: TicketSectionType = ticketSections.includes(section as TicketSectionType)
+    ? (section as TicketSectionType)
+    : 'overview';
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
@@ -117,7 +123,7 @@ const TicketSection: React.FC = () => {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-4">
         {stats.map((s, i) => (
           <motion.div key={s.label} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
             <Card className="glass-card stat-card-hover">
@@ -205,7 +211,7 @@ const TicketSection: React.FC = () => {
           <div className="space-y-2">
             {criticalTickets.map(ticket => (
               <Card key={ticket.id} className="glass-card border-destructive/20 cursor-pointer hover:border-destructive/40 transition-colors" onClick={() => { setSelectedTicket(ticket); }}>
-                <CardContent className="p-3 flex items-center justify-between">
+                <CardContent className="p-3 grid grid-cols-1 gap-3 md:flex items-center justify-between ">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-destructive animate-pulse" />
                     <span className="text-xs text-muted-foreground font-mono">{ticket.ticketNumber}</span>
@@ -384,7 +390,7 @@ const TicketSection: React.FC = () => {
   );
 
   return (
-    <DashboardLayout activeTab={activeTab} onTabChange={setActiveTab}>
+    <>
       <div className="p-6 lg:p-8 max-w-7xl">
         {activeTab === 'overview' && renderOverview()}
         {activeTab === 'tickets' && renderTickets()}
@@ -532,7 +538,7 @@ const TicketSection: React.FC = () => {
           )}
         </SheetContent>
       </Sheet>
-    </DashboardLayout>
+    </>
   );
 };
 
