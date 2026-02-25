@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import DashboardLayout from '@/components/admin/TicketLayout';
 import { useTickets } from '@/context/TicketContext';
 import { Ticket, TicketStatus, TicketPriority, ColorLabel } from '@/types/ticket';
 import { mockExecutives, trendData, categoryData } from '@/data/mockData';
@@ -17,6 +16,7 @@ import { Progress } from '@/components/ui/progress';
 import { motion } from 'framer-motion';
 import { formatDistanceToNow, format } from 'date-fns';
 import { toast } from 'sonner';
+import { useParams } from 'react-router-dom';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
   ResponsiveContainer, BarChart, Bar, Cell,
@@ -47,9 +47,15 @@ const colorLabelClasses: Record<ColorLabel, string> = {
   green: 'bg-label-green', blue: 'bg-label-blue', purple: 'bg-label-purple',
 };
 
+const ticketSections = ['overview', 'tickets', 'team', 'analytics'] as const;
+type TicketSectionType = typeof ticketSections[number];
+
 const TicketSection: React.FC = () => {
+  const { section = 'overview' } = useParams<{ section?: string }>();
   const { tickets, updateStatus, updatePriority, updateColorLabel, assignExecutive, addComment } = useTickets();
-  const [activeTab, setActiveTab] = useState('overview');
+  const activeTab: TicketSectionType = ticketSections.includes(section as TicketSectionType)
+    ? (section as TicketSectionType)
+    : 'overview';
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
@@ -384,7 +390,7 @@ const TicketSection: React.FC = () => {
   );
 
   return (
-    <DashboardLayout activeTab={activeTab} onTabChange={setActiveTab}>
+    <>
       <div className="p-6 lg:p-8 max-w-7xl">
         {activeTab === 'overview' && renderOverview()}
         {activeTab === 'tickets' && renderTickets()}
@@ -532,7 +538,7 @@ const TicketSection: React.FC = () => {
           )}
         </SheetContent>
       </Sheet>
-    </DashboardLayout>
+    </>
   );
 };
 
