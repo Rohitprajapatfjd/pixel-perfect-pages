@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { AdminUser } from '@/types/rbac';
 import RoleBadge from './RoleBadge';
+import { X } from 'lucide-react';
 
 interface UserListProps {
   users: AdminUser[];
@@ -37,9 +38,19 @@ const UserList = ({ users, loading, canManage, onManageRoles, onRemoveRole }: Us
                   <td className="py-3">
                     <div className="flex flex-wrap gap-2">
                       {user.roles.map((role) => (
-                        <button key={role} onClick={() => onRemoveRole(user, role)} disabled={!canManage}>
+                        <div key={role} className="flex items-center gap-1">
                           <RoleBadge role={role} />
-                        </button>
+                          <button
+                            type="button"
+                            className="rounded-full border p-0.5 text-muted-foreground hover:bg-secondary disabled:opacity-60"
+                            onClick={() => onRemoveRole(user, role)}
+                            disabled={!canManage}
+                            aria-label={`Remove ${role} role from ${user.name}`}
+                            title={`Remove ${role}`}
+                          >
+                            <X className="h-3 w-3" />
+                          </button>
+                        </div>
                       ))}
                     </div>
                   </td>
