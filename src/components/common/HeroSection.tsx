@@ -33,10 +33,10 @@ const HeroSection = () => {
     <section className="relative w-full min-h-screen bg-[hsl(var(--page-bg))] overflow-hidden">
       
       {/* LOGO */}
-      <div className="absolute -left-1 -top-2 md:left-0 lg:left-10 md:top-6 lg:top-0 z-50 px-4 sm:px-6 py-4">
+      <div className="absolute -left-1 -top-2 md:left-0 lg:left-2 md:top-6 lg:-top-2 z-50 px-4 sm:px-6 py-4">
         <img
           src="img/logo.png"
-          className="hidden sm:block w-32"
+          className="hidden sm:block w-40"
           alt="Stackbazaari Logo"
         />
         <img
@@ -154,15 +154,15 @@ const HeroSection = () => {
 
         {/* ================= HERO CONTENT ================= */}
         <div className="relative z-10 flex-1 flex flex-col justify-center">
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
+          <div className="grid lg:grid-cols-2 gap-4 md:gap-40 items-start text-center">
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-[56px] font-bold text-white leading-[1.15]">
-                Smart Digital <br />
+              <h1 className="text-5xl md:text-5xl lg:text-[65px] md:pl-10 font-semibold tracking-wider text-white leading-[1.15]">
+                Smart Digital <br/>
                 Stock Market
               </h1>
             </motion.div>
@@ -172,13 +172,14 @@ const HeroSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2 }}
             >
-              <p className="text-white/90 text-[15px] max-w-[340px] leading-relaxed">
+              <p className="text-white/90 text-[15px] max-w-[300px] tracking-wide leading-relaxed md:pt-7">
                 Manage your finance easily, quickly, and securely.
                 Stockbazaari helps you manage transactions,
                 digital cards, and analytics in one intuitive platform.
               </p>
             </motion.div>
           </div>
+          <hr className="hidden md:block opacity-60 mb-4"/>
 
           {/* ================= CARDS ================= */}
           <div className="mt-12">
