@@ -15,6 +15,9 @@ import Basket from "@/pages/website/Basket";
 import NotFound from "@/pages/website/NotFound";
 import Dashboard from "@/pages/admin/Dashboard";
 import TicketSection from "./pages/admin/Ticket";
+import RolesPage from "@/pages/admin/RolesPage";
+import PermissionsPage from "@/pages/admin/PermissionsPage";
+import UsersPage from "@/pages/admin/UsersPage";
 import { TicketProvider } from "./context/TicketContext";
 import { AuthProvider } from "./context/AuthContext";
 import RoleAuthPage from "@/pages/auth/RoleAuthPage";
@@ -50,11 +53,20 @@ const App = () => (
 
               <Route path="/login" element={<RoleAuthPage />} />
 
-              <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+              <Route element={<ProtectedRoute allowedRoles={["super-admin"]} />}>
                 <Route path="/admin" element={<AdminLayout />}>
                   <Route index element={<Dashboard />} />
                   <Route path="ticket" element={<Navigate to="overview" replace />} />
                   <Route path="ticket/:section" element={<TicketSection />} />
+                  <Route element={<ProtectedRoute permission="manage-roles" />}>
+                    <Route path="roles" element={<RolesPage />} />
+                  </Route>
+                  <Route element={<ProtectedRoute permission="manage-permissions" />}>
+                    <Route path="permissions" element={<PermissionsPage />} />
+                  </Route>
+                  <Route element={<ProtectedRoute permission="manage-users" />}>
+                    <Route path="users" element={<UsersPage />} />
+                  </Route>
                 </Route>
               </Route>
 
