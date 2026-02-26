@@ -17,9 +17,13 @@ import {
   Ticket,
   X,
   LogOut,
+  Shield,
+  KeyRound,
+  Users,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/context/AuthContext";
+import { usePermission } from "@/hooks/usePermission";
 
 interface SubNavItem {
   title: string;
@@ -31,6 +35,7 @@ interface NavItem {
   icon: ElementType;
   href: string;
   badge?: string;
+  permission?: string;
   children?: SubNavItem[];
 }
 
@@ -66,6 +71,14 @@ const navGroups: NavGroup[] = [
     ],
   },
   {
+    label: "ACCESS MANAGEMENT",
+    items: [
+      { title: "Roles", icon: Shield, href: "/admin/roles", permission: "manage-roles" },
+      { title: "Permissions", icon: KeyRound, href: "/admin/permissions", permission: "manage-permissions" },
+      { title: "Users", icon: Users, href: "/admin/users", permission: "manage-users" },
+    ],
+  },
+  {
     label: "REPORT",
     items: [
       { title: "Transaction Report", icon: PenTool, href: "/admin/content-writer" },
@@ -86,6 +99,7 @@ const AdminSidebar = ({ collapsed, onToggle, isMobile = false }: AdminSidebarPro
   const location = useLocation();
   const navigate = useNavigate();
   const { logout } = useAuth();
+  const { hasPermission } = usePermission();
 
   const [openGroups, setOpenGroups] = useState<Record<string, boolean>>({
     MAIN: true,
@@ -148,7 +162,7 @@ const AdminSidebar = ({ collapsed, onToggle, isMobile = false }: AdminSidebarPro
 
             {(collapsed || openGroups[group.label]) && (
               <ul className="space-y-0.5">
-                {group.items.map((item) => {
+                {group.items.filter((item) => !item.permission || hasPermission(item.permission)).map((item) => {
                   const isActive = location.pathname === item.href;
                   const isParentActive = isTicketChildActive(item);
 
