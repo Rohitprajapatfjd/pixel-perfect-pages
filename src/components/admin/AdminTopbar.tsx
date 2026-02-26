@@ -47,10 +47,10 @@ const AdminTopbar = ({ onMenuClick, showMenuButton = false }: AdminTopbarProps) 
           <div className="hidden sm:flex h-9 w-9 items-center justify-center rounded-full bg-destructive text-primary-foreground text-xs font-bold">
             A
           </div>
-          <div className="hidden md:flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5">
+          {/* <div className="hidden md:flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5">
             <div className="h-2 w-2 rounded-full bg-accent" />
             <span className="text-xs font-medium text-foreground">Gemini</span>
-          </div>
+          </div> */}
           <button className="hidden sm:flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground hover:bg-secondary">
             <Settings className="h-4 w-4" />
           </button>

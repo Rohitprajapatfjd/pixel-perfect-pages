@@ -55,7 +55,6 @@ const navGroups: NavGroup[] = [
       { title: "Enquires", icon: MessageSquare, href: "/admin/ai-chat" },
       { title: "Algo", icon: Globe, href: "/admin/website-builder", badge: "NEW" },
       { title: "Education", icon: Image, href: "/admin/image-generator" },
-      { title: "Add User", icon: Code2, href: "/admin/code-generator" },
       { title: "Coupon & Offer", icon: Languages, href: "/admin/translation-hub" },
       {
         title: "Support Tickets",
@@ -124,11 +123,11 @@ const AdminSidebar = ({ collapsed, onToggle, isMobile = false }: AdminSidebarPro
       )}
     >
       <div className="flex h-16 items-center justify-between border-b border-border px-4">
-        <div className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary">
-            <Sparkles className="h-5 w-5 text-primary-foreground" />
+        <div className="flex items-center gap-1">
+          <div className="flex h-9 w-9 items-center justify-center">
+            <img src="img/mobile-logo.png" alt="" />
           </div>
-          {!collapsed && <span className="text-lg font-bold text-foreground">AI Suite</span>}
+          {!collapsed && <span className="text-lg font-bold text-[#0C1892]">Stockbazaari</span>}
         </div>
         <button
           onClick={onToggle}
@@ -142,7 +141,7 @@ const AdminSidebar = ({ collapsed, onToggle, isMobile = false }: AdminSidebarPro
         </button>
       </div>
 
-      <nav className="flex-1 space-y-4 overflow-y-auto px-3 py-4">
+      <nav className="flex-1 space-y-4 overflow-y-auto px-2 py-4 custom-scrollbar">
         {navGroups.map((group) => (
           <div key={group.label}>
             {!collapsed && (
