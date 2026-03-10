@@ -1,7 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
-import { UserRole } from "@/types/ticket";
 
 const palette = {
   primary: "#0C1892",
@@ -28,7 +27,7 @@ const RoleAuthPage = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  const getRoleFromEmail = (currentEmail: string): UserRole | null => {
+  const getRoleFromEmail = (currentEmail: string): "admin" | "merchant" | null => {
     const normalizedEmail = currentEmail.trim().toLowerCase();
 
     if (normalizedEmail === "admin@gmail.com") return "admin";
@@ -37,7 +36,7 @@ const RoleAuthPage = () => {
     return null;
   };
 
-  const resolveDestination = (role: UserRole) => {
+  const resolveDestination = (role: "admin" | "merchant") => {
     const requestedPath = fromState?.from?.pathname;
 
     if (!requestedPath) {
@@ -50,7 +49,7 @@ const RoleAuthPage = () => {
     return role === "admin" ? "/admin" : "/merchant";
   };
 
-  const handleSignIn = (event: FormEvent) => {
+  const handleSignIn = async (event: FormEvent) => {
     event.preventDefault();
     setError("");
 
@@ -60,7 +59,7 @@ const RoleAuthPage = () => {
       return;
     }
 
-    const didSucceed = login(email.trim().toLowerCase(), password, role);
+    const didSucceed = await login(email.trim().toLowerCase(), password);
     if (!didSucceed) {
       setError("Use admin@gmail.com for admin or user@gmail.com for merchant.");
       return;
@@ -69,11 +68,11 @@ const RoleAuthPage = () => {
     navigate(resolveDestination(role), { replace: true });
   };
 
-  const handleSignUp = (event: FormEvent) => {
+  const handleSignUp = async (event: FormEvent) => {
     event.preventDefault();
     setError("");
 
-    const didRegister = register(name.trim() || "Demo User", email.trim().toLowerCase(), password, "admin");
+    const didRegister = await register(name.trim() || "Demo User", email.trim().toLowerCase(), password);
     if (!didRegister) {
       setError("Account already exists. Please sign in.");
       return;

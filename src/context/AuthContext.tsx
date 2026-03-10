@@ -1,113 +1,123 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
-import { User, UserRole } from '@/types/ticket';
-import { mockUsers } from '@/data/mockData';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { apiClient } from '@/api/client';
+import { AuthState, AuthUser } from '@/types/rbac';
+import { tokenStorage } from '@/utils/tokenStorage';
 
 interface AuthContextType {
-  user: User | null;
-  login: (email: string, password: string, role: UserRole) => boolean;
-  register: (name: string, email: string, password: string, role: UserRole) => boolean;
-  logout: () => void;
+  user: AuthUser | null;
+  token: string | null;
   isAuthenticated: boolean;
+  login: (email: string, password: string) => Promise<boolean>;
+  register: (name: string, email: string, password: string) => Promise<boolean>;
+  setAuthSession: (auth: AuthState) => void;
+  logout: () => void;
 }
+
+const DEFAULT_PERMISSIONS = ['manage-roles', 'manage-permissions', 'manage-users', 'manage-hr', 'view-report'];
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
+const AUTH_KEY = 'auth_state';
+
+const mapLegacyUser = (legacy: any): AuthUser | null => {
+  if (!legacy) return null;
+
+  const role = legacy.role === 'merchant' ? 'merchant' : 'super-admin';
+
+  return {
+    id: legacy.id,
+    name: legacy.name,
+    email: legacy.email,
+    roles: [role],
+    permissions: role === 'merchant' ? [] : DEFAULT_PERMISSIONS,
+  };
+};
+
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [registeredUsers, setRegisteredUsers] = useState<User[]>(() => {
-    const saved = localStorage.getItem('helpdesk_registered_users');
+  const [state, setState] = useState<AuthState>(() => {
+    const saved = localStorage.getItem(AUTH_KEY);
     if (saved) {
       try {
         return JSON.parse(saved);
       } catch {
-        return [];
+        return { user: null, token: null };
       }
     }
-    return [];
-  });
 
-  const [user, setUser] = useState<User | null>(() => {
-    const saved = localStorage.getItem('helpdesk_user');
-    if (saved) {
+    const legacyUser = localStorage.getItem('helpdesk_user');
+    if (legacyUser) {
       try {
-        return JSON.parse(saved);
+        return { user: mapLegacyUser(JSON.parse(legacyUser)), token: tokenStorage.get() };
       } catch {
-        return null;
+        return { user: null, token: null };
       }
     }
-    return null;
+
+    return { user: null, token: null };
   });
 
-  const login = useCallback((email: string, _password: string, role: UserRole): boolean => {
-    const normalizedEmail = email.trim().toLowerCase();
-
-    const staticUsersByRole: Partial<Record<UserRole, { email: string; name: string }>> = {
-      admin: { email: 'admin@gmail.com', name: 'Static Admin' },
-      merchant: { email: 'user@gmail.com', name: 'Static Merchant' },
-    };
-
-    const staticUserConfig = staticUsersByRole[role];
-
-    if (staticUserConfig && normalizedEmail === staticUserConfig.email) {
-      const staticUser: User = {
-        id: `static-${role}`,
-        name: staticUserConfig.name,
-        email: staticUserConfig.email,
-        role,
-      };
-      setUser(staticUser);
-      localStorage.setItem('helpdesk_user', JSON.stringify(staticUser));
-      return true;
-    }
-
-    const availableUsers = [...mockUsers, ...registeredUsers];
-    const found = availableUsers.find((existingUser) => existingUser.email.toLowerCase() === normalizedEmail && existingUser.role === role);
-
-    if (found) {
-      setUser(found);
-      localStorage.setItem('helpdesk_user', JSON.stringify(found));
-      return true;
-    }
-
-    return false;
-  }, [registeredUsers]);
-
-  const register = useCallback((name: string, email: string, _password: string, role: UserRole): boolean => {
-    const normalizedEmail = email.trim().toLowerCase();
-    const availableUsers = [...mockUsers, ...registeredUsers];
-
-    if (availableUsers.some((existingUser) => existingUser.email.toLowerCase() === normalizedEmail && existingUser.role === role)) {
-      return false;
-    }
-
-    const newUser: User = {
-      id: `${role}-${Date.now()}`,
-      name,
-      email: normalizedEmail,
-      role,
-    };
-
-    setRegisteredUsers((prev) => {
-      const updatedUsers = [...prev, newUser];
-      localStorage.setItem('helpdesk_registered_users', JSON.stringify(updatedUsers));
-      return updatedUsers;
-    });
-
-    setUser(newUser);
-    localStorage.setItem('helpdesk_user', JSON.stringify(newUser));
-
-    return true;
-  }, [registeredUsers]);
+  const setAuthSession = useCallback((auth: AuthState) => {
+    setState(auth);
+    if (auth.token) tokenStorage.set(auth.token);
+    else tokenStorage.clear();
+    localStorage.setItem(AUTH_KEY, JSON.stringify(auth));
+  }, []);
 
   const logout = useCallback(() => {
-    setUser(null);
+    setState({ user: null, token: null });
+    tokenStorage.clear();
+    localStorage.removeItem(AUTH_KEY);
     localStorage.removeItem('helpdesk_user');
   }, []);
 
-  return (
-    <AuthContext.Provider value={{ user, login, register, logout, isAuthenticated: !!user }}>
-      {children}
-    </AuthContext.Provider>
+  useEffect(() => {
+    apiClient.setUnauthorizedHandler(logout);
+  }, [logout]);
+
+  const login = useCallback(async (email: string, _password: string): Promise<boolean> => {
+    const normalized = email.trim().toLowerCase();
+
+    const role = normalized === 'user@gmail.com' ? 'merchant' : 'super-admin';
+    const user: AuthUser = {
+      id: role === 'merchant' ? 'merchant-1' : 1,
+      name: role === 'merchant' ? 'Merchant' : 'Admin',
+      email: normalized,
+      roles: [role],
+      permissions: role === 'merchant' ? [] : DEFAULT_PERMISSIONS,
+    };
+
+    setAuthSession({ user, token: 'demo-sanctum-token' });
+    return true;
+  }, [setAuthSession]);
+
+  const register = useCallback(async (name: string, email: string, _password: string): Promise<boolean> => {
+    const normalized = email.trim().toLowerCase();
+    const user: AuthUser = {
+      id: Date.now(),
+      name,
+      email: normalized,
+      roles: ['super-admin'],
+      permissions: DEFAULT_PERMISSIONS,
+    };
+
+    setAuthSession({ user, token: 'demo-sanctum-token' });
+    return true;
+  }, [setAuthSession]);
+
+  const value = useMemo(
+    () => ({
+      user: state.user,
+      token: state.token,
+      isAuthenticated: Boolean(state.user && state.token),
+      login,
+      register,
+      setAuthSession,
+      logout,
+    }),
+    [login, logout, register, setAuthSession, state.token, state.user],
   );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
