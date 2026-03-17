@@ -30,12 +30,26 @@ export interface UserStats {
 export interface PermissionItem {
   key: string;
   label: string;
+  description?: string;
 }
 
 export interface PermissionSection {
   key: string;
   label: string;
   items: PermissionItem[];
+}
+
+export interface PermissionApiItem {
+  id: number;
+  name: string;
+  group: string;
+}
+
+export interface UserPermissionPayload {
+  id: number;
+  name: string;
+  role: UserRole;
+  permissions: string[];
 }
 
 export interface UpsertUserPayload {

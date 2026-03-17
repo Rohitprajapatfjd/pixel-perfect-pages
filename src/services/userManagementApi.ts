@@ -1,5 +1,13 @@
 import { api } from '@/services/api';
-import { PermissionSection, UpsertUserPayload, UserFiltersState, UserRecord, UserStatus } from '@/types/userManagement';
+import {
+  PermissionApiItem,
+  PermissionSection,
+  UpsertUserPayload,
+  UserFiltersState,
+  UserPermissionPayload,
+  UserRecord,
+  UserStatus,
+} from '@/types/userManagement';
 
 const shouldUseMock = !import.meta.env.VITE_API_BASE_URL || import.meta.env.VITE_USE_ADMIN_MOCK === 'true';
 
@@ -7,26 +15,26 @@ const mockPermissionSections: PermissionSection[] = [
   {
     key: 'core',
     label: 'Core',
-    items: [{ key: 'dashboard.view', label: 'Dashboard' }],
+    items: [{ key: 'dashboard.view', label: 'Dashboard', description: 'Access dashboard.view' }],
   },
   {
     key: 'itineraries',
     label: 'Itineraries',
     items: [
-      { key: 'itinerary.view', label: 'View' },
-      { key: 'itinerary.create', label: 'Create' },
-      { key: 'itinerary.edit', label: 'Edit' },
-      { key: 'itinerary.delete', label: 'Delete' },
+      { key: 'itinerary.view', label: 'View', description: 'Access itinerary.view' },
+      { key: 'itinerary.create', label: 'Create', description: 'Access itinerary.create' },
+      { key: 'itinerary.edit', label: 'Edit', description: 'Access itinerary.edit' },
+      { key: 'itinerary.delete', label: 'Delete', description: 'Access itinerary.delete' },
     ],
   },
   {
     key: 'users',
     label: 'Users',
     items: [
-      { key: 'users.view', label: 'View' },
-      { key: 'users.create', label: 'Create' },
-      { key: 'users.edit', label: 'Edit' },
-      { key: 'users.delete', label: 'Delete' },
+      { key: 'users.view', label: 'View', description: 'Access users.view' },
+      { key: 'users.create', label: 'Create', description: 'Access users.create' },
+      { key: 'users.edit', label: 'Edit', description: 'Access users.edit' },
+      { key: 'users.delete', label: 'Delete', description: 'Access users.delete' },
     ],
   },
 ];
@@ -88,6 +96,42 @@ const requestWithFallback = async <T>(request: () => Promise<T>, fallback: () =>
   }
 };
 
+const startCasePermission = (permissionName: string) =>
+  permissionName
+    .replace(/[._-]/g, ' ')
+    .split(' ')
+    .filter(Boolean)
+    .map((word) => `${word[0]?.toUpperCase() ?? ''}${word.slice(1)}`)
+    .join(' ');
+
+const mapPermissionsToSections = (permissions: PermissionApiItem[]): PermissionSection[] => {
+  const grouped = permissions.reduce<Record<string, PermissionApiItem[]>>((acc, permission) => {
+    const groupKey = permission.group?.trim() || 'General';
+    if (!acc[groupKey]) {
+      acc[groupKey] = [];
+    }
+    acc[groupKey].push(permission);
+    return acc;
+  }, {});
+
+  return Object.entries(grouped).map(([group, items]) => ({
+    key: group.toLowerCase().replace(/\s+/g, '-'),
+    label: group,
+    items: items.map((item) => ({
+      key: item.name,
+      label: startCasePermission(item.name),
+      description: `Access ${item.name}`,
+    })),
+  }));
+};
+
+const toUserPermissionPayload = (user: UserRecord): UserPermissionPayload => ({
+  id: user.id,
+  name: user.name,
+  role: user.role,
+  permissions: user.permissions,
+});
+
 export const userManagementApi = {
   getUsers: (filters: UserFiltersState) =>
     requestWithFallback(
@@ -95,10 +139,33 @@ export const userManagementApi = {
       () => applyFilters(userStore, filters),
     ),
 
+  getPermissions: () =>
+    requestWithFallback(
+      () => api.get<PermissionApiItem[]>('/api/permissions'),
+      () =>
+        mockPermissionSections.flatMap((section, sectionIndex) =>
+          section.items.map((item, itemIndex) => ({
+            id: sectionIndex * 100 + itemIndex + 1,
+            name: item.key,
+            group: section.label,
+          })),
+        ),
+    ),
+
   getPermissionSections: () =>
     requestWithFallback(
-      () => api.get<PermissionSection[]>('/api/admin/permissions/grouped'),
+      async () => mapPermissionsToSections(await api.get<PermissionApiItem[]>('/api/permissions')),
       () => mockPermissionSections,
+    ),
+
+  getUserPermissions: (id: number) =>
+    requestWithFallback(
+      () => api.get<UserPermissionPayload>(`/api/users/${id}`),
+      () => {
+        const user = userStore.find((item) => item.id === id);
+        if (!user) throw new Error('User not found');
+        return toUserPermissionPayload(user);
+      },
     ),
 
   createUser: (payload: UpsertUserPayload) =>
@@ -150,7 +217,7 @@ export const userManagementApi = {
 
   updatePermissions: (id: number, permissions: string[]) =>
     requestWithFallback(
-      () => api.put<UserRecord>(`/api/admin/users/${id}/permissions`, { permissions }),
+      () => api.post<UserPermissionPayload>(`/api/users/${id}/permissions`, { permissions }),
       () => {
         let updated: UserRecord | undefined;
         userStore = userStore.map((user) => {
@@ -159,7 +226,7 @@ export const userManagementApi = {
           return updated;
         });
         if (!updated) throw new Error('User not found');
-        return updated;
+        return toUserPermissionPayload(updated);
       },
     ),
 
