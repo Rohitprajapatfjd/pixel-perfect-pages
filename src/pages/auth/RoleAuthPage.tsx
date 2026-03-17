@@ -245,121 +245,121 @@ const RoleAuthPage = () => {
         </div>
       </div>
     </section>
-     <section
-    className="md:hidden min-h-screen w-full flex items-center justify-center px-4 py-6"
-    style={{ backgroundColor: palette.surface }}
-  >
-    <div className="relative w-full max-w-6xl bg-white rounded-2xl shadow-[0_20px_45px_rgba(12,24,146,0.18)] overflow-hidden">
+    <section
+      className="md:hidden min-h-screen w-full flex items-center justify-center px-4 py-6"
+      style={{ backgroundColor: palette.surface }}
+    >
+      <div className="relative w-full max-w-6xl bg-white rounded-2xl shadow-[0_20px_45px_rgba(12,24,146,0.18)] overflow-hidden">
 
-      {/* ================= MOBILE VIEW ================= */}
-      <div className="p-8">
-        <div className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-          Admin Access
+        {/* ================= MOBILE VIEW ================= */}
+        <div className="p-8">
+          <div className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+            Admin Access
+          </div>
+
+          {!isSignUp ? (
+            <>
+              <h1 className="text-3xl font-bold mb-2" style={{ color: palette.secondary }}>
+                Sign In
+              </h1>
+              <form onSubmit={handleSignIn} className="mt-6 space-y-4">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
+                  className="w-full rounded-md border px-4 py-3 text-sm"
+                  required
+                />
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  className="w-full rounded-md border px-4 py-3 text-sm"
+                  required
+                />
+                <button
+                  className="w-full rounded-full py-3 text-white font-semibold"
+                  style={{ backgroundColor: palette.secondary }}
+                >
+                  SIGN IN
+                </button>
+              </form>
+            </>
+          ) : (
+            <>
+              <h1 className="text-3xl font-bold mb-2" style={{ color: palette.secondary }}>
+                Create Account
+              </h1>
+              <form onSubmit={handleSignUp} className="mt-6 space-y-4">
+                <input
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="First Name"
+                  className="w-full rounded-md border px-4 py-3 text-sm"
+                  required
+                />
+                <input
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder="Last Name"
+                  className="w-full rounded-md border px-4 py-3 text-sm"
+                  required
+                />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
+                  className="w-full rounded-md border px-4 py-3 text-sm"
+                  required
+                />
+                <input
+                  type="mobile"
+                  value={mobile}
+                  onChange={(e) => setMobile(e.target.value)}
+                  placeholder="Mobile Number"
+                  className="w-full rounded-md border px-4 py-3 text-sm"
+                  required
+                />
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  className="w-full rounded-md border px-4 py-3 text-sm"
+                  required
+                />
+                <input
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="Confirm Password"
+                  className="w-full rounded-md border px-4 py-3 text-sm"
+                  required
+                />
+                <button
+                  className="w-full rounded-full py-3 text-white font-semibold"
+                  style={{ backgroundColor: palette.secondary }}
+                >
+                  SIGN UP
+                </button>
+              </form>
+            </>
+          )}
+
+          <button
+            onClick={() => setIsSignUp((prev) => !prev)}
+            className="mt-6 w-full text-sm font-semibold text-blue-600"
+          >
+            {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
+          </button>
         </div>
-
-        {!isSignUp ? (
-          <>
-            <h1 className="text-3xl font-bold mb-2" style={{ color: palette.secondary }}>
-              Sign In
-            </h1>
-            <form onSubmit={handleSignIn} className="mt-6 space-y-4">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-                className="w-full rounded-md border px-4 py-3 text-sm"
-                required
-              />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                className="w-full rounded-md border px-4 py-3 text-sm"
-                required
-              />
-              <button
-                className="w-full rounded-full py-3 text-white font-semibold"
-                style={{ backgroundColor: palette.secondary }}
-              >
-                SIGN IN
-              </button>
-            </form>
-          </>
-        ) : (
-          <>
-            <h1 className="text-3xl font-bold mb-2" style={{ color: palette.secondary }}>
-              Create Account
-            </h1>
-            <form onSubmit={handleSignUp} className="mt-6 space-y-4">
-              <input
-                type="text"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                placeholder="First Name"
-                className="w-full rounded-md border px-4 py-3 text-sm"
-                required
-              />
-              <input
-                type="text"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                placeholder="Last Name"
-                className="w-full rounded-md border px-4 py-3 text-sm"
-                required
-              />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-                className="w-full rounded-md border px-4 py-3 text-sm"
-                required
-              />
-              <input
-                type="mobile"
-                value={mobile}
-                onChange={(e) => setMobile(e.target.value)}
-                placeholder="Mobile Number"
-                className="w-full rounded-md border px-4 py-3 text-sm"
-                required
-              />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                className="w-full rounded-md border px-4 py-3 text-sm"
-                required
-              />
-              <input
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                placeholder="Confirm Password"
-                className="w-full rounded-md border px-4 py-3 text-sm"
-                required
-              />
-              <button
-                className="w-full rounded-full py-3 text-white font-semibold"
-                style={{ backgroundColor: palette.secondary }}
-              >
-                SIGN UP
-              </button>
-            </form>
-          </>
-        )}
-
-        <button
-          onClick={() => setIsSignUp((prev) => !prev)}
-          className="mt-6 w-full text-sm font-semibold text-blue-600"
-        >
-          {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
-        </button>
       </div>
-    </div>
-  </section>
+    </section>
   </>
   );
 };
