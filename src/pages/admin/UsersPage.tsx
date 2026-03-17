@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import PermissionModal from '@/components/PermissionModal';
@@ -7,9 +7,11 @@ import StatsCards from '@/components/StatsCards';
 import UserFilters from '@/components/UserFilters';
 import UserTable from '@/components/UserTable';
 import { usePermissions } from '@/hooks/usePermissions';
+import { useUpdatePermissions } from '@/hooks/useUpdatePermissions';
 import { useUpdateUser } from '@/hooks/useUpdateUser';
+import { useUserPermissions } from '@/hooks/useUserPermissions';
 import { useUsers } from '@/hooks/useUsers';
-import { UpsertUserPayload, UserFiltersState, UserRecord } from '@/types/userManagement';
+import { UpsertUserPayload, UserFiltersState, UserPermissionPayload, UserRecord } from '@/types/userManagement';
 import { toast } from 'sonner';
 
 const initialFilters: UserFiltersState = {
@@ -31,14 +33,18 @@ const UsersPage = () => {
   const [editingUser, setEditingUser] = useState<UserRecord | null>(null);
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
   const [form, setForm] = useState<UpsertUserPayload>(initialForm);
-  const [permissionUser, setPermissionUser] = useState<UserRecord | null>(null);
+  const [permissionUser, setPermissionUser] = useState<UserPermissionPayload | null>(null);
+  const [permissionUserId, setPermissionUserId] = useState<number | null>(null);
   const [localPermissions, setLocalPermissions] = useState<string[]>([]);
 
   const { data: users = [], isLoading, stats } = useUsers(filters);
-  const { sectionsQuery, updatePermissions } = usePermissions();
+  const { groupedPermissions, permissionsQuery } = usePermissions();
+  const updatePermissions = useUpdatePermissions();
   const { createUser, updateUser, deleteUser, updateStatus } = useUpdateUser();
 
-  const permissionSections = sectionsQuery.data ?? [];
+  const permissionSections = groupedPermissions;
+
+  const userPermissionsQuery = useUserPermissions(permissionUserId ?? undefined);
 
   const resetForm = () => {
     setEditingUser(null);
@@ -81,6 +87,25 @@ const UsersPage = () => {
 
   const selectedPermissionsCount = useMemo(() => localPermissions.length, [localPermissions]);
 
+  const openPermissionModal = (user: UserRecord) => {
+    setPermissionUser({ id: user.id, name: user.name, role: user.role, permissions: user.permissions });
+    setPermissionUserId(user.id);
+    setLocalPermissions(user.permissions);
+  };
+
+  useEffect(() => {
+    if (userPermissionsQuery.data) {
+      setPermissionUser(userPermissionsQuery.data);
+      setLocalPermissions(userPermissionsQuery.data.permissions);
+    }
+  }, [userPermissionsQuery.data]);
+
+  useEffect(() => {
+    if (userPermissionsQuery.error) {
+      toast.error((userPermissionsQuery.error as Error).message || 'Unable to load permissions');
+    }
+  }, [userPermissionsQuery.error]);
+
   if (isLoading) {
     return <SkeletonLoader />;
   }
@@ -112,10 +137,7 @@ const UsersPage = () => {
           await updateStatus.mutateAsync({ id: user.id, status });
           toast.success(`User ${status === 'Active' ? 'unlocked' : 'suspended'}`);
         }}
-        onManagePermissions={(user) => {
-          setPermissionUser(user);
-          setLocalPermissions(user.permissions);
-        }}
+        onManagePermissions={openPermissionModal}
       />
 
       <PermissionModal
@@ -124,6 +146,7 @@ const UsersPage = () => {
         sections={permissionSections}
         selectedPermissions={localPermissions}
         saving={updatePermissions.isPending}
+        loading={permissionsQuery.isLoading || userPermissionsQuery.isLoading}
         onTogglePermission={(permission) => {
           setLocalPermissions((prev) =>
             prev.includes(permission) ? prev.filter((item) => item !== permission) : [...prev, permission],
@@ -138,11 +161,16 @@ const UsersPage = () => {
             return prev.filter((item) => !sectionKeys.includes(item));
           });
         }}
-        onClose={() => setPermissionUser(null)}
+        onClose={() => {
+          setPermissionUser(null);
+          setPermissionUserId(null);
+          setLocalPermissions([]);
+        }}
         onSave={async () => {
           if (!permissionUser) return;
           await updatePermissions.mutateAsync({ id: permissionUser.id, permissions: localPermissions });
           setPermissionUser(null);
+          setPermissionUserId(null);
           toast.success(`Permissions saved (${selectedPermissionsCount})`);
         }}
       />
