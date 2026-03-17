@@ -1,40 +1,47 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { USER_QUERY_KEY } from '@/hooks/useUsers';
+import { useMemo } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { userManagementApi } from '@/services/userManagementApi';
-import { UserRecord } from '@/types/userManagement';
+import { PermissionApiItem, PermissionSection } from '@/types/userManagement';
 
-const PERMISSIONS_QUERY_KEY = 'permission-sections';
+export const PERMISSIONS_QUERY_KEY = 'permissions';
+
+const toLabel = (value: string) =>
+  value
+    .replace(/[._-]/g, ' ')
+    .split(' ')
+    .filter(Boolean)
+    .map((word) => `${word[0]?.toUpperCase() ?? ''}${word.slice(1)}`)
+    .join(' ');
 
 export const usePermissions = () => {
-  const queryClient = useQueryClient();
-
-  const sectionsQuery = useQuery({
+  const permissionsQuery = useQuery({
     queryKey: [PERMISSIONS_QUERY_KEY],
-    queryFn: userManagementApi.getPermissionSections,
+    queryFn: userManagementApi.getPermissions,
   });
 
-  const updatePermissions = useMutation({
-    mutationFn: ({ id, permissions }: { id: number; permissions: string[] }) =>
-      userManagementApi.updatePermissions(id, permissions),
-    onMutate: async ({ id, permissions }) => {
-      await queryClient.cancelQueries({ queryKey: [USER_QUERY_KEY] });
-      const previous = queryClient.getQueriesData({ queryKey: [USER_QUERY_KEY] });
+  const groupedPermissions = useMemo<PermissionSection[]>(() => {
+    const grouped = (permissionsQuery.data ?? []).reduce<Record<string, PermissionApiItem[]>>((acc, permission) => {
+      const group = permission.group?.trim() || 'General';
+      if (!acc[group]) {
+        acc[group] = [];
+      }
+      acc[group].push(permission);
+      return acc;
+    }, {});
 
-      previous.forEach(([key, data]) => {
-        if (!Array.isArray(data)) return;
-        queryClient.setQueryData(
-          key,
-          (data as UserRecord[]).map((user) => (user.id === id ? { ...user, permissions } : user)),
-        );
-      });
+    return Object.entries(grouped).map(([group, permissions]) => ({
+      key: group.toLowerCase().replace(/\s+/g, '-'),
+      label: group,
+      items: permissions.map((permission) => ({
+        key: permission.name,
+        label: toLabel(permission.name),
+        description: `Access ${permission.name}`,
+      })),
+    }));
+  }, [permissionsQuery.data]);
 
-      return { previous };
-    },
-    onError: (_error, _variables, context) => {
-      context?.previous.forEach(([key, data]) => queryClient.setQueryData(key, data));
-    },
-    onSettled: () => queryClient.invalidateQueries({ queryKey: [USER_QUERY_KEY] }),
-  });
-
-  return { sectionsQuery, updatePermissions };
+  return {
+    permissionsQuery,
+    groupedPermissions,
+  };
 };
