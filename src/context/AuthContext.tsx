@@ -8,6 +8,7 @@ interface AuthContextType {
   token: string | null;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<boolean>;
+  loginWithMobile: (mobile: string) => Promise<boolean>;
   register: (name: string, email: string, password: string) => Promise<boolean>;
   setAuthSession: (auth: AuthState) => void;
   logout: () => void;
@@ -90,6 +91,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return true;
   }, [setAuthSession]);
 
+
+  const loginWithMobile = useCallback(async (mobile: string): Promise<boolean> => {
+    const normalizedMobile = mobile.trim();
+
+    const user: AuthUser = {
+      id: `mobile-${normalizedMobile}`,
+      name: 'Mobile User',
+      email: `${normalizedMobile}@mobile.local`,
+      roles: ['merchant'],
+      permissions: [],
+    };
+
+    setAuthSession({ user, token: 'demo-sanctum-token' });
+    return true;
+  }, [setAuthSession]);
+
   const register = useCallback(async (name: string, email: string, _password: string): Promise<boolean> => {
     const normalized = email.trim().toLowerCase();
     const user: AuthUser = {
@@ -110,11 +127,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       token: state.token,
       isAuthenticated: Boolean(state.user && state.token),
       login,
+      loginWithMobile,
       register,
       setAuthSession,
       logout,
     }),
-    [login, logout, register, setAuthSession, state.token, state.user],
+    [login, loginWithMobile, logout, register, setAuthSession, state.token, state.user],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
