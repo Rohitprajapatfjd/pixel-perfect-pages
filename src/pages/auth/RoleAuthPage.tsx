@@ -16,9 +16,12 @@ const RoleAuthPage = () => {
   const fromState = location.state as { from?: { pathname?: string } };
 
   const [isSignUp, setIsSignUp] = useState(false);
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("admin@gmail.com");
+  const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -72,7 +75,7 @@ const RoleAuthPage = () => {
     event.preventDefault();
     setError("");
 
-    const didRegister = await register(name.trim() || "Demo User", email.trim().toLowerCase(), password);
+    const didRegister = await register(firstName.trim() || "Demo User", email.trim().toLowerCase(), password);
     if (!didRegister) {
       setError("Account already exists. Please sign in.");
       return;
@@ -174,16 +177,24 @@ const RoleAuthPage = () => {
 
           <div className="">
             <div className="relative">
-              <div className={`absolute inset-x-8 top-[76px] sm:inset-x-10 md:inset-x-12 transition-all duration-500 ${isSignUp ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-4"}`}>
+              <div className={`absolute inset-x-8 top-[32px] sm:inset-x-10 md:inset-x-12 transition-all duration-500 ${isSignUp ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-4"}`}>
               <h1 className="text-3xl font-bold sm:text-4xl" style={{ color: palette.secondary }}>Create account</h1>
               <p className="mt-2 text-sm text-slate-500">Create a new admin account.</p>
 
               <form onSubmit={handleSignUp} className="mt-8 space-y-4">
                 <input
                   type="text"
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
-                  placeholder="Name"
+                  value={firstName}
+                  onChange={(event) => setFirstName(event.target.value)}
+                  placeholder="First Name"
+                  className="w-full rounded-md border border-[#dfe7f3] bg-[#f7fafe] px-4 py-3 text-sm outline-none focus:border-[#2E59D2]"
+                  required
+                />
+                <input
+                  type="text"
+                  value={lastName}
+                  onChange={(event) => setLastName(event.target.value)}
+                  placeholder="Last Name"
                   className="w-full rounded-md border border-[#dfe7f3] bg-[#f7fafe] px-4 py-3 text-sm outline-none focus:border-[#2E59D2]"
                   required
                 />
@@ -196,10 +207,26 @@ const RoleAuthPage = () => {
                   required
                 />
                 <input
+                  type="number"
+                  value={mobile}
+                  onChange={(event) => setMobile(event.target.value)}
+                  placeholder="Mobile Number"
+                  className="w-full rounded-md border border-[#dfe7f3] bg-[#f7fafe] px-4 py-3 text-sm outline-none focus:border-[#2E59D2]"
+                  required
+                />
+                <input
                   type="password"
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                   placeholder="Password"
+                  className="w-full rounded-md border border-[#dfe7f3] bg-[#f7fafe] px-4 py-3 text-sm outline-none focus:border-[#2E59D2]"
+                  required
+                />
+                <input
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(event) => setConfirmPassword(event.target.value)}
+                  placeholder="Confirm Password"
                   className="w-full rounded-md border border-[#dfe7f3] bg-[#f7fafe] px-4 py-3 text-sm outline-none focus:border-[#2E59D2]"
                   required
                 />
@@ -218,97 +245,121 @@ const RoleAuthPage = () => {
         </div>
       </div>
     </section>
-     <section
-    className="md:hidden min-h-screen w-full flex items-center justify-center px-4 py-6"
-    style={{ backgroundColor: palette.surface }}
-  >
-    <div className="relative w-full max-w-6xl bg-white rounded-2xl shadow-[0_20px_45px_rgba(12,24,146,0.18)] overflow-hidden">
+    <section
+      className="md:hidden min-h-screen w-full flex items-center justify-center px-4 py-6"
+      style={{ backgroundColor: palette.surface }}
+    >
+      <div className="relative w-full max-w-6xl bg-white rounded-2xl shadow-[0_20px_45px_rgba(12,24,146,0.18)] overflow-hidden">
 
-      {/* ================= MOBILE VIEW ================= */}
-      <div className="p-8">
-        <div className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-          Admin Access
+        {/* ================= MOBILE VIEW ================= */}
+        <div className="p-8">
+          <div className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+            Admin Access
+          </div>
+
+          {!isSignUp ? (
+            <>
+              <h1 className="text-3xl font-bold mb-2" style={{ color: palette.secondary }}>
+                Sign In
+              </h1>
+              <form onSubmit={handleSignIn} className="mt-6 space-y-4">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
+                  className="w-full rounded-md border px-4 py-3 text-sm"
+                  required
+                />
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  className="w-full rounded-md border px-4 py-3 text-sm"
+                  required
+                />
+                <button
+                  className="w-full rounded-full py-3 text-white font-semibold"
+                  style={{ backgroundColor: palette.secondary }}
+                >
+                  SIGN IN
+                </button>
+              </form>
+            </>
+          ) : (
+            <>
+              <h1 className="text-3xl font-bold mb-2" style={{ color: palette.secondary }}>
+                Create Account
+              </h1>
+              <form onSubmit={handleSignUp} className="mt-6 space-y-4">
+                <input
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="First Name"
+                  className="w-full rounded-md border px-4 py-3 text-sm"
+                  required
+                />
+                <input
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder="Last Name"
+                  className="w-full rounded-md border px-4 py-3 text-sm"
+                  required
+                />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
+                  className="w-full rounded-md border px-4 py-3 text-sm"
+                  required
+                />
+                <input
+                  type="mobile"
+                  value={mobile}
+                  onChange={(e) => setMobile(e.target.value)}
+                  placeholder="Mobile Number"
+                  className="w-full rounded-md border px-4 py-3 text-sm"
+                  required
+                />
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  className="w-full rounded-md border px-4 py-3 text-sm"
+                  required
+                />
+                <input
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="Confirm Password"
+                  className="w-full rounded-md border px-4 py-3 text-sm"
+                  required
+                />
+                <button
+                  className="w-full rounded-full py-3 text-white font-semibold"
+                  style={{ backgroundColor: palette.secondary }}
+                >
+                  SIGN UP
+                </button>
+              </form>
+            </>
+          )}
+
+          <button
+            onClick={() => setIsSignUp((prev) => !prev)}
+            className="mt-6 w-full text-sm font-semibold text-blue-600"
+          >
+            {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
+          </button>
         </div>
-
-        {!isSignUp ? (
-          <>
-            <h1 className="text-3xl font-bold mb-2" style={{ color: palette.secondary }}>
-              Sign In
-            </h1>
-            <form onSubmit={handleSignIn} className="mt-6 space-y-4">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-                className="w-full rounded-md border px-4 py-3 text-sm"
-                required
-              />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                className="w-full rounded-md border px-4 py-3 text-sm"
-                required
-              />
-              <button
-                className="w-full rounded-full py-3 text-white font-semibold"
-                style={{ backgroundColor: palette.secondary }}
-              >
-                SIGN IN
-              </button>
-            </form>
-          </>
-        ) : (
-          <>
-            <h1 className="text-3xl font-bold mb-2" style={{ color: palette.secondary }}>
-              Create Account
-            </h1>
-            <form onSubmit={handleSignUp} className="mt-6 space-y-4">
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
-                className="w-full rounded-md border px-4 py-3 text-sm"
-                required
-              />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-                className="w-full rounded-md border px-4 py-3 text-sm"
-                required
-              />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                className="w-full rounded-md border px-4 py-3 text-sm"
-                required
-              />
-              <button
-                className="w-full rounded-full py-3 text-white font-semibold"
-                style={{ backgroundColor: palette.secondary }}
-              >
-                SIGN UP
-              </button>
-            </form>
-          </>
-        )}
-
-        <button
-          onClick={() => setIsSignUp((prev) => !prev)}
-          className="mt-6 w-full text-sm font-semibold text-blue-600"
-        >
-          {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
-        </button>
       </div>
-    </div>
-  </section>
+    </section>
   </>
   );
 };

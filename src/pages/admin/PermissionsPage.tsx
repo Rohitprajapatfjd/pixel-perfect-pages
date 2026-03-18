@@ -1,10 +1,10 @@
+import { useCallback, useEffect, useState } from 'react';
+import { toast } from 'sonner';
 import { adminApi } from '@/api/adminApi';
 import CreatePermissionModal from '@/components/admin/rbac/CreatePermissionModal';
 import PermissionList from '@/components/admin/rbac/PermissionList';
 import { usePermission } from '@/hooks/usePermission';
 import { Permission } from '@/types/rbac';
-import { useEffect, useState } from 'react';
-import { toast } from 'sonner';
 
 const PermissionsPage = () => {
   const { hasPermission } = usePermission();
@@ -15,7 +15,7 @@ const PermissionsPage = () => {
   const [saving, setSaving] = useState(false);
   const [createOpen, setCreateOpen] = useState(false);
 
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     setLoading(true);
     try {
       const response = await adminApi.getPermissions();
@@ -25,11 +25,11 @@ const PermissionsPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [loadData]);
 
   const handleCreate = async (payload: { name: string; group: string }) => {
     setSaving(true);
