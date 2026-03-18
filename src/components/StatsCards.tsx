@@ -8,8 +8,6 @@ interface StatsCardsProps {
 const cards = [
   { key: 'totalUsers', label: 'Total Users', icon: Users },
   { key: 'activeUsers', label: 'Active Users', icon: ShieldCheck },
-  { key: 'subAgentLogins', label: 'Sub-Agent Logins', icon: UserCog },
-  { key: 'suspendedUsers', label: 'Suspended Users', icon: UserX },
 ] as const;
 
 const StatsCards = ({ stats }: StatsCardsProps) => (
