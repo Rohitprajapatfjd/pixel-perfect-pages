@@ -17,6 +17,7 @@ import TicketSection from '@/pages/admin/Ticket';
 import RolesPage from '@/pages/admin/RolesPage';
 import PermissionsPage from '@/pages/admin/PermissionsPage';
 import UsersPage from '@/pages/admin/UsersPage';
+import HotPicks from '@/pages/admin/HotPicks';
 import { TicketProvider } from '@/context/TicketContext';
 import { AuthProvider } from '@/context/AuthContext';
 import RoleAuthPage from '@/pages/auth/RoleAuthPage';
@@ -63,6 +64,7 @@ const App = () => (
                 <Route element={<ProtectedRoute permission="manage-users" />}>
                   <Route path="users" element={<UsersPage />} />
                 </Route>
+                <Route path="hot-picks" element={<HotPicks />} />
               </Route>
             </Route>
 
