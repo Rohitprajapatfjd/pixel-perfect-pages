@@ -20,6 +20,7 @@ import {
   Shield,
   KeyRound,
   Users,
+  TrendingUp,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/context/AuthContext";
@@ -75,6 +76,7 @@ const navGroups: NavGroup[] = [
       { title: "Roles", icon: Shield, href: "/admin/roles", permission: "manage-roles" },
       { title: "Permissions", icon: KeyRound, href: "/admin/permissions", permission: "manage-permissions" },
       { title: "Users", icon: Users, href: "/admin/users", permission: "manage-users" },
+      { title: "Hot Picks", icon: TrendingUp, href: "/admin/hot-picks" },
     ],
   },
   {
