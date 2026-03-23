@@ -1,7 +1,8 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import OtpVerificationModal from "@/components/auth/OtpVerificationModal";
+import ForgotPasswordModal from "@/components/auth/ForgotPasswordModal";
 
 type OtpFlow =
   | {
@@ -33,6 +34,7 @@ const RoleAuthPage = () => {
   const { login, loginWithMobile, register, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [searchParams] = useSearchParams();
   const fromState = location.state as { from?: { pathname?: string } };
 
   const [isSignUp, setIsSignUp] = useState(false);
@@ -50,12 +52,20 @@ const RoleAuthPage = () => {
 
   const [otpFlow, setOtpFlow] = useState<OtpFlow | null>(null);
   const [isOtpModalOpen, setIsOtpModalOpen] = useState(false);
+  const [isForgotPasswordOpen, setIsForgotPasswordOpen] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/admin", { replace: true });
     }
   }, [isAuthenticated, navigate]);
+
+  useEffect(() => {
+    const shouldOpenForgot = searchParams.get("forgot-password") === "1";
+    if (shouldOpenForgot) {
+      setIsForgotPasswordOpen(true);
+    }
+  }, [searchParams]);
 
   const getRoleFromEmail = (currentEmail: string): "admin" | "merchant" | null => {
     const normalizedEmail = currentEmail.trim().toLowerCase();
@@ -279,6 +289,15 @@ const RoleAuthPage = () => {
           required
         />
         {renderFeedback()}
+        <div className="flex justify-end">
+          <button
+            type="button"
+            onClick={() => setIsForgotPasswordOpen(true)}
+            className="text-xs font-semibold text-[#2E59D2] transition-opacity hover:opacity-80"
+          >
+            Forgot Password?
+          </button>
+        </div>
         <button
           type="submit"
           className="rounded-full px-12 py-3 text-sm font-bold tracking-[0.2em] text-white"
@@ -549,6 +568,11 @@ const RoleAuthPage = () => {
         onVerify={handleOtpVerify}
         onResend={handleOtpResend}
         helperText="Demo OTP for testing: 123456"
+      />
+      <ForgotPasswordModal
+        open={isForgotPasswordOpen}
+        onOpenChange={setIsForgotPasswordOpen}
+        initialEmail={searchParams.get("email") ?? email}
       />
     </>
   );

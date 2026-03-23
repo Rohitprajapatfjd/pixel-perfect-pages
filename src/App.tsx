@@ -21,6 +21,7 @@ import HotPicks from '@/pages/admin/HotPicks';
 import { TicketProvider } from '@/context/TicketContext';
 import { AuthProvider } from '@/context/AuthContext';
 import RoleAuthPage from '@/pages/auth/RoleAuthPage';
+import ResetPasswordPage from '@/pages/auth/ResetPasswordPage';
 import ProtectedRoute from '@/routes/ProtectedRoute';
 import MerchantDashboard from '@/components/merchant/Dashboard';
 import StockTips from '@/components/merchant/StockTips';
@@ -49,6 +50,7 @@ const App = () => (
             </Route>
 
             <Route path="/login" element={<RoleAuthPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
 
             <Route element={<ProtectedRoute allowedRoles={['super-admin']} />}>
               <Route path="/admin" element={<AdminLayout />}>

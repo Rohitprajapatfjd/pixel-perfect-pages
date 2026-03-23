@@ -3,6 +3,8 @@ export const ENDPOINTS = {
     login: '/auth/login',
     register: '/auth/register',
     profile: '/admin/me',
+    forgotPassword: '/auth/forgot-password',
+    resetPassword: '/auth/reset-password',
   },
   products: {
     list: '/merchant/products',
